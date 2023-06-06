@@ -268,6 +268,10 @@
         {
             return currentWaypointList[_index];
         }
+        public int GetPossibleDirection(Transform _from, Transform _to)
+        {
+            return PossibleTargetDirection(_from, _to);
+        }//新加的，让外部函数可以访问PossibleTargetDirection（）
         #endregion
 
         #region Registers
@@ -947,7 +951,14 @@
                                 else
                                 {
                                     //判断是否需要打转向灯,需要判断向左还是向右打转向
-                                    carList[i].NeedTurnLight();
+                                    int direction = 0;
+                                    if (leftHitNL[i])
+                                        direction = -1;
+                                    else if (rightHitNL[i])
+                                        direction = 1;
+                                    else
+                                        direction = 0;
+                                    carList[i].NeedTurnLight(direction);
                                 }
 
                                 if ((forceChangeLanesNL[i] == true || frontHitNL[i] == true) && canChangeLanesNL[i] && isChangingLanesNL[i] == false)//换道判断4：（强制换道或前方检测障碍物）且能换道且目前不在换道

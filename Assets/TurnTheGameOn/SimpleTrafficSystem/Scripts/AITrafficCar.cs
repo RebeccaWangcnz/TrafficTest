@@ -48,6 +48,14 @@
         public Light headLight;
         [Tooltip("References to car wheel mesh object, transform, and collider.")]
         public AITrafficCarWheels[] _wheels;
+
+        public TurnLight turnlight;
+        public MeshRenderer leftturnlight;
+        public MeshRenderer rightturnlight;
+        public Material lightmaterial;
+        [HideInInspector] public Material leftmaterial;
+        [HideInInspector] public Material rightmaterial;
+
         private AITrafficWaypointRoute startRoute;
         private Vector3 goToPointWhenStoppedVector3;
         private Rigidbody rb;
@@ -59,6 +67,8 @@
 
         public void RegisterCar(AITrafficWaypointRoute route)
         {
+            leftturnlight.materials[0].EnableKeyword("_EMISSION");
+            rightturnlight.materials[0].EnableKeyword("_EMISSION");
             if (brakeMaterial == null && brakeMaterialMesh != null)
             {
                 brakeMaterial = brakeMaterialMesh.materials[brakeMaterialIndex];
@@ -210,37 +220,39 @@
             AITrafficController.Instance.SetForceLaneChange(assignedIndex, _value);
         }
         /// <summary>
-        /// 是否需要打开转向灯
+        /// Rebe：是否需要打开转向灯
         /// </summary>
-        public void NeedTurnLight()
+        public void NeedTurnLight(int direction)
         {
             if (m_HitDetect= Physics.BoxCast(frontSensorTransform.position,frontSensorSize,transform.forward,out m_Hit,transform.rotation,frontSensorLengthForTurnLight,AITrafficController.Instance.layerMask))
             {
-                Debug.Log("打开转向灯");
+                turnlight.isturning = direction;
+                if(direction!=0)
+                    Debug.Log("打开转向灯");
             }
         }
         //用来显示打开转向灯的射线检测
-        void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
+        //void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.red;
 
-            //Check if there has been a hit yet
-            if (m_HitDetect)
-            {
-                //Draw a Ray forward from GameObject toward the hit
-                Gizmos.DrawRay(frontSensorTransform.position, transform.forward * m_Hit.distance);
-                //Draw a cube that extends to where the hit exists
-                Gizmos.DrawWireCube(frontSensorTransform.position + transform.forward * m_Hit.distance, frontSensorSize);
-            }
-            //If there hasn't been a hit yet, draw the ray at the maximum distance
-            else
-            {
-                //Draw a Ray forward from GameObject toward the maximum distance
-                Gizmos.DrawRay(transform.position, transform.forward * frontSensorLengthForTurnLight);
-                //Draw a cube at the maximum distance
-                Gizmos.DrawWireCube(transform.position + transform.forward * frontSensorLengthForTurnLight, frontSensorSize);
-            }
-        }
+        //    //Check if there has been a hit yet
+        //    if (m_HitDetect)
+        //    {
+        //        //Draw a Ray forward from GameObject toward the hit
+        //        Gizmos.DrawRay(frontSensorTransform.position, transform.forward * m_Hit.distance);
+        //        //Draw a cube that extends to where the hit exists
+        //        Gizmos.DrawWireCube(frontSensorTransform.position + transform.forward * m_Hit.distance, frontSensorSize);
+        //    }
+        //    //If there hasn't been a hit yet, draw the ray at the maximum distance
+        //    else
+        //    {
+        //        //Draw a Ray forward from GameObject toward the maximum distance
+        //        Gizmos.DrawRay(transform.position, transform.forward * frontSensorLengthForTurnLight);
+        //        //Draw a cube at the maximum distance
+        //        Gizmos.DrawWireCube(transform.position + transform.forward * frontSensorLengthForTurnLight, frontSensorSize);
+        //    }
+        //}
         #endregion
 
         #region Waypoint Trigger Methods
