@@ -9,6 +9,7 @@
     [CustomEditor(typeof(AITrafficWaypointRoute))]
     public class Editor_AITrafficWaypointRoute : Editor
     {
+        private static int tab;
         AITrafficWaypointRoute circuit;
 
         void OnEnable()
@@ -18,134 +19,182 @@
 
         public override void OnInspectorGUI()
         {
-            serializedObject.Update();
-            EditorGUILayout.BeginVertical(EditorStyles.inspectorFullWidthMargins);
-            EditorStyles.label.wordWrap = true;
+            serializedObject.Update();//每帧更新一次所序列化的游戏对象信息
+            EditorGUILayout.BeginVertical(EditorStyles.inspectorFullWidthMargins);//生成一个垂直（排布）组，全宽排布
+            EditorStyles.label.wordWrap = true;//label自动换行
 
             EditorGUILayout.HelpBox("Shift + Left Click in scene view on a Collider to add new points to the route", MessageType.None);
             EditorGUILayout.HelpBox("Shift + Ctrl + Left Click in scene view on a Collider to insert new points to the route", MessageType.None);
             EditorGUILayout.HelpBox("Shift + Right Click in scene view on a Collider to add a Yield Trigger to the route", MessageType.None);
 
             AITrafficWaypointRoute _AITrafficWaypointRoute = (AITrafficWaypointRoute)target;
-
+            tab = GUILayout.Toolbar(tab, new string[] { "Settings", "Batch" });
             EditorGUILayout.BeginVertical("Box");
-
-            SerializedProperty useSpawnPoints = serializedObject.FindProperty("useSpawnPoints");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(useSpawnPoints, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            SerializedProperty spawnFromAITrafficController = serializedObject.FindProperty("spawnFromAITrafficController");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(spawnFromAITrafficController, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            if (_AITrafficWaypointRoute.spawnFromAITrafficController)
+            switch (tab)
             {
-                SerializedProperty spawnAmount = serializedObject.FindProperty("spawnAmount");
-                EditorGUI.BeginChangeCheck();
-                EditorGUILayout.PropertyField(spawnAmount, true);
-                if (EditorGUI.EndChangeCheck())
-                    serializedObject.ApplyModifiedProperties();
-            }
+                case 0:
+                    SerializedProperty useSpawnPoints = serializedObject.FindProperty("useSpawnPoints");//序列化变量，以读写数值据
+                    EditorGUI.BeginChangeCheck();//值变化
+                    EditorGUILayout.PropertyField(useSpawnPoints, true);//序列化变量“声明”
+                    if (EditorGUI.EndChangeCheck())//完成值变化
+                        serializedObject.ApplyModifiedProperties();//保存
+                    
+                    SerializedProperty spawnFromAITrafficController = serializedObject.FindProperty("spawnFromAITrafficController");
+                    EditorStyles.label.wordWrap = false;
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(spawnFromAITrafficController, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
 
-            SerializedProperty spawnTrafficVehicles = serializedObject.FindProperty("spawnTrafficVehicles");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(spawnTrafficVehicles, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            EditorGUILayout.EndVertical();
-
-
-            EditorGUILayout.BeginVertical("Box");
-
-            SerializedProperty maxDensity = serializedObject.FindProperty("maxDensity");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(maxDensity, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            SerializedProperty vehicleTypes = serializedObject.FindProperty("vehicleTypes");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(vehicleTypes, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            EditorGUILayout.EndVertical();
-
-
-            EditorGUILayout.BeginVertical("Box");
-
-            SerializedProperty waypointDataList = serializedObject.FindProperty("waypointDataList");
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(waypointDataList, true);
-            if (EditorGUI.EndChangeCheck())
-                serializedObject.ApplyModifiedProperties();
-
-            if (GUILayout.Button(new GUIContent("Reverse Waypoints", "Reverses all waypoints in the route's waypointDataList.")))
-            {
-                circuit.ReversePoints();
-                EditorUtility.SetDirty(this);
-                EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-            }
-
-            if (GUILayout.Button(new GUIContent("Align Waypoints", "Aligns the rotation of all waypoints to face toward the next point.")))
-            {
-                circuit.AlignPoints();
-                EditorUtility.SetDirty(this);
-                EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-            }
-
-            if (GUILayout.Button(new GUIContent("Setup Random Spawn Points", "First removes all spawn points, then randomly adds new spawn points.")))
-            {
-                
-                if (circuit.waypointDataList.Count > 4)
-                {
-                    Undo.RegisterFullObjectHierarchyUndo(circuit.gameObject, "Remove All Spawn Points");
-                    AITrafficSpawnPoint[] spawnPoints = circuit.GetComponentsInChildren<AITrafficSpawnPoint>();
-                    for (int i = 0; i < spawnPoints.Length; i++)
+                    if (_AITrafficWaypointRoute.spawnFromAITrafficController)
                     {
-                        string message = "removing old spawn point " + i.ToString() + "/" + spawnPoints.Length.ToString();
-                        EditorUtility.DisplayProgressBar("Setup Random Spawn Points", message, i / (float)spawnPoints.Length);
-                        Undo.DestroyObjectImmediate(spawnPoints[i].gameObject);
+                        SerializedProperty spawnAmount = serializedObject.FindProperty("spawnAmount");
+                        EditorGUI.BeginChangeCheck();
+                        EditorGUILayout.PropertyField(spawnAmount, true);
+                        if (EditorGUI.EndChangeCheck())
+                            serializedObject.ApplyModifiedProperties();
                     }
-                    int randomIndex = UnityEngine.Random.Range(0, 3);
-                    for (int i = randomIndex; i < circuit.waypointDataList.Count && i < circuit.waypointDataList.Count - 2; i += UnityEngine.Random.Range(2, 4))
+
+                    SerializedProperty spawnTrafficVehicles = serializedObject.FindProperty("spawnTrafficVehicles");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(spawnTrafficVehicles, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    EditorGUILayout.EndVertical();
+
+
+                    EditorGUILayout.BeginVertical("Box");
+
+                    SerializedProperty maxDensity = serializedObject.FindProperty("maxDensity");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(maxDensity, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    SerializedProperty vehicleTypes = serializedObject.FindProperty("vehicleTypes");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(vehicleTypes, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    EditorGUILayout.EndVertical();
+
+
+                    EditorGUILayout.BeginVertical("Box");
+
+                    SerializedProperty waypointDataList = serializedObject.FindProperty("waypointDataList");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(waypointDataList, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    if (GUILayout.Button(new GUIContent("Reverse Waypoints", "Reverses all waypoints in the route's waypointDataList.")))
                     {
-                        string message = "updating route point " + i.ToString() + "/" + circuit.waypointDataList.Count.ToString();
-                        EditorUtility.DisplayProgressBar("Setup Random Spawn Points", message, i / (float)circuit.waypointDataList.Count);
-                        GameObject loadedSpawnPoint = Instantiate(STSRefs.AssetReferences._AITrafficSpawnPoint, circuit.waypointDataList[i]._transform) as GameObject;
-                        Undo.RegisterCreatedObjectUndo(loadedSpawnPoint, "AITrafficSpawnPoint");
-                        AITrafficSpawnPoint trafficSpawnPoint = loadedSpawnPoint.GetComponent<AITrafficSpawnPoint>();
-                        trafficSpawnPoint.waypoint = trafficSpawnPoint.transform.parent.GetComponent<AITrafficWaypoint>();
+                        circuit.ReversePoints();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
                     }
-                    Undo.FlushUndoRecordObjects();
-                    EditorUtility.SetDirty(this);
-                    EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-                    EditorUtility.ClearProgressBar();
-                }
+
+                    if (GUILayout.Button(new GUIContent("Align Waypoints", "Aligns the rotation of all waypoints to face toward the next point.")))
+                    {
+                        circuit.AlignPoints();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                    }
+
+                    if (GUILayout.Button(new GUIContent("Setup Random Spawn Points", "First removes all spawn points, then randomly adds new spawn points.")))
+                    {
+
+                        if (circuit.waypointDataList.Count > 4)
+                        {
+                            Undo.RegisterFullObjectHierarchyUndo(circuit.gameObject, "Remove All Spawn Points");
+                            AITrafficSpawnPoint[] spawnPoints = circuit.GetComponentsInChildren<AITrafficSpawnPoint>();
+                            for (int i = 0; i < spawnPoints.Length; i++)
+                            {
+                                string message = "removing old spawn point " + i.ToString() + "/" + spawnPoints.Length.ToString();
+                                EditorUtility.DisplayProgressBar("Setup Random Spawn Points", message, i / (float)spawnPoints.Length);
+                                Undo.DestroyObjectImmediate(spawnPoints[i].gameObject);
+                            }
+                            int randomIndex = UnityEngine.Random.Range(0, 3);
+                            for (int i = randomIndex; i < circuit.waypointDataList.Count && i < circuit.waypointDataList.Count - 2; i += UnityEngine.Random.Range(2, 4))
+                            {
+                                string message = "updating route point " + i.ToString() + "/" + circuit.waypointDataList.Count.ToString();
+                                EditorUtility.DisplayProgressBar("Setup Random Spawn Points", message, i / (float)circuit.waypointDataList.Count);
+                                GameObject loadedSpawnPoint = Instantiate(STSRefs.AssetReferences._AITrafficSpawnPoint, circuit.waypointDataList[i]._transform) as GameObject;
+                                Undo.RegisterCreatedObjectUndo(loadedSpawnPoint, "AITrafficSpawnPoint");
+                                AITrafficSpawnPoint trafficSpawnPoint = loadedSpawnPoint.GetComponent<AITrafficSpawnPoint>();
+                                trafficSpawnPoint.waypoint = trafficSpawnPoint.transform.parent.GetComponent<AITrafficWaypoint>();
+                            }
+                            Undo.FlushUndoRecordObjects();
+                            EditorUtility.SetDirty(this);
+                            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                            EditorUtility.ClearProgressBar();
+                        }
+                    }
+
+                    if (GUILayout.Button(new GUIContent("Remove All Spawn Points", "Removes all spawn points from the route.")))
+                    {
+                        Undo.RegisterFullObjectHierarchyUndo(circuit.gameObject, "Remove All Spawn Points");
+                        AITrafficSpawnPoint[] spawnPoints = circuit.GetComponentsInChildren<AITrafficSpawnPoint>();
+                        for (int i = 0; i < spawnPoints.Length; i++)
+                        {
+                            string message = "removing spawn point " + i.ToString() + "/" + spawnPoints.Length.ToString();
+                            EditorUtility.DisplayProgressBar("Remove All Spawn Points", message, i / (float)spawnPoints.Length);
+                            Undo.DestroyObjectImmediate(spawnPoints[i].gameObject);
+                        }
+                        Undo.FlushUndoRecordObjects();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                        EditorUtility.ClearProgressBar();
+                    }
+                    break;
+                case 1:
+                    EditorGUILayout.BeginVertical("Box");
+
+                    SerializedProperty PointArray = serializedObject.FindProperty("PointArray");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(PointArray, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    SerializedProperty Postionbias = serializedObject.FindProperty("Postionbias");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(Postionbias, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    if (GUILayout.Button(new GUIContent("AddWaypoint", "从数组里生成Waypoint")))
+                    {
+                        circuit.SpawnPointFromArray();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                    }
+
+                    if (GUILayout.Button(new GUIContent("CleanPoints", "清空Waypoint数组")))
+                    {
+                        circuit.CleanPointData();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                    }
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.BeginVertical("Box");
+                    SerializedProperty pointdata = serializedObject.FindProperty("pointdata");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(pointdata, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+                    EditorGUILayout.EndVertical();
+                    if (GUILayout.Button(new GUIContent("ReadData", "读取点坐标信息")))
+                    {
+                        circuit.ReadDataFromTxt();
+                        EditorUtility.SetDirty(this);
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                    }
+                    EditorGUILayout.HelpBox("能读取文本格式（txt、csv），但是不能通过非文本类文件（xslx）转存，否则换行符不符合格式", MessageType.None);
+                    break;
             }
-
-            if (GUILayout.Button(new GUIContent("Remove All Spawn Points", "Removes all spawn points from the route.")))
-            {
-                Undo.RegisterFullObjectHierarchyUndo(circuit.gameObject, "Remove All Spawn Points");
-                AITrafficSpawnPoint[] spawnPoints = circuit.GetComponentsInChildren<AITrafficSpawnPoint>();
-                for (int i = 0; i < spawnPoints.Length; i++)
-                {
-                    string message = "removing spawn point " + i.ToString() + "/" + spawnPoints.Length.ToString();
-                    EditorUtility.DisplayProgressBar("Remove All Spawn Points", message, i / (float)spawnPoints.Length);
-                    Undo.DestroyObjectImmediate(spawnPoints[i].gameObject);
-                }
-                Undo.FlushUndoRecordObjects();
-                EditorUtility.SetDirty(this);
-                EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-                EditorUtility.ClearProgressBar();
-            }
-
-
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndVertical();
         }
