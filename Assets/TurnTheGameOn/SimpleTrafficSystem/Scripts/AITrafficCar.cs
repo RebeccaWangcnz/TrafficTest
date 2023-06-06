@@ -25,8 +25,7 @@
         public Vector3 frontSensorSize = new Vector3(1.3f, 1f, 0.001f);
         [Tooltip("Length of the front detection sensor BoxCast.")]
         public float frontSensorLength = 10f;
-        [Tooltip("Length of the front detection sensor BoxCast for turn light.")]
-        public float frontSensorLengthForTurnLight = 100f;
+        public float frontSensorLengthForTurnLight = 50f;
         [Tooltip("Size of the side detection sensor BoxCasts.")]
         public Vector3 sideSensorSize = new Vector3(15f, 1f, 0.001f);
         [Tooltip("Length of the side detection sensor BoxCasts.")]
@@ -61,9 +60,6 @@
         private Rigidbody rb;
         private List<int> newRoutePointsMatchingType = new List<int>();
         private int randomIndex;
-        //打开转向灯射线检测
-        RaycastHit m_Hit;
-        bool m_HitDetect;
 
         public void RegisterCar(AITrafficWaypointRoute route)
         {
@@ -219,6 +215,7 @@
         {
             AITrafficController.Instance.SetForceLaneChange(assignedIndex, _value);
         }
+<<<<<<< HEAD
         /// <summary>
         /// Rebe：是否需要打开转向灯
         /// </summary>
@@ -253,6 +250,8 @@
         //        Gizmos.DrawWireCube(transform.position + transform.forward * frontSensorLengthForTurnLight, frontSensorSize);
         //    }
         //}
+=======
+>>>>>>> parent of d9031dc (实现提前开灯)
         #endregion
 
         #region Waypoint Trigger Methods
