@@ -29,15 +29,15 @@
 
         void OnTriggerEnter(Collider col)
         {
-            //col.transform.SendMessage("OnReachedWaypoint", onReachWaypointSettings, SendMessageOptions.DontRequireReceiver);
+            col.transform.SendMessage("OnReachedWaypoint", onReachWaypointSettings, SendMessageOptions.DontRequireReceiver);
             if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)
             {
                 if (onReachWaypointSettings.newRoutePoints.Length == 0)
                 {
-                    col.transform.root.SendMessage("StopDriving", SendMessageOptions.DontRequireReceiver);//transform.root：返回最顶层父物体的transform
+                    col.transform.root.SendMessage("StopDriving", SendMessageOptions.DontRequireReceiver);
                 }
             }
-        }//碰到路径点之后发送监听信号（调用非返回的函数）
+        }
 
         public void TriggerNextWaypoint(AITrafficCar _AITrafficCar)
         {
@@ -49,9 +49,9 @@
                     _AITrafficCar.StopDriving();
                 }
             }
-        }//触发这一个waypoint内命令（OnReachWaypoint），如果最后一个，停
+        }
 
-        private void OnDrawGizmos()//Gizmos是场景里画标识
+        private void OnDrawGizmos()
         {
             if (STSPrefs.waypointGizmos)
             {

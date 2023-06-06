@@ -16,10 +16,6 @@
         public int waypointIndexnumber;
         [Tooltip("Speed limit the car will use after reaching the waypoint.")]
         public float speedLimit;
-        [Tooltip("正态分布平均速度")]
-        public float averagespeed;
-        [Tooltip("正态分布速度的方差")]
-        public float sigma;
         [Tooltip("Controls if the car will stop driving after reaching a waypoint.")]
         public bool stopDriving;
         [Tooltip("Set stop time greater than 0 to restart the car after the stop time duration.")]

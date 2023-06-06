@@ -1,10 +1,6 @@
 ﻿namespace TurnTheGameOn.SimpleTrafficSystem
 {
     using UnityEngine;
-    using System.Data;
-    using System.IO;
-    using System.Text;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -33,18 +29,7 @@
         public int maxDensity = 10;
         public int currentDensity; // unreliable if checked outside of AITrafficController update loop
         public int previousDensity; // more reliable if checked outside of AITrafficController update loop
-        public Vector3[] PointArray;
-        [Tooltip("数据坐标系与unity场景坐标系的偏差")]
-        public Vector3 Postionbias;
-        public TextAsset pointdata;
-        private GetLicense cars;
-        private LicenseType licensetype;
-        private List<Material> materiallistb = new List<Material>();
-        private List<Material> materiallistg = new List<Material>();
-        private List<Material> materiallisty = new List<Material>();
-        private Material[] materialsb;
-        private Material[] materialsg;
-        private Material[] materialsy;
+
         [ContextMenu("SetMaxToChildSpawnPointCount")]
         public void SetMaxToChildSpawnPointCount()
         {
@@ -55,9 +40,6 @@
         private void Awake()
         {
             routeInfo = GetComponent<AITrafficWaypointRouteInfo>();
-            materialsg = Resources.LoadAll<Material>("LicenseMaterial/green");
-            materialsy = Resources.LoadAll<Material>("LicenseMaterial/yellow");
-            materialsb = Resources.LoadAll<Material>("LicenseMaterial/blue");
         }
 
         private void Start()
@@ -83,42 +65,10 @@
             if (spawnFromAITrafficController)
             {
                 spawnTrafficVehicles = new GameObject[spawnAmount];
-                List<Material> materiallistb = materialsb.ToList();
-                List<Material> materiallistg = materialsg.ToList();
-                List<Material> materiallisty = materialsy.ToList();
-                //存储材质的数组转为列表，数组用于回收材质以及乱序，列表用于匹配和发放车牌
                 for (int i = 0; i < spawnTrafficVehicles.Length; i++)
                 {
                     int randomPoolIndex = UnityEngine.Random.Range(0, AITrafficController.Instance.trafficPrefabs.Length);
                     spawnTrafficVehicles[i] = AITrafficController.Instance.trafficPrefabs[randomPoolIndex].gameObject;
-                    cars = spawnTrafficVehicles[i].GetComponent<GetLicense>();
-                    if ((int)cars.licensetype == 0)
-                    {
-                        cars.getmaterial = materiallistb[0];
-                        materiallistb.Remove(materiallistb[0]);
-                        for (int h = 0; h < materiallistb.Count; h++)
-                        {
-                            materialsb[h] = materiallistb[h];
-                        }
-                    }
-                    if ((int)cars.licensetype == 1)
-                    {
-                        cars.getmaterial = materiallistg[0];
-                        materiallistg.Remove(materiallistg[0]);
-                        for (int h = 0; h < materiallistg.Count; h++)
-                        {
-                            materialsg[h] = materiallistg[h];
-                        }
-                    }
-                    if ((int)cars.licensetype == 2)
-                    {
-                        cars.getmaterial = materiallisty[0];
-                        materiallisty.Remove(materiallisty[0]);
-                        for (int h = 0; h < materiallisty.Count; h++)
-                        {
-                            materialsy[h] = materiallisty[h];
-                        }
-                    }
                 }
             }
             if (useSpawnPoints)
@@ -163,42 +113,8 @@
                 Vector3.Distance(A, B) >= Vector3.Distance(B, C)
                 );
         }
+
 #if UNITY_EDITOR
-        //按点数组坐标生成waypoint
-        public void SpawnPointFromArray()
-        {
-            for (int i=0;i<PointArray.Length;i++)
-            {
-                GameObject newWaypoint = Instantiate(STSRefs.AssetReferences._AITrafficWaypoint, PointArray[i]+ Postionbias, Quaternion.identity, gameObject.transform) as GameObject;
-                CarAIWaypointInfo newPoint = new CarAIWaypointInfo();
-                newPoint._name = newWaypoint.name = "AITrafficWaypoint " + (waypointDataList.Count + 1);
-                newPoint._transform = newWaypoint.transform;
-                newPoint._waypoint = newWaypoint.GetComponent<AITrafficWaypoint>();
-                newPoint._waypoint.onReachWaypointSettings.waypointIndexnumber = waypointDataList.Count + 1;
-                newPoint._waypoint.onReachWaypointSettings.parentRoute = this;
-                newPoint._waypoint.onReachWaypointSettings.speedLimit = 25f;
-                newPoint._waypoint.onReachWaypointSettings.averagespeed = 25f;
-                newPoint._waypoint.onReachWaypointSettings.sigma = 0;
-                waypointDataList.Add(newPoint);
-            }
-        }
-        //读取文本文件获取点数组
-        public void ReadDataFromTxt()
-        {
-            string[] str = pointdata.text.Split("\r\n");//excel转的csv读不了，换行符格式不一致
-            List<Vector3> PointList = new List<Vector3>();
-            foreach (string strs in str)
-            {
-                string[] ss = strs.Split(',');
-                PointList.Add(new Vector3(float.Parse(ss[0]), float.Parse(ss[1]), float.Parse(ss[2])));
-            }
-            PointArray = PointList.ToArray();
-        }
-        //清空点数组
-        public void CleanPointData()
-        {
-            PointArray = null;
-        }
         public Transform ClickToSpawnNextWaypoint(Vector3 _position)
         {
             GameObject newWaypoint = Instantiate(STSRefs.AssetReferences._AITrafficWaypoint, _position, Quaternion.identity, gameObject.transform) as GameObject;
@@ -209,8 +125,6 @@
             newPoint._waypoint.onReachWaypointSettings.waypointIndexnumber = waypointDataList.Count + 1;
             newPoint._waypoint.onReachWaypointSettings.parentRoute = this;
             newPoint._waypoint.onReachWaypointSettings.speedLimit = 25f;
-            newPoint._waypoint.onReachWaypointSettings.averagespeed = 25f;
-            newPoint._waypoint.onReachWaypointSettings.sigma = 0;
             waypointDataList.Add(newPoint);
             return newPoint._transform;
         }
@@ -237,8 +151,6 @@
             newPoint._waypoint = newWaypoint.GetComponent<AITrafficWaypoint>();
             newPoint._waypoint.onReachWaypointSettings.parentRoute = this;
             newPoint._waypoint.onReachWaypointSettings.speedLimit = 25f;
-            newPoint._waypoint.onReachWaypointSettings.averagespeed = 25f;
-            newPoint._waypoint.onReachWaypointSettings.sigma = 0;
             if (isBetweenPoints)
             {
                 newPoint._transform.SetSiblingIndex(insertIndex);
@@ -478,7 +390,7 @@
             }
         }
 
-#if UNITY_EDITOR//条件编译，只有满足条件才编译（不是执行）该语句段
+#if UNITY_EDITOR
         public void SetupRandomSpawnPoints()
         {
             if (waypointDataList.Count > 4)
