@@ -515,6 +515,7 @@ MonoBehaviour:
   minAngularDrag: 0
   frontSensorSize: {x: 1.3, y: 1, z: 0.001}
   frontSensorLength: 10
+  frontSensorLengthForTurnLight: 30
   sideSensorSize: {x: 15, y: 1, z: 0.001}
   sideSensorLength: 5
   brakeMaterial: {fileID: 0}

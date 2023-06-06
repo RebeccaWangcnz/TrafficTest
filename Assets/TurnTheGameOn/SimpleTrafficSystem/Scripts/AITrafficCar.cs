@@ -25,7 +25,8 @@
         public Vector3 frontSensorSize = new Vector3(1.3f, 1f, 0.001f);
         [Tooltip("Length of the front detection sensor BoxCast.")]
         public float frontSensorLength = 10f;
-        public float frontSensorLengthForTurnLight = 50f;
+        [Tooltip("Length of the front detection sensor BoxCast for turn light.")]
+        public float frontSensorLengthForTurnLight = 100f;
         [Tooltip("Size of the side detection sensor BoxCasts.")]
         public Vector3 sideSensorSize = new Vector3(15f, 1f, 0.001f);
         [Tooltip("Length of the side detection sensor BoxCasts.")]
@@ -52,6 +53,9 @@
         private Rigidbody rb;
         private List<int> newRoutePointsMatchingType = new List<int>();
         private int randomIndex;
+        //打开转向灯射线检测
+        RaycastHit m_Hit;
+        bool m_HitDetect;
 
         public void RegisterCar(AITrafficWaypointRoute route)
         {
@@ -204,6 +208,38 @@
         public void SetForceLaneChange(bool _value)
         {
             AITrafficController.Instance.SetForceLaneChange(assignedIndex, _value);
+        }
+        /// <summary>
+        /// 是否需要打开转向灯
+        /// </summary>
+        public void NeedTurnLight()
+        {
+            if (m_HitDetect= Physics.BoxCast(frontSensorTransform.position,frontSensorSize,transform.forward,out m_Hit,transform.rotation,frontSensorLengthForTurnLight,AITrafficController.Instance.layerMask))
+            {
+                Debug.Log("打开转向灯");
+            }
+        }
+        //用来显示打开转向灯的射线检测
+        void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+
+            //Check if there has been a hit yet
+            if (m_HitDetect)
+            {
+                //Draw a Ray forward from GameObject toward the hit
+                Gizmos.DrawRay(frontSensorTransform.position, transform.forward * m_Hit.distance);
+                //Draw a cube that extends to where the hit exists
+                Gizmos.DrawWireCube(frontSensorTransform.position + transform.forward * m_Hit.distance, frontSensorSize);
+            }
+            //If there hasn't been a hit yet, draw the ray at the maximum distance
+            else
+            {
+                //Draw a Ray forward from GameObject toward the maximum distance
+                Gizmos.DrawRay(transform.position, transform.forward * frontSensorLengthForTurnLight);
+                //Draw a cube at the maximum distance
+                Gizmos.DrawWireCube(transform.position + transform.forward * frontSensorLengthForTurnLight, frontSensorSize);
+            }
         }
         #endregion
 
