@@ -399,7 +399,7 @@
             outOfBoundsNL.Add(false);
             lightIsActiveNL.Add(false);
             canProcessNL.Add(true);
-            driveTargetTAA = new TransformAccessArray(carCount);
+            driveTargetTAA = new TransformAccessArray(carCount);//括号里是reference
             carTAA = new TransformAccessArray(carCount);
             frontRightWheelTAA = new TransformAccessArray(carCount);
             frontLeftWheelTAA = new TransformAccessArray(carCount);
@@ -416,7 +416,7 @@
             carAIWaypointRouteInfo[carCount - 1] = carRouteList[carCount - 1].routeInfo;
             for (int i = 0; i < carCount; i++)
             {
-                driveTargetTAA.Add(temp_driveTargetTAA[i]);
+                driveTargetTAA.Add(temp_driveTargetTAA[i]);//添加车的transform
                 carTAA.Add(carList[i].transform);
                 frontRightWheelTAA.Add(carList[i]._wheels[0].meshTransform);
                 frontLeftWheelTAA.Add(carList[i]._wheels[1].meshTransform);
@@ -883,11 +883,6 @@
                 {
                     // front
                     frontHitNL[i] = frontBoxcastResults[i].collider == null ? false : true;//前方是否有障碍
-                    //frontHitForTurnLightNL[i] = frontBoxcastResultsForTurnLight[i].collider == null ? false : true;//打转向灯的前方是否有障碍
-                    //if(frontHitForTurnLightNL[i])
-                    //{
-                    //    Debug.Log("是时候打转向灯了");
-                    //}
                     if (frontHitNL[i])
                     {
                        // Debug.Log(frontBoxcastResults[i].collider);
@@ -953,7 +948,6 @@
                                         changeLaneCooldownTimer[i] = 0f;
                                     }
                                 }
-<<<<<<< HEAD
                                 else
                                 {
                                     //判断是否需要打转向灯,需要判断向左还是向右打转向
@@ -966,14 +960,12 @@
                                         direction = 0;
                                     carList[i].NeedTurnLight(direction);
                                 }
-=======
->>>>>>> parent of d9031dc (实现提前开灯)
 
                                 if ((forceChangeLanesNL[i] == true || frontHitNL[i] == true) && canChangeLanesNL[i] && isChangingLanesNL[i] == false)//换道判断4：（强制换道或前方检测障碍物）且能换道且目前不在换道
                                 {
                                     //Debug.Log(changeLaneTriggerTimer[i]);
                                     changeLaneTriggerTimer[i] += Time.deltaTime;
-                                    canTurnLeft = leftHitNL[i] == true ? false : true;
+                                    canTurnLeft = leftHitNL[i] == true ? false : true;//判断左转还是右转
                                     canTurnRight = rightHitNL[i] == true ? false : true;
                                     if (changeLaneTriggerTimer[i] >= changeLaneTrigger || forceChangeLanesNL[i] == true)
                                     {
