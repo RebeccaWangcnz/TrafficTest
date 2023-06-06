@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: c5e9b36ca83d6ab43989432683333cd8
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Block
+    100002: BlockCollider
+    100004: Bump
+    100006: Ground
+    100008: Loop
+    100010: Loop_source
+    100012: Playground
+    100014: //RootNode
+    100016: Ramps
+    100018: Sloped_curve
+    100020: TextureTestUV
+    100022: U_ramp
+    100024: U_ramp_base
+    100026: U_ramp_C
+    100028: World_Collider
+    100030: Hemi
+    100032: Loop source
+    100034: Sloped curve
+    100036: U ramp
+    100038: U ramp base
+    100040: U ramp C
+    100042: World Collider
+    400000: Block
+    400002: BlockCollider
+    400004: Bump
+    400006: Ground
+    400008: Loop
+    400010: Loop_source
+    400012: Playground
+    400014: //RootNode
+    400016: Ramps
+    400018: Sloped_curve
+    400020: TextureTestUV
+    400022: U_ramp
+    400024: U_ramp_base
+    400026: U_ramp_C
+    400028: World_Collider
+    400030: Hemi
+    400032: Loop source
+    400034: Sloped curve
+    400036: U ramp
+    400038: U ramp base
+    400040: U ramp C
+    400042: World Collider
+    2100000: No Name
+    2300000: Block
+    2300002: BlockCollider
+    2300004: Bump
+    2300006: Ground
+    2300008: Loop
+    2300010: Loop_source
+    2300012: Playground
+    2300014: Ramps
+    2300016: Sloped_curve
+    2300018: TextureTestUV
+    2300020: U_ramp
+    2300022: U_ramp_base
+    2300024: U_ramp_C
+    2300026: World_Collider
+    2300028: Loop source
+    2300030: Sloped curve
+    2300032: U ramp
+    2300034: U ramp base
+    2300036: U ramp C
+    2300038: World Collider
+    3300000: Block
+    3300002: BlockCollider
+    3300004: Bump
+    3300006: Ground
+    3300008: Loop
+    3300010: Loop_source
+    3300012: Playground
+    3300014: Ramps
+    3300016: Sloped_curve
+    3300018: TextureTestUV
+    3300020: U_ramp
+    3300022: U_ramp_base
+    3300024: U_ramp_C
+    3300026: World_Collider
+    3300028: Loop source
+    3300030: Sloped curve
+    3300032: U ramp
+    3300034: U ramp base
+    3300036: U ramp C
+    3300038: World Collider
+    4300000: TextureTestUV
+    4300002: World_Collider
+    4300004: Loop_source
+    4300006: Loop
+    4300008: Sloped_curve
+    4300010: Ground
+    4300012: Bump
+    4300014: U_ramp_base
+    4300016: U_ramp_C
+    4300018: U_ramp
+    4300020: Ramps
+    4300022: Playground
+    4300024: Block
+    4300026: BlockCollider
+    4300028: World Collider
+    4300030: Loop source
+    4300032: Sloped curve
+    4300034: U ramp base
+    4300036: U ramp C
+    4300038: U ramp
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

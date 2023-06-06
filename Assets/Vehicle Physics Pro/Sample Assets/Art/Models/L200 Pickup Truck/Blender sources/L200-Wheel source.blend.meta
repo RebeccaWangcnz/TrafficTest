@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 726000de7a7ea6443a0713ff20ede3a6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: WiperRight
+    100002: WiperLeft
+    100004: RearLeft
+    100006: FrontRight
+    100008: //RootNode
+    100010: Glass
+    100012: RearRight
+    100014: WheelFL
+    100016: FrontLeft
+    100018: WheelFR
+    100020: WheelRL
+    100022: WheelRR
+    100024: TruckBody
+    100026: Hemi
+    400000: WiperRight
+    400002: WiperLeft
+    400004: RearLeft
+    400006: FrontRight
+    400008: //RootNode
+    400010: Glass
+    400012: RearRight
+    400014: WheelFL
+    400016: FrontLeft
+    400018: WheelFR
+    400020: WheelRL
+    400022: WheelRR
+    400024: TruckBody
+    400026: Hemi
+    2100000: Wheel
+    2300000: //RootNode
+    2300002: WiperRight
+    2300004: RearLeft
+    2300006: FrontRight
+    2300008: Glass
+    2300010: RearRight
+    2300012: WiperLeft
+    2300014: FrontLeft
+    2300016: WheelFL
+    2300018: WheelFR
+    2300020: WheelRL
+    2300022: WheelRR
+    2300024: TruckBody
+    3300000: //RootNode
+    3300002: WiperRight
+    3300004: RearLeft
+    3300006: FrontRight
+    3300008: Glass
+    3300010: RearRight
+    3300012: WiperLeft
+    3300014: FrontLeft
+    3300016: WheelFL
+    3300018: WheelFR
+    3300020: WheelRL
+    3300022: WheelRR
+    3300024: TruckBody
+    4300000: Mesh_007
+    4300002: Mesh_006
+    4300004: Mesh_005
+    4300006: Mesh_004
+    4300008: Mesh_003
+    4300010: Mesh_002
+    4300012: Mesh_001
+    4300014: Mesh
+    4300016: Right_Wiper
+    4300018: Glass
+    4300020: Left_Rear
+    4300022: Right_Rear
+    4300024: Right_Front
+    4300026: Left_Wiper
+    4300028: Left_Front
+    4300030: TruckBody
+    4300032: FrontRight
+    4300034: RearLeft
+    4300036: RearRight
+    4300038: FrontLeft
+    4300040: WiperLeft
+    4300042: WiperRight
+    4300044: WheelRL
+    4300046: WheelRR
+    4300048: WheelFL
+    4300050: WheelFR
+    7400000: Default Take //// L200 2011
+    11100000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 0
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2027618162, guid: c962d7ffbca7baa4cb9dce5f3cd3ac03, type: 3}
+  m_Name: Select Friction Material Set (Project Patch)
+  m_EditorClassIdentifier: 
+  description: 'Apply this patch to modify the references to physic materials from
+    "Patch Friction Type" to "Two Directional Friction Type" in the project or in
+    a specific folder.
+
+
+    Revert this patch to modify references from "Two Directional Friction Type" to
+    "Patch Friction Type".
+
+
+    The physic material set should match the friction type configured in Project Settings
+    > Physics > Friction Type.
+
+
+    You may limit the modifications to a specific folder by setting the Path property
+    below.
+
+
+    Only references to VPP physic materials will be modified in the project. All other
+    references will be left untouched.'
+  path: Assets\
+  extensions: .meta;.unity;.prefab;.asset;.mat
+  changes:
+  - name: Asphalt
+    fromGuid: 86b04e5a900455e42b8bfd5a164216fe
+    toGuid: 28b3c7e4c7074ff4faf716f93a9b23e4
+  - name: Concrete
+    fromGuid: c052a101a8a14c9db2e40ff4a3c81d76
+    toGuid: 46aba54139da0c544aec15b8e8b6de4c
+  - name: Grass
+    fromGuid: d8ec411ee9fd420da785c4c4dec580b2
+    toGuid: f773fa17d49f8a244b6bc71685ce2f5a
+  - name: Gravel Trap
+    fromGuid: 503eaf850a1fc5d48b0ccfd5441f00ca
+    toGuid: 9e8c8242706c6d84aa67ccc145ceb30b
+  - name: Ice
+    fromGuid: f94e393574f63ce4ba6eeb0af4e0922c
+    toGuid: 335daea44221a73499a5d42106e79275
+  - name: Impact Barrier
+    fromGuid: 4aec409d31b068d429b75805974cdf94
+    toGuid: 83295d365ff7b9b4181faf6f1531d10c
+  - name: Metal Barrier
+    fromGuid: 00f25c7a6967df441a0e418183b12f99
+    toGuid: 6fde2d01ee4a78f43bb308daa3f95d91
+  - name: Offroad
+    fromGuid: dd9c4ce3451e46989f3f84cd23ff16b0
+    toGuid: 755e96921da9d274cbda3afa6098ff57
+  - name: Sand
+    fromGuid: 040be88b733845afa78419f80f1fc38f
+    toGuid: 4468d0dec9e856b438747f028f66fb1e
+  - name: Track Panels
+    fromGuid: 9cdf4362676d8c942baf533593e810cb
+    toGuid: d39e7cd3153d6d44d817783face1ce69
+  - name: Vehicle Body
+    fromGuid: 340eb7b152ec4df09638beae0d5afb96
+    toGuid: 7515e581c07a9e44ba750ef43524533c

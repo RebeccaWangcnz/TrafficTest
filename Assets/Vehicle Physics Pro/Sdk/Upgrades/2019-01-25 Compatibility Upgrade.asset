@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2027618162, guid: c962d7ffbca7baa4cb9dce5f3cd3ac03, type: 3}
+  m_Name: 2019-01-25 Compatibility Upgrade
+  m_EditorClassIdentifier: 
+  description: "Apply this patch to your project when updating VPP from a version
+    older than 2019-01-25. \n\nThese elements changed their GUIDs as result of a compatibility
+    update:\n\n- Ground material scripts\n- Camera scripts\n- Visual Effects shaders,
+    materials and textures\n\nThis patch updates the GUIDs of these elements across
+    your project so any missing references will be restored.\n\nThis patch may be
+    applied multiple times. Only the files containing old references will be updated."
+  path: Assets\
+  extensions: .meta;.unity;.prefab;.asset;.mat
+  changes:
+  - name: VPGroundMarksRenderer.cs
+    fromGuid: e5945322afb32da4fa29c050be787db2
+    toGuid: a2dc1328cc6391b448a2d97ffe953523
+  - name: VPGroundMaterialManager.cs
+    fromGuid: e227284ab78ef76499cf9036eba3fc32
+    toGuid: 073b740080efc25499ec3105a1203613
+  - name: VPGroundParticleEmitter.cs
+    fromGuid: 89572a457ddfef04e9498b1e818cada8
+    toGuid: 0e64278c9fad2d54283d4b17d863f062
+  - name: VPCameraController.cs
+    fromGuid: b4b5b5a7e41b4484384160dc8a958468
+    toGuid: 31c17dbda55c464c851ed5286c1f25be
+  - name: VPCameraTarget.cs
+    fromGuid: 3701632bb9aec654bbac0ba63a2956a7
+    toGuid: 8e2199b4aa224f8bbd29b3026878bf3b
+  - name: Shaders folder
+    fromGuid: e746df580eb61ad45bfa3f2d7980172a
+    toGuid: d3c706fe3a7348968d4eb03e614ef96d
+  - name: VP Tire Particles Shadows.shader
+    fromGuid: 04c0d58e883532c4590bce14b1be25c0
+    toGuid: 72193a730b9d48bd889d1716c5d5e390
+  - name: VP Tire Marks Bump.shader
+    fromGuid: 1cdcb8b96b643194aa3c601dc09a58b1
+    toGuid: dc02aba454854c94a607295151774c76
+  - name: VP Tire Marks.shader
+    fromGuid: a0ca43baa25f1d347b5e69f36d50ccb0
+    toGuid: 93110fa0dce04da89053aab399f998f3
+  - name: VPParticleShadows.cginc
+    fromGuid: 907c941fb633d4b4fb11c1a8e15c5c18
+    toGuid: 66a0a4193e98442b8dbdb1ce8740424c
+  - name: Tire marks folder
+    fromGuid: 53b43f30c0fad6d4eb34009d2bb5491a
+    toGuid: f0d87ac664dd4717bcd4bcd19096ccf1
+  - name: Marks - Thin.png
+    fromGuid: 84debabd8a3677f48be4f927b60810d6
+    toGuid: 2461e47a46a94602bd7fb4461644ef69
+  - name: Marks - Wide.png
+    fromGuid: 7569e85170cddba4a952478aabed78a3
+    toGuid: 97c430aeb2444f7e9cdd064c4fd4261e
+  - name: Marks Normalmap.png
+    fromGuid: ab00a9f0341a81541a30996931ce9d01
+    toGuid: eab7d38c97b94710ba6b2d1df3f631e5
+  - name: OffroadMarks.mat
+    fromGuid: 6d08d79891cf83a43ba93914bb34dd31
+    toGuid: 31d1e6b1d0d84fefb8b1d7bda4621ee5
+  - name: SandMarks.mat
+    fromGuid: bbce6cd4aa7e4434a919568c41eebe46
+    toGuid: f927618c50de4f27bf2b5e758fe3a613
+  - name: SkidMarks.mat
+    fromGuid: 6ba50c5d1a2980d48bd1524a13b93827
+    toGuid: 9eb8967f3923407b8e4645d9826a8a10
+  - name: Tire particles folder
+    fromGuid: d5aa4d3a32d146144bd6c8572b652082
+    toGuid: c949f5f3b4b74705b7405aa160d92179
+  - name: Dust-Smoke.png
+    fromGuid: 6bde1df35233e274cab301c8128b6fc0
+    toGuid: af1640e5555843cba39c994c14f2102e
+  - name: Sand Dust.mat
+    fromGuid: 8611da043528bbc4899a694dbfeae5fa
+    toGuid: c0ccffdc30c440ec8807c1fa49c06b4a
+  - name: Tire Smoke.mat
+    fromGuid: ddf38ea5fe32a0b4086ec71f2f7b91d8
+    toGuid: b272047732ab4ab39b3b7b69293da8de
+  - name: Concrete.physicMaterial
+    fromGuid: 537e0ecef87f9ac459f7000be0db17a9
+    toGuid: c052a101a8a14c9db2e40ff4a3c81d76
+  - name: Vehicle Body.physicMaterial
+    fromGuid: cbb8ccfd9ee2d2c45800f74f5144fe1e
+    toGuid: 340eb7b152ec4df09638beae0d5afb96
+  - name: Grass.physicMaterial
+    fromGuid: 5dc92ae89639ddd4f9c415548f77e27e
+    toGuid: d8ec411ee9fd420da785c4c4dec580b2
+  - name: Offroad.physicMaterial
+    fromGuid: 2c57fdeb7061a4e48969eaf16f3bc249
+    toGuid: dd9c4ce3451e46989f3f84cd23ff16b0
+  - name: Sand.physicMaterial
+    fromGuid: 0484c9421e1f6184084703834dc439e2
+    toGuid: 040be88b733845afa78419f80f1fc38f
+  - name: The City.prefab
+    fromGuid: 0e18cad7a11c0e0499a23c6252c4b6d9
+    toGuid: a6915defa8c64aed8ac0da13068a8d77
+  - name: L200 Test Vehicle - Body.mat
+    fromGuid: b4334802e73e2d8489e96b57de28cd8d
+    toGuid: 5d450efbff144650a3f62119c9f5fb51
+  - name: L200 Test Vehicle - Glass.mat
+    fromGuid: 158853047e2a80442a89e94631eaccb5
+    toGuid: b86b9d58b57340acbb0a8ff1ce4393dd
+  - name: OffroadTrack.asset
+    fromGuid: 4e57e3bcbfeb56e44b9b82144a39984d
+    toGuid: 9236cb6410964ece9e5994b4fce23e04
+  - name: asphalt.png
+    fromGuid: d39bf6bf70a79c04da2e294350f70ea1
+    toGuid: b0cbcf36fe6c4dc0b1415b619e16c8be
+  - name: asphalt_normal.png
+    fromGuid: d88f17119e72d14448299ea4b54bfab7
+    toGuid: 14e01549c8414ac0bef87f6173f09d32

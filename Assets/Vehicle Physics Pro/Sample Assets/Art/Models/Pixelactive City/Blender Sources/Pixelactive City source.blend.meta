@@ -1,0 +1,762 @@
+fileFormatVersion: 2
+guid: 9da76c7659270b549a6679faa1f8fa05
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Ad
+    100002: Ad_support
+    100004: Building_1
+    100006: Building_2
+    100008: Building_3
+    100010: Building_4
+    100012: Building_5
+    100014: Building_6
+    100016: Building_7
+    100018: Building_8
+    100020: Building_9
+    100022: Buildings
+    100024: Camera
+    100026: Ground
+    100028: Ground1
+    100030: Ground2
+    100032: Ground3
+    100034: Ground4
+    100036: Light
+    100038: LightPole_LODS
+    100040: LightPole_Low
+    100042: LightPoles
+    100044: Low_Palm
+    100046: Low_Trees
+    100048: Model
+    100050: Model.2
+    100052: Model.3
+    100054: Part_1
+    100056: Part_2
+    100058: Part_3
+    100060: Part_4
+    100062: //RootNode
+    100064: Road
+    100066: Test_track
+    100068: Trees
+    100070: Unity_Palm
+    100072: Building_1.001
+    100074: Building_1.002
+    100076: Building_1.003
+    100078: Building_1.004
+    100080: Building_1.005
+    100082: Building_1.006
+    100084: Building_2.001
+    100086: Building_2.002
+    100088: Building_2.003
+    100090: Building_2.004
+    100092: Building_2.005
+    100094: Building_2.006
+    100096: Building_2.007
+    100098: Building_2.008
+    100100: Building_2.009
+    100102: Building_2.010
+    100104: Building_2.011
+    100106: Building_3.001
+    100108: Building_3.002
+    100110: Building_3.003
+    100112: Building_4.001
+    100114: Building_4.002
+    100116: Building_4.003
+    100118: Building_4.004
+    100120: Building_4.005
+    100122: Building_4.006
+    100124: Building_4.007
+    100126: Building_4.008
+    100128: Building_4.009
+    100130: Building_4.010
+    100132: Building_4.011
+    100134: Building_4.012
+    100136: Building_4.013
+    100138: Building_4.014
+    100140: Building_4.015
+    100142: Building_5.001
+    100144: Building_5.002
+    100146: Building_5.003
+    100148: Building_5.004
+    100150: Building_5.005
+    100152: Building_5.006
+    100154: Building_5.007
+    100156: Building_5.008
+    100158: Building_5.009
+    100160: Building_5.010
+    100162: LightPoles_1
+    100164: LightPoles_2
+    100166: Part_3 End Cap
+    100168: Part_3 Fence
+    100170: Part_3 Highway
+    100172: Part_3 Start Cap
+    100174: Part_3.001
+    100176: Part_3.002
+    100178: Highway Segment Cap A
+    100180: Highway Segment Cap B
+    100182: Highway Segment Fence
+    100184: Highway Segment Road
+    100186: Part_4A
+    100188: Highway
+    100190: Highway Columns.000
+    100192: Highway Columns.001
+    100194: Highway Columns.002
+    100196: Highway Segment Collider.000
+    100198: Highway Segment Collider.001
+    100200: Part_4A Collider
+    100202: World Collider - Baked
+    100204: Cube
+    100206: Dock
+    100208: Test Area
+    100210: World Collider
+    100212: World Collider.000
+    100214: World Collider.001
+    100216: World Collider.002
+    100218: World Collider.003
+    100220: Grid
+    100222: Ramp
+    100224: High_Palm.000
+    100226: High_Palm.001
+    100228: High_Palm.002
+    100230: High_Palm.003
+    100232: High_Palm.004
+    100234: High_Palm.005
+    100236: High_Palm.006
+    100238: High_Palm.007
+    100240: High_Palm.008
+    100242: High_Palm.009
+    100244: High_Palm.010
+    100246: Low_Palms
+    100248: Highway Distance Markers
+    100250: Plane
+    100252: Distort Director
+    100254: Highway Segment Collider Source
+    100256: World Collider Source
+    100258: Sun
+    100260: Highway Path
+    400000: Ad
+    400002: Ad_support
+    400004: Building_1
+    400006: Building_2
+    400008: Building_3
+    400010: Building_4
+    400012: Building_5
+    400014: Building_6
+    400016: Building_7
+    400018: Building_8
+    400020: Building_9
+    400022: Buildings
+    400024: Camera
+    400026: Ground
+    400028: Ground1
+    400030: Ground2
+    400032: Ground3
+    400034: Ground4
+    400036: Light
+    400038: LightPole_LODS
+    400040: LightPole_Low
+    400042: LightPoles
+    400044: Low_Palm
+    400046: Low_Trees
+    400048: Model
+    400050: Model.2
+    400052: Model.3
+    400054: Part_1
+    400056: Part_2
+    400058: Part_3
+    400060: Part_4
+    400062: //RootNode
+    400064: Road
+    400066: Test_track
+    400068: Trees
+    400070: Unity_Palm
+    400072: Building_1.001
+    400074: Building_1.002
+    400076: Building_1.003
+    400078: Building_1.004
+    400080: Building_1.005
+    400082: Building_1.006
+    400084: Building_2.001
+    400086: Building_2.002
+    400088: Building_2.003
+    400090: Building_2.004
+    400092: Building_2.005
+    400094: Building_2.006
+    400096: Building_2.007
+    400098: Building_2.008
+    400100: Building_2.009
+    400102: Building_2.010
+    400104: Building_2.011
+    400106: Building_3.001
+    400108: Building_3.002
+    400110: Building_3.003
+    400112: Building_4.001
+    400114: Building_4.002
+    400116: Building_4.003
+    400118: Building_4.004
+    400120: Building_4.005
+    400122: Building_4.006
+    400124: Building_4.007
+    400126: Building_4.008
+    400128: Building_4.009
+    400130: Building_4.010
+    400132: Building_4.011
+    400134: Building_4.012
+    400136: Building_4.013
+    400138: Building_4.014
+    400140: Building_4.015
+    400142: Building_5.001
+    400144: Building_5.002
+    400146: Building_5.003
+    400148: Building_5.004
+    400150: Building_5.005
+    400152: Building_5.006
+    400154: Building_5.007
+    400156: Building_5.008
+    400158: Building_5.009
+    400160: Building_5.010
+    400162: LightPoles_1
+    400164: LightPoles_2
+    400166: Part_3 End Cap
+    400168: Part_3 Fence
+    400170: Part_3 Highway
+    400172: Part_3 Start Cap
+    400174: Part_3.001
+    400176: Part_3.002
+    400178: Highway Segment Cap A
+    400180: Highway Segment Cap B
+    400182: Highway Segment Fence
+    400184: Highway Segment Road
+    400186: Part_4A
+    400188: Highway
+    400190: Highway Columns.000
+    400192: Highway Columns.001
+    400194: Highway Columns.002
+    400196: Highway Segment Collider.000
+    400198: Highway Segment Collider.001
+    400200: Part_4A Collider
+    400202: World Collider - Baked
+    400204: Cube
+    400206: Dock
+    400208: Test Area
+    400210: World Collider
+    400212: World Collider.000
+    400214: World Collider.001
+    400216: World Collider.002
+    400218: World Collider.003
+    400220: Grid
+    400222: Ramp
+    400224: High_Palm.000
+    400226: High_Palm.001
+    400228: High_Palm.002
+    400230: High_Palm.003
+    400232: High_Palm.004
+    400234: High_Palm.005
+    400236: High_Palm.006
+    400238: High_Palm.007
+    400240: High_Palm.008
+    400242: High_Palm.009
+    400244: High_Palm.010
+    400246: Low_Palms
+    400248: Highway Distance Markers
+    400250: Plane
+    400252: Distort Director
+    400254: Highway Segment Collider Source
+    400256: World Collider Source
+    400258: Sun
+    400260: Highway Path
+    2000000: Camera
+    2100000: tarmac_MAt
+    2100002: lambert84
+    2100004: 21_estruc_metal
+    2100006: Ad_MAt
+    2100008: lambert414
+    2100010: lambert581
+    2100012: lambert1061
+    2100014: lambert926
+    2100016: lambert520
+    2100018: lambert267
+    2100020: lambert342
+    2100022: lambert1219
+    2100024: phong564
+    2100026: PalmBarkfile1
+    2100028: PalmBranchfile2
+    2100030: lambert178
+    2100032: lambert1225
+    2100034: lambert82
+    2100036: lambert84.001
+    2100038: lambert40
+    2100040: lambert41
+    2100042: lambert135
+    2100044: lambert119
+    2100046: lambert4
+    2100048: lambert12
+    2100050: lambert129
+    2100052: lambert14
+    2100054: lambert15
+    2100056: lambert129.001
+    2100058: lambert14.001
+    2100060: lambert15.001
+    2100062: lambert119.001
+    2100064: lambert135.001
+    2100066: lambert4.001
+    2100068: lambert129.002
+    2100070: lambert45
+    2100072: lambert131
+    2100074: lambert132
+    2100076: lambert133
+    2100078: lambert49
+    2100080: lambert131.001
+    2100082: lambert132.001
+    2100084: lambert133.001
+    2100086: lambert49.001
+    2100088: lambert119.002
+    2100090: lambert4.002
+    2100092: lambert14.002
+    2100094: lambert15.002
+    2100096: phong466
+    2100098: lambert1064
+    2100100: phong466.001
+    2100102: lambert1064.001
+    2100104: Road Tarmac
+    2100106: Ter Concrete 02
+    2100108: Metal Structure
+    2100110: Ad Board
+    2100112: Downtown 01 Atlas 1
+    2100114: Downtown 01 Atlas 0
+    2100116: Downtown 01 Atlas 2
+    2100118: Downtown 01 Atlas 4
+    2100120: Downtown 01 Atlas 4-4
+    2100122: Downtown 01 Atlas 3
+    2100124: Palm Bark
+    2100126: Palm Branch
+    2100128: Low Palm
+    2100130: Low Tree
+    2100132: Ter Concrete 01
+    2100134: Ter Grass 02
+    2100136: Ter Dirt 01
+    2100138: Concrete
+    2100140: Basic Road Dotted
+    2100142: Basic Road Solid
+    2100144: Basic Road Plain
+    2100146: Basic Road Yellow Grease
+    2100148: Basic Road Cross Walk
+    2100150: Basic Road Color
+    2100152: Highway Road Plain
+    2100154: Highway Road Dotted
+    2100156: Highway Road Solid
+    2100158: Highway Road Color
+    2100160: Highway Road Yellow Grease
+    2100162: Traffic Light Emission
+    2100164: Traffic Light
+    2100166: Surface Concrete 1
+    2100168: No Name
+    2100170: Traffic Signs
+    2100172: Ter Dirt 01.001
+    2100174: Collider
+    2100176: Basic Road Cross Walk.004
+    2100178: Basic Road Color.004
+    2100180: Concrete.004
+    2100182: Basic Road Cross Walk.002
+    2100184: Basic Road Color.002
+    2100186: Concrete.002
+    2100188: Basic Road Cross Walk.003
+    2100190: Basic Road Color.003
+    2100192: Concrete.003
+    2300000: Ad
+    2300002: Ad_support
+    2300004: Building_1
+    2300006: Building_2
+    2300008: Building_3
+    2300010: Building_4
+    2300012: Building_5
+    2300014: Building_6
+    2300016: Building_7
+    2300018: Building_8
+    2300020: Building_9
+    2300022: Ground1
+    2300024: Ground2
+    2300026: Ground3
+    2300028: Ground4
+    2300030: LightPole_Low
+    2300032: Low_Palm
+    2300034: Low_Trees
+    2300036: Model
+    2300038: Model.2
+    2300040: Model.3
+    2300042: Part_1
+    2300044: Part_2
+    2300046: Part_3
+    2300048: Part_4
+    2300050: Test_track
+    2300052: Unity_Palm
+    2300054: Building_1.001
+    2300056: Building_1.002
+    2300058: Building_1.003
+    2300060: Building_1.004
+    2300062: Building_1.005
+    2300064: Building_1.006
+    2300066: Building_2.001
+    2300068: Building_2.002
+    2300070: Building_2.003
+    2300072: Building_2.004
+    2300074: Building_2.005
+    2300076: Building_2.006
+    2300078: Building_2.007
+    2300080: Building_2.008
+    2300082: Building_2.009
+    2300084: Building_2.010
+    2300086: Building_2.011
+    2300088: Building_3.001
+    2300090: Building_3.002
+    2300092: Building_3.003
+    2300094: Building_4.001
+    2300096: Building_4.002
+    2300098: Building_4.003
+    2300100: Building_4.004
+    2300102: Building_4.005
+    2300104: Building_4.006
+    2300106: Building_4.007
+    2300108: Building_4.008
+    2300110: Building_4.009
+    2300112: Building_4.010
+    2300114: Building_4.011
+    2300116: Building_4.012
+    2300118: Building_4.013
+    2300120: Building_4.014
+    2300122: Building_4.015
+    2300124: Building_5.001
+    2300126: Building_5.002
+    2300128: Building_5.003
+    2300130: Building_5.004
+    2300132: Building_5.005
+    2300134: Building_5.006
+    2300136: Building_5.007
+    2300138: Building_5.008
+    2300140: Building_5.009
+    2300142: Building_5.010
+    2300144: LightPoles_1
+    2300146: LightPoles_2
+    2300148: Part_3 End Cap
+    2300150: Part_3 Fence
+    2300152: Part_3 Highway
+    2300154: Part_3 Start Cap
+    2300156: Part_3.001
+    2300158: Part_3.002
+    2300160: Highway Segment Cap A
+    2300162: Highway Segment Cap B
+    2300164: Highway Segment Fence
+    2300166: Highway Segment Road
+    2300168: Part_4A
+    2300170: Highway Columns.000
+    2300172: Highway Columns.001
+    2300174: Highway Columns.002
+    2300176: Highway Segment Collider.000
+    2300178: Highway Segment Collider.001
+    2300180: Part_4A Collider
+    2300182: World Collider - Baked
+    2300184: Cube
+    2300186: Dock
+    2300188: Test Area
+    2300190: World Collider.000
+    2300192: World Collider.001
+    2300194: World Collider.002
+    2300196: World Collider.003
+    2300198: Grid
+    2300200: Ramp
+    2300202: High_Palm.000
+    2300204: High_Palm.001
+    2300206: High_Palm.002
+    2300208: High_Palm.003
+    2300210: High_Palm.004
+    2300212: High_Palm.005
+    2300214: High_Palm.006
+    2300216: High_Palm.007
+    2300218: High_Palm.008
+    2300220: High_Palm.009
+    2300222: High_Palm.010
+    2300224: Low_Palms
+    2300226: Highway Distance Markers
+    2300228: Plane
+    2300230: Distort Director
+    2300232: Highway Segment Collider Source
+    2300234: World Collider Source
+    2300236: Highway Path
+    3300000: Ad
+    3300002: Ad_support
+    3300004: Building_1
+    3300006: Building_2
+    3300008: Building_3
+    3300010: Building_4
+    3300012: Building_5
+    3300014: Building_6
+    3300016: Building_7
+    3300018: Building_8
+    3300020: Building_9
+    3300022: Ground1
+    3300024: Ground2
+    3300026: Ground3
+    3300028: Ground4
+    3300030: LightPole_Low
+    3300032: Low_Palm
+    3300034: Low_Trees
+    3300036: Model
+    3300038: Model.2
+    3300040: Model.3
+    3300042: Part_1
+    3300044: Part_2
+    3300046: Part_3
+    3300048: Part_4
+    3300050: Test_track
+    3300052: Unity_Palm
+    3300054: Building_1.001
+    3300056: Building_1.002
+    3300058: Building_1.003
+    3300060: Building_1.004
+    3300062: Building_1.005
+    3300064: Building_1.006
+    3300066: Building_2.001
+    3300068: Building_2.002
+    3300070: Building_2.003
+    3300072: Building_2.004
+    3300074: Building_2.005
+    3300076: Building_2.006
+    3300078: Building_2.007
+    3300080: Building_2.008
+    3300082: Building_2.009
+    3300084: Building_2.010
+    3300086: Building_2.011
+    3300088: Building_3.001
+    3300090: Building_3.002
+    3300092: Building_3.003
+    3300094: Building_4.001
+    3300096: Building_4.002
+    3300098: Building_4.003
+    3300100: Building_4.004
+    3300102: Building_4.005
+    3300104: Building_4.006
+    3300106: Building_4.007
+    3300108: Building_4.008
+    3300110: Building_4.009
+    3300112: Building_4.010
+    3300114: Building_4.011
+    3300116: Building_4.012
+    3300118: Building_4.013
+    3300120: Building_4.014
+    3300122: Building_4.015
+    3300124: Building_5.001
+    3300126: Building_5.002
+    3300128: Building_5.003
+    3300130: Building_5.004
+    3300132: Building_5.005
+    3300134: Building_5.006
+    3300136: Building_5.007
+    3300138: Building_5.008
+    3300140: Building_5.009
+    3300142: Building_5.010
+    3300144: LightPoles_1
+    3300146: LightPoles_2
+    3300148: Part_3 End Cap
+    3300150: Part_3 Fence
+    3300152: Part_3 Highway
+    3300154: Part_3 Start Cap
+    3300156: Part_3.001
+    3300158: Part_3.002
+    3300160: Highway Segment Cap A
+    3300162: Highway Segment Cap B
+    3300164: Highway Segment Fence
+    3300166: Highway Segment Road
+    3300168: Part_4A
+    3300170: Highway Columns.000
+    3300172: Highway Columns.001
+    3300174: Highway Columns.002
+    3300176: Highway Segment Collider.000
+    3300178: Highway Segment Collider.001
+    3300180: Part_4A Collider
+    3300182: World Collider - Baked
+    3300184: Cube
+    3300186: Dock
+    3300188: Test Area
+    3300190: World Collider.000
+    3300192: World Collider.001
+    3300194: World Collider.002
+    3300196: World Collider.003
+    3300198: Grid
+    3300200: Ramp
+    3300202: High_Palm.000
+    3300204: High_Palm.001
+    3300206: High_Palm.002
+    3300208: High_Palm.003
+    3300210: High_Palm.004
+    3300212: High_Palm.005
+    3300214: High_Palm.006
+    3300216: High_Palm.007
+    3300218: High_Palm.008
+    3300220: High_Palm.009
+    3300222: High_Palm.010
+    3300224: Low_Palms
+    3300226: Highway Distance Markers
+    3300228: Plane
+    3300230: Distort Director
+    3300232: Highway Segment Collider Source
+    3300234: World Collider Source
+    3300236: Highway Path
+    4300000: Test_track
+    4300002: Ad_support
+    4300004: Ad
+    4300006: Building_4
+    4300008: Building_5
+    4300010: Building_6
+    4300012: Building_7
+    4300014: Building_8
+    4300016: Building_1
+    4300018: Building_2
+    4300020: Building_3
+    4300022: Building_9
+    4300024: Unity_Palm
+    4300026: Low_Palm
+    4300028: Low_Trees
+    4300030: Ground4
+    4300032: Ground3
+    4300034: Ground2
+    4300036: Ground1
+    4300038: Part_1
+    4300040: Part_2
+    4300042: Part_3
+    4300044: Part_4
+    4300046: LightPole_Low
+    4300048: Model
+    4300050: Model.2
+    4300052: Model.3
+    4300054: Building_1.001
+    4300056: Building_2.001
+    4300058: Building_2.003
+    4300060: Building_3.001
+    4300062: Building_4.001
+    4300064: Building_5.001
+    4300066: LightPoles_1
+    4300068: LightPoles_2
+    4300070: Part_3.001
+    4300072: Part_3.002
+    4300074: Part_3 Highway
+    4300076: Part_3 Fence
+    4300078: Part_3 Start Cap
+    4300080: Part_3 End Cap
+    4300082: Highway Segment Road
+    4300084: Highway Segment Fence
+    4300086: Highway Segment Cap B
+    4300088: Highway Segment Cap A
+    4300090: Part_4A
+    4300092: Highway Columns.000
+    4300094: Highway Columns.001
+    4300096: Highway Columns.002
+    4300098: Part_4A Collider
+    4300100: Highway Segment Collider.000
+    4300102: Highway Segment Collider.001
+    4300104: World Collider - Baked
+    4300106: Cube
+    4300108: Test Area
+    4300110: Dock
+    4300112: World Collider.000
+    4300114: World Collider.001
+    4300116: World Collider.002
+    4300118: World Collider.003
+    4300120: Grid
+    4300122: Ramp
+    4300124: High_Palm.000
+    4300126: Low_Palms
+    4300128: Highway Distance Markers
+    4300130: Plane
+    4300132: Highway Segment Collider Source
+    4300134: World Collider Source
+    4300136: Distort Director
+    4300138: Highway Path
+    10800000: Light
+    10800002: Sun
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
