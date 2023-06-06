@@ -366,6 +366,7 @@
             BLwheelPositionNL.Add(float3.zero);
             BLwheelRotationNL.Add(Quaternion.identity);
             frontSensorLengthNL.Add(carAI.frontSensorLength);
+            //frontSensorLengthForTurnLightNL.Add(carAI.frontSensorLengthForTurnLight);
             frontSensorSizeNL.Add(carAI.frontSensorSize);
             sideSensorLengthNL.Add(carAI.sideSensorLength);
             sideSensorSizeNL.Add(carAI.sideSensorSize);
@@ -376,6 +377,7 @@
             minDragNL.Add(carAI.minDrag);
             minAngularDragNL.Add(carAI.minAngularDrag);
             frontHitDistanceNL.Add(carAI.frontSensorLength);
+            //frontHitDistanceForTurnLightNL.Add(carAI.frontSensorLengthForTurnLight);
             leftHitDistanceNL.Add(carAI.sideSensorLength);
             rightHitDistanceNL.Add(carAI.sideSensorLength);
             frontHitNL.Add(false);
@@ -487,6 +489,7 @@
         private NativeList<bool> isChangingLanesNL;
         private NativeList<bool> canChangeLanesNL;
         private NativeList<bool> frontHitNL;
+        //private NativeList<bool> frontHitForTurnLightNL;
         private NativeList<bool> leftHitNL;
         private NativeList<bool> rightHitNL;
         private NativeList<bool> yieldForCrossTrafficNL;
@@ -504,10 +507,12 @@
         private NativeList<bool> isVisibleNL;
         private NativeList<bool> isDisabledNL;
         private NativeList<float> frontHitDistanceNL;
+        //private NativeList<float> frontHitDistanceForTurnLightNL;
         private NativeList<float> leftHitDistanceNL;
         private NativeList<float> rightHitDistanceNL;
         private NativeList<Vector3> frontSensorTransformPositionNL;
         private NativeList<float> frontSensorLengthNL;
+       // private NativeList<float> frontSensorLengthForTurnLightNL;
         private NativeList<Vector3> frontSensorSizeNL;
         private NativeList<float> sideSensorLengthNL;
         private NativeList<Vector3> sideSensorSizeNL;
@@ -585,9 +590,11 @@
         private AITrafficPoolEntry newTrafficPoolEntry = new AITrafficPoolEntry();
 
         NativeArray<RaycastHit> frontBoxcastResults;
+        //NativeArray<RaycastHit> frontBoxcastResultsForTurnLight;
         NativeArray<RaycastHit> leftBoxcastResults;
         NativeArray<RaycastHit> rightBoxcastResults;
         NativeArray<BoxcastCommand> frontBoxcastCommands;
+        //NativeArray<BoxcastCommand> frontBoxcastCommandsForTurnLight;//检测是否需要打转向灯的盒型碰撞
         NativeArray<BoxcastCommand> leftBoxcastCommands;
         NativeArray<BoxcastCommand> rightBoxcastCommands;
 
@@ -651,12 +658,14 @@
                 topSpeedNL = new NativeList<float>(Allocator.Persistent);
                 frontSensorTransformPositionNL = new NativeList<Vector3>(Allocator.Persistent);
                 frontSensorLengthNL = new NativeList<float>(Allocator.Persistent);
+                //frontSensorLengthForTurnLightNL = new NativeList<float>(Allocator.Persistent);
                 frontSensorSizeNL = new NativeList<Vector3>(Allocator.Persistent);
                 sideSensorLengthNL = new NativeList<float>(Allocator.Persistent);
                 sideSensorSizeNL = new NativeList<Vector3>(Allocator.Persistent);
                 minDragNL = new NativeList<float>(Allocator.Persistent);
                 minAngularDragNL = new NativeList<float>(Allocator.Persistent);
                 frontHitDistanceNL = new NativeList<float>(Allocator.Persistent);
+                //frontHitDistanceForTurnLightNL = new NativeList<float>(Allocator.Persistent);
                 leftHitDistanceNL = new NativeList<float>(Allocator.Persistent);
                 rightHitDistanceNL = new NativeList<float>(Allocator.Persistent);
                 frontHitNL = new NativeList<bool>(Allocator.Persistent);
@@ -838,6 +847,7 @@
                     frontDirectionList[i] = frontTransformCached[i].forward;
                     frontRotationList[i] = frontTransformCached[i].rotation;
                     frontBoxcastCommands[i] = new BoxcastCommand(frontSensorTransformPositionNL[i], frontSensorSizeNL[i], frontRotationList[i], frontDirectionList[i], frontSensorLengthNL[i], layerMask);
+                    //frontBoxcastCommandsForTurnLight[i] = new BoxcastCommand(frontSensorTransformPositionNL[i], frontSensorSizeNL[i], frontRotationList[i], frontDirectionList[i], frontSensorLengthForTurnLightNL[i], layerMask);
                     
                     if (useLaneChanging)
                     {
@@ -860,7 +870,7 @@
                 }
                 // do sensor jobs
                 var handle = BoxcastCommand.ScheduleBatch(frontBoxcastCommands, frontBoxcastResults, 1, default);
-                handle.Complete();
+                handle.Complete();              
                 handle = BoxcastCommand.ScheduleBatch(leftBoxcastCommands, leftBoxcastResults, 1, default);
                 handle.Complete();
                 handle = BoxcastCommand.ScheduleBatch(rightBoxcastCommands, rightBoxcastResults, 1, default);
@@ -868,9 +878,15 @@
                 for (int i = 0; i < carCount; i++) // operate on results
                 {
                     // front
-                    frontHitNL[i] = frontBoxcastResults[i].collider == null ? false : true;
+                    frontHitNL[i] = frontBoxcastResults[i].collider == null ? false : true;//前方是否有障碍
+                    //frontHitForTurnLightNL[i] = frontBoxcastResultsForTurnLight[i].collider == null ? false : true;//打转向灯的前方是否有障碍
+                    //if(frontHitForTurnLightNL[i])
+                    //{
+                    //    Debug.Log("是时候打转向灯了");
+                    //}
                     if (frontHitNL[i])
                     {
+                       // Debug.Log(frontBoxcastResults[i].collider);
                         frontHitTransform[i] = frontBoxcastResults[i].transform; // cache transform lookup
                         if (frontHitTransform[i] != frontPreviousHitTransform[i])
                         {
@@ -881,6 +897,7 @@
                     else //ResetHitBox
                     {
                         frontHitDistanceNL[i] = frontSensorLengthNL[i];
+                        //frontHitDistanceForTurnLightNL[i] = frontSensorLengthForTurnLightNL[i];
                     }
                     // left
                     leftHitNL[i] = leftBoxcastResults[i].collider == null ? false : true;
@@ -921,7 +938,7 @@
                         #region Lane Change
                         if (useLaneChanging && isDrivingNL[i])
                         {
-                            if (speedNL[i] > minSpeedToChangeLanes)
+                            if (speedNL[i] > minSpeedToChangeLanes)//前方遇到障碍会减速，减速会使得该条件无法满足从而不变道，降低变道的最低速度？
                             {
                                 if (!canChangeLanesNL[i])
                                 {
@@ -933,8 +950,9 @@
                                     }
                                 }
 
-                                if ((forceChangeLanesNL[i] == true || frontHitNL[i] == true) && canChangeLanesNL[i] && isChangingLanesNL[i] == false)
+                                if ((forceChangeLanesNL[i] == true || frontHitNL[i] == true) && canChangeLanesNL[i] && isChangingLanesNL[i] == false)//换道判断4：（强制换道或前方检测障碍物）且能换道且目前不在换道
                                 {
+                                    //Debug.Log(changeLaneTriggerTimer[i]);
                                     changeLaneTriggerTimer[i] += Time.deltaTime;
                                     canTurnLeft = leftHitNL[i] == true ? false : true;
                                     canTurnRight = rightHitNL[i] == true ? false : true;
