@@ -195,6 +195,15 @@
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnWaypointRoute");
                 }
+                if (GUILayout.Button("AI People Waypoint Route"))
+                {
+                    GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AIPeopleWaypointRoute);
+                    _objectToSpawn.name = "AIPeopleWaypointRoute";
+                    GameObject[] newSelection = new GameObject[1];
+                    newSelection[0] = _objectToSpawn;
+                    Selection.objects = newSelection;
+                    Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnWaypointRoute");
+                }
                 if (GUILayout.Button("AI Traffic Light Manager"))
                 {
                     GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AITrafficLightManager);
