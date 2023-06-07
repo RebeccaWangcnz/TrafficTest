@@ -77,13 +77,6 @@
                         if (EditorGUI.EndChangeCheck())
                             serializedObject.ApplyModifiedProperties();
 
-                        //Rebe: 添加判断转向灯开关的距离
-                        SerializedProperty frontSensorLengthForTurnLight = serializedObject.FindProperty("frontSensorLengthForTurnLight");
-                        EditorGUI.BeginChangeCheck();
-                        EditorGUILayout.PropertyField(frontSensorLengthForTurnLight, true);
-                        if (EditorGUI.EndChangeCheck())
-                            serializedObject.ApplyModifiedProperties();
-
                         SerializedProperty sideSensorSize = serializedObject.FindProperty("sideSensorSize");
                         EditorGUI.BeginChangeCheck();
                         EditorGUILayout.PropertyField(sideSensorSize, true);

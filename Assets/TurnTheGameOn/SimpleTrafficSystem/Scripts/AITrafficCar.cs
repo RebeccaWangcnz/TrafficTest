@@ -7,7 +7,7 @@
     [HelpURL("https://simpletrafficsystem.turnthegameon.com/documentation/api/aitrafficcar")]
     public class AITrafficCar : MonoBehaviour
     {
-        public int assignedIndex { get; private set; }//车的标号
+        public int assignedIndex { get; private set; }
         [Tooltip("Vehicles will only spawn, and merge onto routes with matching vehicle types.")]
         public AITrafficVehicleType vehicleType = AITrafficVehicleType.Default;
         [Tooltip("Amount of torque that is passed to car Wheel Colliders when not braking.")]
@@ -25,8 +25,6 @@
         public Vector3 frontSensorSize = new Vector3(1.3f, 1f, 0.001f);
         [Tooltip("Length of the front detection sensor BoxCast.")]
         public float frontSensorLength = 10f;
-        [Tooltip("Length of the front detection sensor BoxCast for turn light.")]
-        public float frontSensorLengthForTurnLight = 100f;
         [Tooltip("Size of the side detection sensor BoxCasts.")]
         public Vector3 sideSensorSize = new Vector3(15f, 1f, 0.001f);
         [Tooltip("Length of the side detection sensor BoxCasts.")]
@@ -48,33 +46,19 @@
         public Light headLight;
         [Tooltip("References to car wheel mesh object, transform, and collider.")]
         public AITrafficCarWheels[] _wheels;
-
-        public TurnLight turnlight;
-        public MeshRenderer leftturnlight;
-        public MeshRenderer rightturnlight;
-        public Material lightmaterial;
-        [HideInInspector] public Material leftmaterial;
-        [HideInInspector] public Material rightmaterial;
-
         private AITrafficWaypointRoute startRoute;
         private Vector3 goToPointWhenStoppedVector3;
         private Rigidbody rb;
         private List<int> newRoutePointsMatchingType = new List<int>();
         private int randomIndex;
-        //打开转向灯射线检测
-        RaycastHit m_Hit;
-        bool m_HitDetect;
 
         public void RegisterCar(AITrafficWaypointRoute route)
         {
-            leftturnlight.materials[0].EnableKeyword("_EMISSION");
-            rightturnlight.materials[0].EnableKeyword("_EMISSION");
             if (brakeMaterial == null && brakeMaterialMesh != null)
             {
                 brakeMaterial = brakeMaterialMesh.materials[brakeMaterialIndex];
             }
             assignedIndex = AITrafficController.Instance.RegisterCarAI(this, route);
-            //Debug.Log(transform.name+","+assignedIndex);
             startRoute = route;
             rb = GetComponent<Rigidbody>();
         }
@@ -219,40 +203,6 @@
         {
             AITrafficController.Instance.SetForceLaneChange(assignedIndex, _value);
         }
-        /// <summary>
-        /// Rebe：是否需要打开转向灯
-        /// </summary>
-        public void NeedTurnLight(int direction)
-        {
-            if (m_HitDetect= Physics.BoxCast(frontSensorTransform.position,frontSensorSize,transform.forward,out m_Hit,transform.rotation,frontSensorLengthForTurnLight,AITrafficController.Instance.layerMask))
-            {
-                turnlight.isturning = direction;
-                if(direction!=0)
-                    Debug.Log("打开转向灯");
-            }
-        }
-        //用来显示打开转向灯的射线检测
-        //void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.red;
-
-        //    //Check if there has been a hit yet
-        //    if (m_HitDetect)
-        //    {
-        //        //Draw a Ray forward from GameObject toward the hit
-        //        Gizmos.DrawRay(frontSensorTransform.position, transform.forward * m_Hit.distance);
-        //        //Draw a cube that extends to where the hit exists
-        //        Gizmos.DrawWireCube(frontSensorTransform.position + transform.forward * m_Hit.distance, frontSensorSize);
-        //    }
-        //    //If there hasn't been a hit yet, draw the ray at the maximum distance
-        //    else
-        //    {
-        //        //Draw a Ray forward from GameObject toward the maximum distance
-        //        Gizmos.DrawRay(transform.position, transform.forward * frontSensorLengthForTurnLight);
-        //        //Draw a cube at the maximum distance
-        //        Gizmos.DrawWireCube(transform.position + transform.forward * frontSensorLengthForTurnLight, frontSensorSize);
-        //    }
-        //}
         #endregion
 
         #region Waypoint Trigger Methods
@@ -260,9 +210,9 @@
         /// Callback triggered when the AITrafficCar reaches a waypoint.
         /// </summary>
         /// <param name="onReachWaypointSettings"></param>
-        public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)//把点的信息发送给车，处理到达某waypoint的各种时间
+        public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
         {
-            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))//这条路刚好是车正在走的路
+            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AITrafficController.Instance.Set_SpeedLimitArray(assignedIndex, onReachWaypointSettings.speedLimit);
@@ -277,14 +227,14 @@
                         {
                             if (onReachWaypointSettings.newRoutePoints[i].onReachWaypointSettings.parentRoute.vehicleTypes[j] == vehicleType)
                             {
-                                newRoutePointsMatchingType.Add(i);//newRoutesPointMatchingType存储可以进入的新routes
+                                newRoutePointsMatchingType.Add(i);
                                 break;
                             }
                         }
                     }
                     if (newRoutePointsMatchingType.Count > 0 && onReachWaypointSettings.waypointIndexnumber != onReachWaypointSettings.parentRoute.waypointDataList.Count)
                     {
-                        randomIndex = UnityEngine.Random.Range(0, newRoutePointsMatchingType.Count);//随机一个新路线
+                        randomIndex = UnityEngine.Random.Range(0, newRoutePointsMatchingType.Count);
                         if (randomIndex == newRoutePointsMatchingType.Count) randomIndex -= 1;
                         randomIndex = newRoutePointsMatchingType[randomIndex];
                         AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
@@ -295,11 +245,7 @@
                             assignedIndex,
                             onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
                             onReachWaypointSettings.newRoutePoints[randomIndex]
-                            );//上述全为变道操作
-                        //if (onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute != onReachWaypointSettings.parentRoute)
-                        //{
-                        //    turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.newRoutePoints[randomIndex].transform);
-                        //}
+                            );
                     }
                     else if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)
                     {
@@ -325,7 +271,7 @@
                         );
                     }
                 }
-                else if (onReachWaypointSettings.waypointIndexnumber < onReachWaypointSettings.parentRoute.waypointDataList.Count)//没有走完
+                else if (onReachWaypointSettings.waypointIndexnumber < onReachWaypointSettings.parentRoute.waypointDataList.Count)
                 {
                     AITrafficController.Instance.Set_CurrentRoutePointIndexArray
                         (
@@ -335,7 +281,7 @@
                         );
                 }
                 AITrafficController.Instance.Set_RoutePointPositionArray(assignedIndex);
-                if (onReachWaypointSettings.stopDriving)//如果要停下来
+                if (onReachWaypointSettings.stopDriving)
                 {
                     StopDriving();
                     if (onReachWaypointSettings.stopTime > 0)
