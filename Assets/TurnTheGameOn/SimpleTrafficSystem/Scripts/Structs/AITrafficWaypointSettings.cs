@@ -9,6 +9,8 @@
     {
         [Tooltip("Reference to the waypoint's parent route.")]
         public AITrafficWaypointRoute parentRoute;
+        [Tooltip("Reference to the waypoint's parent route.")]
+        public AIPeopleWaypointRoute parentPeopleRoute;//Rebe:用于行人路线
         [Tooltip("Reference to the waypoint.")]
         public AITrafficWaypoint waypoint;
         [HideInInspector] public AITrafficWaypoint nextPointInRoute;

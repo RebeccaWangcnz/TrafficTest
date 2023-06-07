@@ -9,6 +9,7 @@
     [HelpURL("https://simpletrafficsystem.turnthegameon.com/documentation/api/aitrafficwaypointroute")]
     public class AITrafficWaypointRoute : MonoBehaviour
     {
+        public bool isPeopleRoute;//Rebe:标识一下是否是人行路
         public bool isRegistered { get; private set; }
         [Tooltip("Array of vehicles types that are allowed to spawn and merge onto this route.")]
         public AITrafficVehicleType[] vehicleTypes = new AITrafficVehicleType[1];
@@ -96,7 +97,11 @@
                     Vector3 spawnPosition = waypointDataList[j]._transform.position;
                     spawnPosition.y += 1;
                     GameObject spawnedTrafficVehicle = Instantiate(spawnTrafficVehicles[i], spawnPosition, waypointDataList[j]._transform.rotation);
-                    spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(this);
+                    //Rebe:判断是否是行人路线，生成不一样的东西
+                    if(!isPeopleRoute)
+                        spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(this);
+                    else
+                        spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(this);
                     spawnedTrafficVehicle.transform.LookAt(waypointDataList[j + 1]._transform);
                     j += 1; // increase j again tospawn vehicles with more space between
                 }

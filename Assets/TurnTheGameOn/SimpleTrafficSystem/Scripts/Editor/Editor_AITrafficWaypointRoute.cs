@@ -42,6 +42,12 @@
             if (EditorGUI.EndChangeCheck())
                 serializedObject.ApplyModifiedProperties();
 
+            SerializedProperty isPeopleRoute = serializedObject.FindProperty("isPeopleRoute");
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(isPeopleRoute, true);
+            if (EditorGUI.EndChangeCheck())
+                serializedObject.ApplyModifiedProperties();
+
             if (_AITrafficWaypointRoute.spawnFromAITrafficController)
             {
                 SerializedProperty spawnAmount = serializedObject.FindProperty("spawnAmount");

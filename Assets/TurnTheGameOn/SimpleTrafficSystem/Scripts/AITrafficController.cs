@@ -441,6 +441,17 @@
         {
             allWaypointRoutesList.Remove(_route);
         }
+        //Rebe:用于登记或者移除行人行进路线
+        public int RegisterAIPeopleWaypointRoute(AIPeopleWaypointRoute _route)
+        {
+            int index = allPeopleWaypointRoutesList.Count;
+            allPeopleWaypointRoutesList.Add(_route);
+            return index;
+        }
+        public void RemoveAIPeopleWaypointRoute(AIPeopleWaypointRoute _route)
+        {
+            allPeopleWaypointRoutesList.Remove(_route);
+        }
         #endregion
 
         #endregion
@@ -449,6 +460,8 @@
         private List<AITrafficCar> carList = new List<AITrafficCar>();
         private List<AITrafficWaypointRouteInfo> carAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
         private List<AITrafficWaypointRoute> allWaypointRoutesList = new List<AITrafficWaypointRoute>();
+        //Rebe:行人路线列表
+        private List<AIPeopleWaypointRoute> allPeopleWaypointRoutesList = new List<AIPeopleWaypointRoute>();        
         private List<AITrafficWaypointRoute> carRouteList = new List<AITrafficWaypointRoute>();
         private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private List<AITrafficSpawnPoint> trafficSpawnPoints = new List<AITrafficSpawnPoint>();

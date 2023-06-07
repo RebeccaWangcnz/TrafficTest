@@ -35,3 +35,5 @@ MonoBehaviour:
   _TrafficLight_1: {fileID: 100018, guid: 215c142e3cbb47e6ba60862018157540, type: 3}
   _TrafficLight_2: {fileID: 100018, guid: 86a3c389d98942b9a953b681e209aeda, type: 3}
   _TrafficLight_3: {fileID: 100018, guid: b801e70441ce4b1ca5321b50c67a6045, type: 3}
+  _AIPeopleWaypointRoute: {fileID: 3082157904087339595, guid: a722f22ce1ca178438b23f3b1dc73618,
+    type: 3}
