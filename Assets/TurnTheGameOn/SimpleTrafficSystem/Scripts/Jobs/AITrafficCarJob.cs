@@ -57,8 +57,9 @@
                 driveTargetTransformAccessArray.position = routePointPositionNA[index];
 
                 #region StopThreshold
+                //以下全是停车逻辑
                 if (stopForTrafficLightNA[index] && routeProgressNA[index] > 0 && currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 1)
-                {
+                {//如果这条路的交通灯需要停车&&车有行进&&目前所在的路径点>=路线中所有的路线点的数量-1（应该就是到达了路线末端）
                     //distanceToEndPointNA[index] = Vector3.Distance(frontSensorTransformPositionNA[index], routePointPositionNA[index]);
                     distanceToEndPointNA[index] = Vector3.Distance(frontSensorTransformPositionNA[index], finalRoutePointPositionNA[index]);
                     //if (overrideInputNA[index])
@@ -67,7 +68,7 @@
                     overrideBrakePowerNA[index] = 1f;
                     overrideAccelerationPowerNA[index] = 0f;
                     //}
-                }
+                }//刹车
                 else if (stopForTrafficLightNA[index] && routeProgressNA[index] > 0 && currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 2 && !frontHitNA[index])
                 {
                     //distanceToEndPointNA[index] = Vector3.Distance(frontSensorTransformPositionNA[index], routePointPositionNA[index]);
@@ -78,7 +79,7 @@
                     overrideBrakePowerNA[index] = distanceToEndPointNA[index] < 3 || speedNA[index] > 10 ? 1f : 0f;
                     overrideAccelerationPowerNA[index] = distanceToEndPointNA[index] < 3 || speedNA[index] > 10 ? 0f : 0.3f;
                     //}
-                }
+                }//即将刹车
                 else if (frontHitNA[index] && frontHitDistanceNA[index] < stopThreshold)
                 {
                     if (!overrideInputNA[index])

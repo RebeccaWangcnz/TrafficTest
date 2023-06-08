@@ -19,6 +19,9 @@
 
         [Tooltip("Array of AITrafficCar prefabs to spawn.")]
         public AITrafficCar[] trafficPrefabs;
+        //Rebe:存储行人的数组
+        [Tooltip("Array of AIPeople prefabs to spawn.")]
+        public AIPeople[] peoplePrefabs;
 
         #region Car Settings
         [Tooltip("Enables the processing of YieldTrigger logic.")]
@@ -250,7 +253,7 @@
         }
         public AITrafficWaypointRoute GetCarRoute(int _index)
         {
-            return carRouteList[_index];
+            return carRouteList[_index];//返回_index的车路径
         }
         public AITrafficCar[] GetTrafficCars()
         {
@@ -272,9 +275,9 @@
 
         #region Registers
         public int RegisterCarAI(AITrafficCar carAI, AITrafficWaypointRoute route)
-        {
+        {//该处登记所有下标对应
             carList.Add(carAI);
-            carRouteList.Add(route);
+            carRouteList.Add(route);//登记所有车辆路径
             currentWaypointList.Add(null);
             changeLaneCooldownTimer.Add(0);
             changeLaneTriggerTimer.Add(0);
@@ -441,17 +444,6 @@
         {
             allWaypointRoutesList.Remove(_route);
         }
-        //Rebe:用于登记或者移除行人行进路线
-        public int RegisterAIPeopleWaypointRoute(AIPeopleWaypointRoute _route)
-        {
-            int index = allPeopleWaypointRoutesList.Count;
-            allPeopleWaypointRoutesList.Add(_route);
-            return index;
-        }
-        public void RemoveAIPeopleWaypointRoute(AIPeopleWaypointRoute _route)
-        {
-            allPeopleWaypointRoutesList.Remove(_route);
-        }
         #endregion
 
         #endregion
@@ -459,9 +451,7 @@
         #region Private Variables
         private List<AITrafficCar> carList = new List<AITrafficCar>();
         private List<AITrafficWaypointRouteInfo> carAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
-        private List<AITrafficWaypointRoute> allWaypointRoutesList = new List<AITrafficWaypointRoute>();
-        //Rebe:行人路线列表
-        private List<AIPeopleWaypointRoute> allPeopleWaypointRoutesList = new List<AIPeopleWaypointRoute>();        
+        private List<AITrafficWaypointRoute> allWaypointRoutesList = new List<AITrafficWaypointRoute>();       
         private List<AITrafficWaypointRoute> carRouteList = new List<AITrafficWaypointRoute>();
         private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private List<AITrafficSpawnPoint> trafficSpawnPoints = new List<AITrafficSpawnPoint>();
@@ -530,7 +520,7 @@
         private NativeList<float> minDragNL;
         private NativeList<float> minAngularDragNL;
         private NativeList<float> speedNL;
-        private NativeList<float> routeProgressNL;
+        private NativeList<float> routeProgressNL;//表示第i条路行进到了哪个点
         private NativeList<float> targetSpeedNL;
         private NativeList<float> accelNL;
         private NativeList<float> speedLimitNL;

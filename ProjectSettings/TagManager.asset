@@ -8,6 +8,7 @@ TagManager:
   - Car
   - PeopleSemaphore
   - Bcycle
+  - AITrafficCar
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - posteffects
-  - 
+  - peopleAI
   - 
   - 
   - 

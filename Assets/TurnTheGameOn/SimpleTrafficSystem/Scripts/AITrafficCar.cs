@@ -58,7 +58,7 @@
             {
                 brakeMaterial = brakeMaterialMesh.materials[brakeMaterialIndex];
             }
-            assignedIndex = AITrafficController.Instance.RegisterCarAI(this, route);
+            assignedIndex = AITrafficController.Instance.RegisterCarAI(this, route);//把车登记在对应的路径上
             startRoute = route;
             rb = GetComponent<Rigidbody>();
         }
@@ -212,13 +212,14 @@
         /// <param name="onReachWaypointSettings"></param>
         public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
         {
-            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))
+            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))//路径点所属的路径是车所对应的路径
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AITrafficController.Instance.Set_SpeedLimitArray(assignedIndex, onReachWaypointSettings.speedLimit);
-                AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
+                //这里表示当到达这个路径点，assignedIndex的车在assignedIndex这一条路的点行进到第waypointIndexnumber - 1个点上
+                AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);//onReachWaypointSettings.waypointIndexnumber - 1是路线点数组中的index
                 AITrafficController.Instance.Set_WaypointDataListCountArray(assignedIndex);
-                if (onReachWaypointSettings.newRoutePoints.Length > 0)
+                if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
                     newRoutePointsMatchingType.Clear();
                     for (int i = 0; i < onReachWaypointSettings.newRoutePoints.Length; i++)

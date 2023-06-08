@@ -19,7 +19,7 @@
 
         public void EnableRedLight()
         {
-            if (waypointRoute) waypointRoute.StopForTrafficlight(true);
+            if (waypointRoute) waypointRoute.StopForTrafficlight(true);//控制车的停止和移动
             for (int i = 0; i < waypointRoutes.Count; i++)
             {
                 waypointRoutes[i].StopForTrafficlight(true);
