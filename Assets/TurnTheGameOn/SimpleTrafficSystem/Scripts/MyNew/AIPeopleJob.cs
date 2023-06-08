@@ -15,6 +15,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<int> waypointDataListCountNA;//当前路线的所有点数
         public NativeArray<bool> isWalkingNA;
         public NativeArray<bool> isFrontHitNA;//前方是否有障碍
+        public NativeArray<bool> isLastPointNA;//是否走到了尽头
 
 
 
@@ -34,33 +35,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
             #region move
             //当行人处于停止状态时
-            //1.处于障碍停止，前方无障碍
             if(!isWalkingNA[index])
             {
-                if(!isFrontHitNA[index]&& !stopForTrafficLightNA[index])
+                if(!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index])
                 {
                     isWalkingNA[index] = true;
                 }
             }
-            //if (isWalkingNA[index])
-            //{
-            //    targetSpeedNA[index] = topSpeedNA[index];//目标速度设为最大速度
-            //    if (frontHitNA[index]) targetSpeedNA[index] = Mathf.InverseLerp(0, frontSensorLengthNA[index], frontHitDistanceNA[index]) * targetSpeedNA[index];//前方存在障碍
-
-            //    accelNA[index] = targetSpeedNA[index] - speedNA[index];//加速度
-            //    if (speedNA[index] >= topSpeedNA[index])
-            //    {
-            //        accelerationInputNA[index] = 0;
-            //    }
-            //    else
-            //    {
-            //        accelerationInputNA[index] = math.clamp(accelNA[index], 0, 1);
-            //    }
-            //}
-            //else
-            //{
-
-            //}
             #endregion
         }
     }

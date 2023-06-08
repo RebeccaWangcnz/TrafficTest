@@ -14,17 +14,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         [Tooltip("Front Sensor Length")]
         public float frontSensorLength;
 
-        private AITrafficWaypointRoute startRoute;
-        private Rigidbody rb;
         private bool isFrontHit;
-        private bool inFrontHitState;
         private RaycastHit hitInfo;
         private int randomIndex;
         public void RegisterPerson(AITrafficWaypointRoute route)
         {
             assignedIndex = AIPeopleController.Instance.RegisterPeopleAI(this, route);
-            startRoute = route;
-            rb = GetComponent<Rigidbody>();
         }//用于注册行人
         #region public api method
         public void StartMoving()
@@ -38,7 +33,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public void StopDriving()
         {
             AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, false);
-        }
+            AIPeopleController.Instance.Set_IsLastPoint(assignedIndex, true);
+        }//当时达到路线结尾处的点时使用这个方法
         //检测前面是否有障碍
         public bool FrontSensorDetecting()
         {
@@ -71,7 +67,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 AITrafficWaypoint newpoint= onReachWaypointSettings.waypoint;
                 if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
-                    randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length - 1);
+                    randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
                     newpoint = onReachWaypointSettings.newRoutePoints[randomIndex];
                     AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, newpoint.onReachWaypointSettings.parentRoute);//更新路线
                     AIPeopleController.Instance.Set_RouteInfo(assignedIndex, newpoint.onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
@@ -93,12 +89,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     );
                     newpoint = onReachWaypointSettings.nextPointInRoute;
                 }
-                Debug.Log(newpoint);
+                //Debug.Log(newpoint);
                 //使行人朝向新的位置
-                Vector3 targetDirection = newpoint.transform.position - transform.position;
-                targetDirection.y = 0;
-                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                transform.rotation = targetRotation;
+                if(newpoint)
+                {
+                    Vector3 targetDirection = newpoint.transform.position - transform.position;
+                    targetDirection.y = 0;
+                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    transform.rotation = targetRotation;
+                }
+
                 AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
             }
         }

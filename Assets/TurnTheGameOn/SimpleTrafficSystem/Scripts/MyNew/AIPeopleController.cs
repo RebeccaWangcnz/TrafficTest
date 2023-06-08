@@ -36,6 +36,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> stopForTrafficLightNL;//是否需要根据信号灯停车
         private NativeList<float> routeProgressNL;//道路进程
         private NativeList<bool> isFrontHitNL;//前方是否有障碍
+        private NativeList<bool> isLastPointNL;
 
         private TransformAccessArray moveTargetTAA;
         #endregion
@@ -55,6 +56,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 routeProgressNL = new NativeList<float>(Allocator.Persistent);
                 stopForTrafficLightNL = new NativeList<bool>(Allocator.Persistent);
                 isFrontHitNL = new NativeList<bool>(Allocator.Persistent);
+                isLastPointNL = new NativeList<bool>(Allocator.Persistent);
             }
             else
             {
@@ -95,7 +97,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     waypointDataListCountNA = waypointDataListCountNL,
                     routeProgressNA = routeProgressNL,
                     stopForTrafficLightNA = stopForTrafficLightNL,
-                    isFrontHitNA= isFrontHitNL
+                    isFrontHitNA= isFrontHitNL,
+                    isLastPointNA= isLastPointNL
                 };
 
                 jobHandle = peopleAITrafficJob.Schedule(moveTargetTAA);
@@ -121,11 +124,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 currentRoutePointIndexNL.Dispose();
                 finalRoutePointPositionNL.Dispose();
                 waypointDataListCountNL.Dispose();
-                moveTargetTAA.Dispose();
                 routeProgressNL.Dispose();
                 stopForTrafficLightNL.Dispose();
                 isFrontHitNL.Dispose();
+                isLastPointNL.Dispose();
             }
+            moveTargetTAA.Dispose();
         }
         #endregion
 
@@ -158,6 +162,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             routeProgressNL.Add(0);
             stopForTrafficLightNL.Add(false);
             isFrontHitNL.Add(false);
+            isLastPointNL.Add(false);
             //currentWaypointList.Add(null);
             moveTargetTAA = new TransformAccessArray(peopleCount);
             #endregion
@@ -184,6 +189,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     rigidbodyList[_index].velocity = Vector3.zero;
                 }
             }
+        }
+        public void Set_IsLastPoint(int _index, bool _value)
+        {
+            isLastPointNL[_index] = _value;
         }
         public void Set_CurrentRoutePointIndexArray(int _index, int _value, AITrafficWaypoint _nextWaypoint)
         {
