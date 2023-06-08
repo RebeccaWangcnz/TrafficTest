@@ -35,6 +35,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
         private NativeList<bool> stopForTrafficLightNL;//是否需要根据信号灯停车
         private NativeList<float> routeProgressNL;//道路进程
+        private NativeList<bool> isFrontHitNL;//前方是否有障碍
 
         private TransformAccessArray moveTargetTAA;
         #endregion
@@ -53,6 +54,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 waypointDataListCountNL = new NativeList<int>(Allocator.Persistent);
                 routeProgressNL = new NativeList<float>(Allocator.Persistent);
                 stopForTrafficLightNL = new NativeList<bool>(Allocator.Persistent);
+                isFrontHitNL = new NativeList<bool>(Allocator.Persistent);
             }
             else
             {
@@ -82,6 +84,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 for(int i=0;i<peopleCount;i++)
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
+                    isFrontHitNL[i]= peopleList[i].FrontSensorDetecting();
                 }
                 //deltaTime = Time.deltaTime;
                 peopleAITrafficJob = new AIPeopleJob
@@ -91,7 +94,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     currentRoutePointIndexNA = currentRoutePointIndexNL,
                     waypointDataListCountNA = waypointDataListCountNL,
                     routeProgressNA = routeProgressNL,
-                    stopForTrafficLightNA = stopForTrafficLightNL
+                    stopForTrafficLightNA = stopForTrafficLightNL,
+                    isFrontHitNA= isFrontHitNL
                 };
 
                 jobHandle = peopleAITrafficJob.Schedule(moveTargetTAA);
@@ -102,6 +106,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     peopleList[i].FrontSensorDetecting();
                     if (isWalkingNL[i])
                         rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].moveSpeed * Time.timeScale;//让ai前进
+                    else
+                        rigidbodyList[i].velocity = Vector3.zero;
                 }
 
             }
@@ -118,6 +124,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 moveTargetTAA.Dispose();
                 routeProgressNL.Dispose();
                 stopForTrafficLightNL.Dispose();
+                isFrontHitNL.Dispose();
             }
         }
         #endregion
@@ -150,6 +157,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             peopleAIWaypointRouteInfo.Add(null);
             routeProgressNL.Add(0);
             stopForTrafficLightNL.Add(false);
+            isFrontHitNL.Add(false);
             //currentWaypointList.Add(null);
             moveTargetTAA = new TransformAccessArray(peopleCount);
             #endregion
@@ -166,7 +174,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         }
         #endregion
         #region set array data
-        public void Set_IsDrivingArray(int _index, bool _value)
+        public void Set_IsWalkingArray(int _index, bool _value)
         {
             if(isWalkingNL[_index]!=_value)
             {

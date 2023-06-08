@@ -29,7 +29,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         #region public api method
         public void StartMoving()
         {
-            AIPeopleController.Instance.Set_IsDrivingArray(assignedIndex, true);
+            AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, true);
         }
         /// <summary>
         /// The AIPeople will stop moving,use the same name as car to easily gotten by AITrafficWaypoint.cs
@@ -37,24 +37,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         [ContextMenu("StopDriving")]
         public void StopDriving()
         {
-            AIPeopleController.Instance.Set_IsDrivingArray(assignedIndex, false);
+            AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, false);
         }
         //检测前面是否有障碍
-        public void FrontSensorDetecting()
+        public bool FrontSensorDetecting()
         {
-            if (isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value))
-            {
-                Debug.Log("前面有障碍");
-                inFrontHitState = true;//前方有障碍的情况下
-                StopDriving();
-            }
-            else if (inFrontHitState)
-            {
-                Debug.Log("前面障碍消失");
-                inFrontHitState = false;//将状态改为前方没有障碍
-                StartMoving();
-            }
-
+            isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value);
+            return isFrontHit;
         }
         private void OnDrawGizmos()
         {
