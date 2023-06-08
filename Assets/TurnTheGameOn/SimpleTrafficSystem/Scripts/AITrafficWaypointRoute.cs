@@ -59,6 +59,7 @@
             routeInfo.enabled = _stop ? false : true;
         }
 
+
         public List<AITrafficSpawnPoint> spawnpoints = new List<AITrafficSpawnPoint>();
 
         public void SpawnTrafficVehicles()

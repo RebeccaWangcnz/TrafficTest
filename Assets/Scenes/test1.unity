@@ -248,80 +248,6 @@ Transform:
   m_Father: {fileID: 1547153817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3139506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3139509}
-  - component: {fileID: 3139507}
-  - component: {fileID: 3139508}
-  m_Layer: 0
-  m_Name: AITrafficWaypoint 4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &3139507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onReachWaypointSettings:
-    parentRoute: {fileID: 314362649}
-    parentPeopleRoute: {fileID: 0}
-    waypoint: {fileID: 0}
-    nextPointInRoute: {fileID: 0}
-    waypointIndexnumber: 4
-    speedLimit: 25
-    stopDriving: 0
-    stopTime: 0
-    newRoutePoints: []
-    laneChangePoints: []
-    yieldTriggers: []
-    OnReachWaypointEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    position: {x: 0, y: 0, z: 0}
---- !u!65 &3139508
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &3139509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139506}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.685863, y: 0.2736248, z: -22.84355}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 314362650}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4149250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,6 +2445,80 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &50111420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50111423}
+  - component: {fileID: 50111421}
+  - component: {fileID: 50111422}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &50111421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50111420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 11
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &50111422
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50111420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &50111423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50111420}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.367994, y: 0.27362856, z: -94.59862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &50502962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,6 +3642,80 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.02181068, y: -0.009805754, z: 0.00000020861626}
     m_Extent: {x: 0.8632928, y: 0.15312733, z: 0.6043817}
   m_DirtyAABB: 0
+--- !u!1 &74359756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74359759}
+  - component: {fileID: 74359757}
+  - component: {fileID: 74359758}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &74359757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74359756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 5
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &74359758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74359756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &74359759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74359756}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.530039, y: 0.27362695, z: -32.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74883122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,6 +4096,80 @@ Transform:
   - {fileID: 267148434}
   m_Father: {fileID: 20966868}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &81280002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81280005}
+  - component: {fileID: 81280003}
+  - component: {fileID: 81280004}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &81280003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81280002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 10
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &81280004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81280002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &81280005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81280002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.779861, y: 0.27362707, z: -23.007795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82609651
 GameObject:
@@ -4696,6 +4844,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 939716842}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &111003436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111003439}
+  - component: {fileID: 111003437}
+  - component: {fileID: 111003438}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &111003437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111003436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 13
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints:
+    - {fileID: 2038539767}
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &111003438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111003436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &111003439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111003436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.396217, y: 0.27362695, z: -13.754368}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111989275
 GameObject:
@@ -10130,6 +10353,80 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &214346872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 214346875}
+  - component: {fileID: 214346873}
+  - component: {fileID: 214346874}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &214346873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214346872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 11
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &214346874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214346872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &214346875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214346872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.718292, y: 0.273627, z: -20.826056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217915594
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,6 +10776,80 @@ Transform:
   m_Father: {fileID: 432157028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &225530752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225530755}
+  - component: {fileID: 225530753}
+  - component: {fileID: 225530754}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &225530753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225530752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1368420180}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 1
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &225530754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225530752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &225530755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225530752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.929377, y: 0.13120694, z: -6.319773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1368420181}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226082148
 GameObject:
   m_ObjectHideFlags: 0
@@ -10734,6 +11105,80 @@ Transform:
   - {fileID: 665028506}
   m_Father: {fileID: 1439811134}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &236427180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236427183}
+  - component: {fileID: 236427181}
+  - component: {fileID: 236427182}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &236427181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236427180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 3
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &236427182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236427180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &236427183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236427180}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.802843, y: 0.27362722, z: -44.767162}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237154560
 GameObject:
@@ -13898,6 +14343,80 @@ Transform:
   m_Father: {fileID: 1657077631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &297848184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297848187}
+  - component: {fileID: 297848185}
+  - component: {fileID: 297848186}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297848185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297848184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 8
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &297848186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297848184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &297848187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297848184}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.399277, y: 0.2736249, z: -19.513437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &298963972
 GameObject:
   m_ObjectHideFlags: 0
@@ -14305,6 +14824,80 @@ Transform:
   - {fileID: 889666799}
   m_Father: {fileID: 126491609}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &305578548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305578551}
+  - component: {fileID: 305578549}
+  - component: {fileID: 305578550}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &305578549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305578548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 7
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &305578550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305578548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &305578551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305578548}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.565876, y: 0.27362868, z: -100.763084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306175737
 GameObject:
@@ -14737,102 +15330,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1926597624}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &314362647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 314362650}
-  - component: {fileID: 314362649}
-  - component: {fileID: 314362648}
-  m_Layer: 0
-  m_Name: AIPeopleWaypointRoute
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &314362648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314362647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopForTrafficLight: 0
-  yieldForTrafficLight: 0
-  yieldTrigger: {fileID: 0}
---- !u!114 &314362649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314362647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPeopleRoute: 1
-  vehicleTypes: 00000000
-  waypointDataList:
-  - _name: AITrafficWaypoint 1
-    _transform: {fileID: 773231240}
-    _waypoint: {fileID: 773231238}
-  - _name: AITrafficWaypoint 2
-    _transform: {fileID: 377417521}
-    _waypoint: {fileID: 377417519}
-  - _name: AITrafficWaypoint 3
-    _transform: {fileID: 1659794458}
-    _waypoint: {fileID: 1659794456}
-  - _name: AITrafficWaypoint 4
-    _transform: {fileID: 3139509}
-    _waypoint: {fileID: 3139507}
-  - _name: AITrafficWaypoint 5
-    _transform: {fileID: 1332672462}
-    _waypoint: {fileID: 1332672460}
-  useSpawnPoints: 0
-  spawnFromAITrafficController: 0
-  spawnAmount: 1
-  spawnTrafficVehicles:
-  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
-  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
-  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
-  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
-  routeInfo: {fileID: 314362648}
-  maxDensity: 10
-  currentDensity: 0
-  previousDensity: 0
-  spawnpoints: []
---- !u!4 &314362650
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314362647}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 773231240}
-  - {fileID: 377417521}
-  - {fileID: 1659794458}
-  - {fileID: 3139509}
-  - {fileID: 1332672462}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315593092
 GameObject:
@@ -17540,6 +18037,80 @@ Transform:
   m_Father: {fileID: 568553373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &372259729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372259732}
+  - component: {fileID: 372259730}
+  - component: {fileID: 372259731}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &372259730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372259729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 5
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &372259731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372259729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &372259732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372259729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.181852, y: 0.27362704, z: -37.9248}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372598088
 GameObject:
   m_ObjectHideFlags: 0
@@ -17667,6 +18238,80 @@ Transform:
   - {fileID: 702073893}
   m_Father: {fileID: 360903332}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &375927371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375927374}
+  - component: {fileID: 375927372}
+  - component: {fileID: 375927373}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &375927372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375927371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 12
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &375927373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375927371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &375927374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375927371}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 16.13678, y: 0.27362844, z: -90.66276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376013747
 GameObject:
@@ -17877,80 +18522,6 @@ Transform:
   m_Father: {fileID: 933549732}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &377417518
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 377417521}
-  - component: {fileID: 377417519}
-  - component: {fileID: 377417520}
-  m_Layer: 0
-  m_Name: AITrafficWaypoint 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &377417519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377417518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onReachWaypointSettings:
-    parentRoute: {fileID: 314362649}
-    parentPeopleRoute: {fileID: 0}
-    waypoint: {fileID: 0}
-    nextPointInRoute: {fileID: 0}
-    waypointIndexnumber: 2
-    speedLimit: 25
-    stopDriving: 0
-    stopTime: 0
-    newRoutePoints: []
-    laneChangePoints: []
-    yieldTriggers: []
-    OnReachWaypointEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    position: {x: 0, y: 0, z: 0}
---- !u!65 &377417520
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377417518}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &377417521
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377417518}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.887644, y: 0.27362695, z: -35.325623}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 314362650}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377850596
 GameObject:
   m_ObjectHideFlags: 0
@@ -17982,6 +18553,80 @@ Transform:
   - {fileID: 1102183284}
   m_Father: {fileID: 1558023768}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &377878945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 377878948}
+  - component: {fileID: 377878946}
+  - component: {fileID: 377878947}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &377878946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377878945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 4
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &377878947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377878945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &377878948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377878945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.680746, y: 0.27362904, z: -114.40383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377976470
 GameObject:
@@ -18287,7 +18932,7 @@ MonoBehaviour:
   redMesh: {fileID: 754536885}
   yellowMesh: {fileID: 872509316}
   greenMesh: {fileID: 1642499218}
-  waypointRoute: {fileID: 466927847}
+  waypointRoute: {fileID: 1574567853}
   waypointRoutes: []
 --- !u!4 &381022687
 Transform:
@@ -19702,6 +20347,80 @@ Transform:
   m_Father: {fileID: 214310880}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &407571778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407571781}
+  - component: {fileID: 407571779}
+  - component: {fileID: 407571780}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &407571779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407571778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 2
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &407571780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407571778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &407571781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407571778}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.950615, y: 0.27362967, z: -137.77989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408652063
 GameObject:
   m_ObjectHideFlags: 0
@@ -19916,6 +20635,80 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.030178547, y: 0.0061290935, z: -0.0007272661}
     m_Extent: {x: 0.9169941, y: 0.22138193, z: 0.69556737}
   m_DirtyAABB: 0
+--- !u!1 &413501852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413501855}
+  - component: {fileID: 413501853}
+  - component: {fileID: 413501854}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 14
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &413501853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413501852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 14
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &413501854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413501852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &413501855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413501852}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.912985, y: 0.27362812, z: -79.7333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414529983
 GameObject:
   m_ObjectHideFlags: 0
@@ -19947,6 +20740,80 @@ Transform:
   - {fileID: 692649480}
   m_Father: {fileID: 186124023}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &415720049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415720052}
+  - component: {fileID: 415720050}
+  - component: {fileID: 415720051}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &415720050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415720049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 4
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &415720051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415720049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &415720052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415720049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.933025, y: 0.2736271, z: -41.072994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416204055
 GameObject:
@@ -21988,6 +22855,80 @@ Transform:
   m_Father: {fileID: 83567684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &462562187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 462562190}
+  - component: {fileID: 462562188}
+  - component: {fileID: 462562189}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &462562188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462562187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 7
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &462562189
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462562187}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &462562190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462562187}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.91, y: 0.27362686, z: -23.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462667805
 GameObject:
   m_ObjectHideFlags: 0
@@ -22166,7 +23107,12 @@ MonoBehaviour:
   useSpawnPoints: 0
   spawnFromAITrafficController: 0
   spawnAmount: 1
-  spawnTrafficVehicles: []
+  spawnTrafficVehicles:
+  - {fileID: 3569640239038258424, guid: 4fa72858a3a144b883ba6761eb90cf06, type: 3}
+  - {fileID: 3569640239038258424, guid: 4fa72858a3a144b883ba6761eb90cf06, type: 3}
+  - {fileID: 3569640239038258424, guid: 4fa72858a3a144b883ba6761eb90cf06, type: 3}
+  - {fileID: 3569640239038258424, guid: 4fa72858a3a144b883ba6761eb90cf06, type: 3}
+  - {fileID: 3569640239038258424, guid: 4fa72858a3a144b883ba6761eb90cf06, type: 3}
   routeInfo: {fileID: 466927846}
   maxDensity: 10
   currentDensity: 0
@@ -23092,6 +24038,80 @@ Transform:
   - {fileID: 772982244}
   m_Father: {fileID: 1715558913}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &487663418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487663421}
+  - component: {fileID: 487663419}
+  - component: {fileID: 487663420}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 13
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &487663419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487663418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 13
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &487663420
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487663418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &487663421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487663418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.513632, y: 0.2736283, z: -85.89061}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &488948062
 GameObject:
@@ -25470,6 +26490,80 @@ Transform:
   m_Father: {fileID: 1687291336}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &546418175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 546418178}
+  - component: {fileID: 546418176}
+  - component: {fileID: 546418177}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &546418176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546418175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 9
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &546418177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546418175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &546418178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546418175}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.49231, y: 0.2736267, z: -14.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547934514
 GameObject:
   m_ObjectHideFlags: 0
@@ -27056,6 +28150,80 @@ Transform:
   m_Father: {fileID: 200803708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &572389919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572389922}
+  - component: {fileID: 572389920}
+  - component: {fileID: 572389921}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &572389920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572389919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 9
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &572389921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572389919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &572389922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572389919}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.352684, y: 0.27362853, z: -95.37213}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573367301
 GameObject:
   m_ObjectHideFlags: 0
@@ -27828,6 +28996,80 @@ Transform:
   - {fileID: 1472396963}
   m_Father: {fileID: 1429230822}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &584174976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584174979}
+  - component: {fileID: 584174977}
+  - component: {fileID: 584174978}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &584174977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584174976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 7
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &584174978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584174976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &584174979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584174976}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.959866, y: 0.27362725, z: -30.411812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585417146
 GameObject:
@@ -30802,6 +32044,80 @@ Transform:
   - {fileID: 739147263}
   m_Father: {fileID: 1226469577}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &651432624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651432627}
+  - component: {fileID: 651432625}
+  - component: {fileID: 651432626}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &651432625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651432624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 9
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &651432626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651432624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &651432627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651432624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.910095, y: 0.27362713, z: -25.783278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651872308
 GameObject:
@@ -34959,6 +36275,80 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.038951308, y: -0.009660728, z: 0.00000020861626}
     m_Extent: {x: 0.92576694, y: 0.16497308, z: 0.70620215}
   m_DirtyAABB: 0
+--- !u!1 &741464447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741464450}
+  - component: {fileID: 741464448}
+  - component: {fileID: 741464449}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &741464448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741464447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2129010780}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 3
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &741464449
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741464447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &741464450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741464447}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.397497, y: 0.13119836, z: 1.3477029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2129010781}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741496577
 GameObject:
   m_ObjectHideFlags: 0
@@ -35880,6 +37270,80 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.016590625, y: -0.005051315, z: -0.000000029802322}
     m_Extent: {x: 0.865021, y: 0.14755549, z: 0.6022296}
   m_DirtyAABB: 0
+--- !u!1 &758180583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758180586}
+  - component: {fileID: 758180584}
+  - component: {fileID: 758180585}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &758180584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758180583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 6
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &758180585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758180583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &758180586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758180583}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.300293, y: 0.27362877, z: -104.27408}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758513269
 GameObject:
   m_ObjectHideFlags: 0
@@ -36485,80 +37949,6 @@ Transform:
   m_Children:
   - {fileID: 875087859}
   m_Father: {fileID: 486956064}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &773231237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 773231240}
-  - component: {fileID: 773231238}
-  - component: {fileID: 773231239}
-  m_Layer: 0
-  m_Name: AITrafficWaypoint 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &773231238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773231237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onReachWaypointSettings:
-    parentRoute: {fileID: 314362649}
-    parentPeopleRoute: {fileID: 0}
-    waypoint: {fileID: 0}
-    nextPointInRoute: {fileID: 0}
-    waypointIndexnumber: 1
-    speedLimit: 25
-    stopDriving: 0
-    stopTime: 0
-    newRoutePoints: []
-    laneChangePoints: []
-    yieldTriggers: []
-    OnReachWaypointEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    position: {x: 0, y: 0, z: 0}
---- !u!65 &773231239
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773231237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &773231240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773231237}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.58998, y: 0.27362716, z: -43.053604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 314362650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773408245
@@ -38752,6 +40142,80 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.016590625, y: -0.0050247684, z: 0}
     m_Extent: {x: 0.865021, y: 0.14758202, z: 0.60253084}
   m_DirtyAABB: 0
+--- !u!1 &812079232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812079235}
+  - component: {fileID: 812079233}
+  - component: {fileID: 812079234}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812079233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812079232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 8
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &812079234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812079232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &812079235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812079232}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.820805, y: 0.27362716, z: -27.235313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813302238
 GameObject:
   m_ObjectHideFlags: 0
@@ -39292,6 +40756,80 @@ Transform:
   - {fileID: 754317611}
   m_Father: {fileID: 1388760231}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &833510672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833510675}
+  - component: {fileID: 833510673}
+  - component: {fileID: 833510674}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &833510673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833510672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 4
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &833510674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833510672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &833510675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833510672}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.889599, y: 0.27362704, z: -38.460648}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &833569564
 GameObject:
@@ -40126,6 +41664,80 @@ Transform:
   - {fileID: 97317299}
   m_Father: {fileID: 1411288781}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &847691303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847691306}
+  - component: {fileID: 847691304}
+  - component: {fileID: 847691305}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &847691304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847691303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 3
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &847691305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847691303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &847691306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847691303}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.775768, y: 0.27362937, z: -126.2718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &848102678
 GameObject:
@@ -42893,6 +44505,80 @@ Transform:
   - {fileID: 565346640}
   m_Father: {fileID: 1119238282}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &908145430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908145433}
+  - component: {fileID: 908145431}
+  - component: {fileID: 908145432}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &908145431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908145430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 10
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &908145432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908145430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &908145433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908145430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.648132, y: 0.2736285, z: -94.05185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909737500
 GameObject:
@@ -47861,6 +49547,80 @@ Transform:
   m_Father: {fileID: 1476690315}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1015337142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015337145}
+  - component: {fileID: 1015337143}
+  - component: {fileID: 1015337144}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1015337143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015337142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2129010780}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 5
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1015337144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015337142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1015337145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015337142}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.724771, y: 0.1311979, z: 10.509933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2129010781}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015562067
 GameObject:
   m_ObjectHideFlags: 0
@@ -50447,6 +52207,406 @@ PrefabInstance:
       propertyPath: m_Name
       value: Girl_11
       objectReference: {fileID: 0}
+    - target: {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069835289084790, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.88331777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069835289084790, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.739506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069835289084790, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.24551505
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096219100037684, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.1728282
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096219100037684, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3.642807
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096219100037684, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -58.524296
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099183574964600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -67.309944
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099183574964600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 70.47589
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099183574964600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -46.068695
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102746072205802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.7692719
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102746072205802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.139906
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102746072205802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -4.3686547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114250724588114, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.8580137
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114250724588114, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -6.68915
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114250724588114, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.0007853359
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125611207258652, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00000045497606
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125611207258652, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.0000016308591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125611207258652, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -110.71605
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137322279541678, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.04562305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137322279541678, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.00000020056746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137322279541678, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -14.792888
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138481011399072, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -55.338295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138481011399072, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.483319
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138481011399072, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.6801119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153342617517256, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000002789186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153342617517256, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.00000009293372
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153342617517256, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -25.69057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176219920292636, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000008956311
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176219920292636, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.0000026900989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176219920292636, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 19.752478
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219944688587098, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.0000005410242
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219944688587098, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000000011808879
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219944688587098, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -20.333935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267103672253990, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00000054513833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267103672253990, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.00000007383182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267103672253990, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -112.67815
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295660273538750, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.366796
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295660273538750, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.1881237
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295660273538750, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45.962875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310999622419744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -3.6037831
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310999622419744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -79.582466
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310999622419744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.701411
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312173234179802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00000023121981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312173234179802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.00000019869461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312173234179802, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 25.740772
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313110114587764, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.00000034097695
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313110114587764, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.0000003923211
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313110114587764, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 23.531261
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354859102166448, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.0519965
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354859102166448, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 61.591133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354859102166448, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.707847
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392603819409590, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.0004978478
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392603819409590, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.00025716797
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392603819409590, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90.80457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398803155454164, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 63.315037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398803155454164, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -96.74522
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398803155454164, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -86.369415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408247839647294, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.00000034125577
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408247839647294, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.00000010283654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408247839647294, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -27.652658
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415499740032018, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.8408858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415499740032018, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -8.00222
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415499740032018, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.051329967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418115314238228, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418115314238228, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 93.272865
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418115314238228, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419026254384816, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.40410846
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419026254384816, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 80.34337
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419026254384816, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -167.57922
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454791507021918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.045625236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454791507021918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000003766989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454791507021918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -55.560333
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461134866575646, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.3668013
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461134866575646, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.188125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461134866575646, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -20.257072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515324335074952, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.80761045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515324335074952, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 171.0801
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515324335074952, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -8.497143
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558811933685600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 72.39022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558811933685600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -13.2196865
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558811933685600, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -11.448628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566108310353786, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.00000035951402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566108310353786, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.00000049414626
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566108310353786, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 8.543051
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566468143180112, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566468143180112, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566468143180112, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -93.27283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620350042337762, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.07987883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620350042337762, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.5682617
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620350042337762, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -91.74747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665821964954918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000008856083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665821964954918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.0000004895513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665821964954918, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -112.17613
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679103536293426, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00000010726696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679103536293426, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.0000007737765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679103536293426, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -21.770796
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682622106512624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.7579242
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682622106512624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.2806516
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682622106512624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -14.248996
+      objectReference: {fileID: 0}
     - target: {fileID: 4686067547922548, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -50490,6 +52650,138 @@ PrefabInstance:
     - target: {fileID: 4686067547922548, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711769734726908, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.1776406
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711769734726908, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -80.63192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711769734726908, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -179.80588
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774934383779048, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -82.51109
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774934383779048, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 179.99945
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774934383779048, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -89.99945
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778047543269946, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.30420294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778047543269946, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 169.6696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778047543269946, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -2.5417304
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793300304968530, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 12.260686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793300304968530, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 6.5849047
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793300304968530, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -14.2307825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863648851312248, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -30.490967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863648851312248, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 14.69484
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863648851312248, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -18.641
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878327018539624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000030291558
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878327018539624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.0000000116836425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878327018539624, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -27.150654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905697721021392, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000034473892
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905697721021392, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000002383741
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905697721021392, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.113938
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908860869800126, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.0000018463677
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908860869800126, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.0000004056405
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908860869800126, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -105.35943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914400086741054, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.7579203
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914400086741054, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.2806535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914400086741054, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -78.30789
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940634789034046, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.1728342
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940634789034046, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -3.6428072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940634789034046, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.177206
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956941758327744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.000000042537387
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956941758327744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.000003829397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956941758327744, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.1479775
       objectReference: {fileID: 0}
     - target: {fileID: 54816193787471140, guid: fa90b10d7c8dd6c40894d9130b1951d3,
         type: 3}
@@ -54740,6 +57032,80 @@ Transform:
   m_Father: {fileID: 811799841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1163879321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163879324}
+  - component: {fileID: 1163879322}
+  - component: {fileID: 1163879323}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1163879322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163879321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 3
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1163879323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163879321}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1163879324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163879321}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.658533, y: 0.27362704, z: -41.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165536333
 GameObject:
   m_ObjectHideFlags: 0
@@ -55973,6 +58339,80 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.016590625, y: -0.005051315, z: -0.000000029802322}
     m_Extent: {x: 0.865021, y: 0.14755549, z: 0.6022296}
   m_DirtyAABB: 0
+--- !u!1 &1188328854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188328857}
+  - component: {fileID: 1188328855}
+  - component: {fileID: 1188328856}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1188328855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188328854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 2
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1188328856
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188328854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1188328857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188328854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.796272, y: 0.27362725, z: -46.736423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188611427
 GameObject:
   m_ObjectHideFlags: 0
@@ -58297,6 +60737,80 @@ Transform:
   m_Father: {fileID: 106779918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1239712714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239712717}
+  - component: {fileID: 1239712715}
+  - component: {fileID: 1239712716}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1239712715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239712714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 6
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1239712716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239712714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1239712717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239712714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.69294, y: 0.27362677, z: -28.568245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1240110425
 GameObject:
   m_ObjectHideFlags: 0
@@ -58550,6 +61064,80 @@ Transform:
   m_Children:
   - {fileID: 848102679}
   m_Father: {fileID: 1535962424}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1243466321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243466324}
+  - component: {fileID: 1243466322}
+  - component: {fileID: 1243466323}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1243466322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243466321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 1
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1243466323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243466321}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1243466324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243466321}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.879826, y: 0.2736274, z: -50.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243843113
@@ -61245,6 +63833,80 @@ Transform:
   m_Father: {fileID: 933549732}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1312411605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1312411608}
+  - component: {fileID: 1312411606}
+  - component: {fileID: 1312411607}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1312411606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312411605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 2
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1312411607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312411605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1312411608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312411605}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.799706, y: 0.2736273, z: -48.535717}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312422265
 GameObject:
   m_ObjectHideFlags: 0
@@ -62362,80 +65024,6 @@ Transform:
   - {fileID: 600736161}
   m_Father: {fileID: 2093364864}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1332672459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1332672462}
-  - component: {fileID: 1332672460}
-  - component: {fileID: 1332672461}
-  m_Layer: 0
-  m_Name: AITrafficWaypoint 5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1332672460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332672459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onReachWaypointSettings:
-    parentRoute: {fileID: 314362649}
-    parentPeopleRoute: {fileID: 0}
-    waypoint: {fileID: 0}
-    nextPointInRoute: {fileID: 0}
-    waypointIndexnumber: 5
-    speedLimit: 25
-    stopDriving: 0
-    stopTime: 0
-    newRoutePoints: []
-    laneChangePoints: []
-    yieldTriggers: []
-    OnReachWaypointEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    position: {x: 0, y: 0, z: 0}
---- !u!65 &1332672461
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332672459}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1332672462
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332672459}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.928148, y: 0.2736249, z: -16.933445}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 314362650}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332764293
 GameObject:
@@ -63697,6 +66285,94 @@ Transform:
   m_Father: {fileID: 1641818698}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1368420178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1368420181}
+  - component: {fileID: 1368420180}
+  - component: {fileID: 1368420179}
+  m_Layer: 0
+  m_Name: AIPeopleWaypointRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1368420179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368420178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &1368420180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368420178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPeopleRoute: 1
+  vehicleTypes: 00000000
+  waypointDataList:
+  - _name: AITrafficWaypoint 1
+    _transform: {fileID: 225530755}
+    _waypoint: {fileID: 225530753}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1607028183}
+    _waypoint: {fileID: 1607028181}
+  - _name: AITrafficWaypoint 3
+    _transform: {fileID: 1719036287}
+    _waypoint: {fileID: 1719036285}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 1983009270}
+    _waypoint: {fileID: 1983009268}
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles: []
+  routeInfo: {fileID: 1368420179}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  spawnpoints: []
+--- !u!4 &1368420181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368420178}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 225530755}
+  - {fileID: 1607028183}
+  - {fileID: 1719036287}
+  - {fileID: 1983009270}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369801519
 GameObject:
   m_ObjectHideFlags: 0
@@ -64614,6 +67290,80 @@ Transform:
   - {fileID: 831232744}
   m_Father: {fileID: 1233963268}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1389516684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1389516687}
+  - component: {fileID: 1389516685}
+  - component: {fileID: 1389516686}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1389516685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389516684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 6
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1389516686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389516684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1389516687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389516684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.012426, y: 0.27362692, z: -34.994442}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391095395
 GameObject:
@@ -67968,6 +70718,80 @@ Transform:
   m_Father: {fileID: 136110859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1456027682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1456027685}
+  - component: {fileID: 1456027683}
+  - component: {fileID: 1456027684}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1456027683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456027682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2129010780}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 4
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1456027684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456027682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1456027685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456027682}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.496597, y: 0.13119817, z: 6.2006197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2129010781}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456109795
 GameObject:
   m_ObjectHideFlags: 0
@@ -70795,6 +73619,124 @@ Transform:
   m_Father: {fileID: 1302291144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1517510776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517510779}
+  - component: {fileID: 1517510778}
+  - component: {fileID: 1517510777}
+  m_Layer: 0
+  m_Name: AIPeopleWaypointRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1517510777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517510776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &1517510778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517510776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPeopleRoute: 1
+  vehicleTypes: 00000000
+  waypointDataList:
+  - _name: AITrafficWaypoint 1
+    _transform: {fileID: 1754058907}
+    _waypoint: {fileID: 1754058905}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1188328857}
+    _waypoint: {fileID: 1188328855}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1163879324}
+    _waypoint: {fileID: 1163879322}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 833510675}
+    _waypoint: {fileID: 833510673}
+  - _name: AITrafficWaypoint 3
+    _transform: {fileID: 74359759}
+    _waypoint: {fileID: 74359757}
+  - _name: AITrafficWaypoint 6
+    _transform: {fileID: 1239712717}
+    _waypoint: {fileID: 1239712715}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 462562190}
+    _waypoint: {fileID: 462562188}
+  - _name: AITrafficWaypoint 8
+    _transform: {fileID: 297848187}
+    _waypoint: {fileID: 297848185}
+  - _name: AITrafficWaypoint 5
+    _transform: {fileID: 546418178}
+    _waypoint: {fileID: 546418176}
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles:
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  routeInfo: {fileID: 1517510777}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  spawnpoints: []
+--- !u!4 &1517510779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517510776}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1754058907}
+  - {fileID: 1188328857}
+  - {fileID: 1163879324}
+  - {fileID: 833510675}
+  - {fileID: 74359759}
+  - {fileID: 1239712717}
+  - {fileID: 462562190}
+  - {fileID: 297848187}
+  - {fileID: 546418178}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1517700587
 GameObject:
   m_ObjectHideFlags: 0
@@ -72436,6 +75378,80 @@ Transform:
   m_Father: {fileID: 1605893776}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1556256264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556256267}
+  - component: {fileID: 1556256265}
+  - component: {fileID: 1556256266}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1556256265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556256264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1574567853}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 12
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1556256266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556256264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1556256267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556256264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.679768, y: 0.27362698, z: -17.614367}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1574567854}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1556593360
 GameObject:
   m_ObjectHideFlags: 0
@@ -73288,6 +76304,140 @@ Transform:
   - {fileID: 1352282639}
   m_Father: {fileID: 653038288}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1574567851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574567854}
+  - component: {fileID: 1574567853}
+  - component: {fileID: 1574567852}
+  m_Layer: 0
+  m_Name: AIPeopleWaypointRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1574567852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574567851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &1574567853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574567851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPeopleRoute: 1
+  vehicleTypes: 00000000
+  waypointDataList:
+  - _name: AITrafficWaypoint 1
+    _transform: {fileID: 1243466324}
+    _waypoint: {fileID: 1243466322}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1312411608}
+    _waypoint: {fileID: 1312411606}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 236427183}
+    _waypoint: {fileID: 236427181}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 415720052}
+    _waypoint: {fileID: 415720050}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 372259732}
+    _waypoint: {fileID: 372259730}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1389516687}
+    _waypoint: {fileID: 1389516685}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 584174979}
+    _waypoint: {fileID: 584174977}
+  - _name: AITrafficWaypoint 3
+    _transform: {fileID: 812079235}
+    _waypoint: {fileID: 812079233}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 651432627}
+    _waypoint: {fileID: 651432625}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 81280005}
+    _waypoint: {fileID: 81280003}
+  - _name: AITrafficWaypoint 6
+    _transform: {fileID: 214346875}
+    _waypoint: {fileID: 214346873}
+  - _name: AITrafficWaypoint 5
+    _transform: {fileID: 1556256267}
+    _waypoint: {fileID: 1556256265}
+  - _name: AITrafficWaypoint 5
+    _transform: {fileID: 111003439}
+    _waypoint: {fileID: 111003437}
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles:
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  routeInfo: {fileID: 1574567852}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  spawnpoints: []
+--- !u!4 &1574567854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574567851}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1243466324}
+  - {fileID: 1312411608}
+  - {fileID: 236427183}
+  - {fileID: 415720052}
+  - {fileID: 372259732}
+  - {fileID: 1389516687}
+  - {fileID: 584174979}
+  - {fileID: 812079235}
+  - {fileID: 651432627}
+  - {fileID: 81280005}
+  - {fileID: 214346875}
+  - {fileID: 1556256267}
+  - {fileID: 111003439}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1575284760
 GameObject:
@@ -74557,6 +77707,80 @@ Transform:
   m_Father: {fileID: 1443393712}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1607028180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1607028183}
+  - component: {fileID: 1607028181}
+  - component: {fileID: 1607028182}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1607028181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607028180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1368420180}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 2
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1607028182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607028180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1607028183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607028180}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.255342, y: 0.13120794, z: -1.8922256}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1368420181}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607050187
 GameObject:
   m_ObjectHideFlags: 0
@@ -75121,6 +78345,80 @@ Transform:
   - {fileID: 1995286142}
   m_Father: {fileID: 978895698}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1622155356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1622155359}
+  - component: {fileID: 1622155357}
+  - component: {fileID: 1622155358}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1622155357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622155356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 5
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1622155358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622155356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1622155359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622155356}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 16.022942, y: 0.27362904, z: -112.23638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623264233
 GameObject:
@@ -76187,80 +79485,6 @@ Transform:
   m_Father: {fileID: 1537853004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1659794455
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1659794458}
-  - component: {fileID: 1659794456}
-  - component: {fileID: 1659794457}
-  m_Layer: 0
-  m_Name: AITrafficWaypoint 3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1659794456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659794455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onReachWaypointSettings:
-    parentRoute: {fileID: 314362649}
-    parentPeopleRoute: {fileID: 0}
-    waypoint: {fileID: 0}
-    nextPointInRoute: {fileID: 0}
-    waypointIndexnumber: 3
-    speedLimit: 25
-    stopDriving: 0
-    stopTime: 0
-    newRoutePoints: []
-    laneChangePoints: []
-    yieldTriggers: []
-    OnReachWaypointEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    position: {x: 0, y: 0, z: 0}
---- !u!65 &1659794457
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659794455}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1659794458
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659794455}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.340477, y: 0.27362677, z: -28.824379}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 314362650}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661297953
 GameObject:
   m_ObjectHideFlags: 0
@@ -76696,6 +79920,80 @@ Transform:
   - {fileID: 696023583}
   - {fileID: 740687205}
   m_Father: {fileID: 141658441}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1671092307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1671092310}
+  - component: {fileID: 1671092308}
+  - component: {fileID: 1671092309}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1671092308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671092307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2129010780}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 2
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1671092309
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671092307}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1671092310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671092307}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.704796, y: 0.13120773, z: -2.7931244}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2129010781}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1676820048
@@ -78340,6 +81638,80 @@ Transform:
   m_Father: {fileID: 337909358}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1719036284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719036287}
+  - component: {fileID: 1719036285}
+  - component: {fileID: 1719036286}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1719036285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719036284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1368420180}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 3
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1719036286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719036284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1719036287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719036284}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.449589, y: 0.13119829, z: 2.6528127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1368420181}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722580455
 GameObject:
   m_ObjectHideFlags: 0
@@ -79661,6 +83033,80 @@ Transform:
   - {fileID: 1289775528}
   m_Father: {fileID: 852243674}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1754058904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754058907}
+  - component: {fileID: 1754058905}
+  - component: {fileID: 1754058906}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1754058905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754058904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1517510778}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 1
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1754058906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754058904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1754058907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754058904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.47995, y: 0.27362716, z: -49.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1517510779}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754705312
 GameObject:
@@ -82075,7 +85521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1808358731
 Transform:
   m_ObjectHideFlags: 0
@@ -82805,6 +86251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b828c40bfb94e4a9029b57ddb3f88a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!4 &1818936640
 Transform:
   m_ObjectHideFlags: 0
@@ -89600,6 +93049,80 @@ Transform:
   m_Father: {fileID: 1511898334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1974500989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974500992}
+  - component: {fileID: 1974500990}
+  - component: {fileID: 1974500991}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1974500990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974500989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 8
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1974500991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974500989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1974500992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974500989}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.345829, y: 0.27362856, z: -97.34402}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975026955
 GameObject:
   m_ObjectHideFlags: 0
@@ -89982,6 +93505,80 @@ Transform:
   - {fileID: 545635441}
   m_Father: {fileID: 638644122}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1983009267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983009270}
+  - component: {fileID: 1983009268}
+  - component: {fileID: 1983009269}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1983009268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983009267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 1368420180}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 4
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &1983009269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983009267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1983009270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983009267}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.089819, y: 0.13119848, z: 5.412899}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1368420181}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983433666
 GameObject:
@@ -91669,6 +95266,80 @@ Transform:
   m_Father: {fileID: 444222682}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2031643863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031643866}
+  - component: {fileID: 2031643864}
+  - component: {fileID: 2031643865}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2031643864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031643863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2061360043}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 1
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &2031643865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031643863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2031643866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031643863}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 18.476034, y: 0.27362996, z: -147.81273}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061360044}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2031684795
 GameObject:
   m_ObjectHideFlags: 0
@@ -92094,6 +95765,80 @@ Transform:
   - {fileID: 1371554361}
   m_Father: {fileID: 1698500412}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2038539766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038539769}
+  - component: {fileID: 2038539767}
+  - component: {fileID: 2038539768}
+  m_Layer: 0
+  m_Name: AITrafficWaypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2038539767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038539766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39440b2e4404be8a684506d21080adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReachWaypointSettings:
+    parentRoute: {fileID: 2129010780}
+    parentPeopleRoute: {fileID: 0}
+    waypoint: {fileID: 0}
+    nextPointInRoute: {fileID: 0}
+    waypointIndexnumber: 1
+    speedLimit: 25
+    stopDriving: 0
+    stopTime: 0
+    newRoutePoints: []
+    laneChangePoints: []
+    yieldTriggers: []
+    OnReachWaypointEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    position: {x: 0, y: 0, z: 0}
+--- !u!65 &2038539768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038539766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2038539769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038539766}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.44, y: 0.13120666, z: -7.534525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2129010781}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038543679
 GameObject:
@@ -92806,6 +96551,144 @@ Transform:
   - {fileID: 1381327595}
   m_Father: {fileID: 82663265}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2061360041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061360044}
+  - component: {fileID: 2061360043}
+  - component: {fileID: 2061360042}
+  m_Layer: 0
+  m_Name: AIPeopleWaypointRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2061360042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061360041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &2061360043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061360041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPeopleRoute: 1
+  vehicleTypes: 00000000
+  waypointDataList:
+  - _name: AITrafficWaypoint 1
+    _transform: {fileID: 2031643866}
+    _waypoint: {fileID: 2031643864}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 407571781}
+    _waypoint: {fileID: 407571779}
+  - _name: AITrafficWaypoint 3
+    _transform: {fileID: 847691306}
+    _waypoint: {fileID: 847691304}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 377878948}
+    _waypoint: {fileID: 377878946}
+  - _name: AITrafficWaypoint 5
+    _transform: {fileID: 1622155359}
+    _waypoint: {fileID: 1622155357}
+  - _name: AITrafficWaypoint 6
+    _transform: {fileID: 758180586}
+    _waypoint: {fileID: 758180584}
+  - _name: AITrafficWaypoint 7
+    _transform: {fileID: 305578551}
+    _waypoint: {fileID: 305578549}
+  - _name: AITrafficWaypoint 8
+    _transform: {fileID: 1974500992}
+    _waypoint: {fileID: 1974500990}
+  - _name: AITrafficWaypoint 9
+    _transform: {fileID: 572389922}
+    _waypoint: {fileID: 572389920}
+  - _name: AITrafficWaypoint 10
+    _transform: {fileID: 908145433}
+    _waypoint: {fileID: 908145431}
+  - _name: AITrafficWaypoint 11
+    _transform: {fileID: 50111423}
+    _waypoint: {fileID: 50111421}
+  - _name: AITrafficWaypoint 12
+    _transform: {fileID: 375927374}
+    _waypoint: {fileID: 375927372}
+  - _name: AITrafficWaypoint 13
+    _transform: {fileID: 487663421}
+    _waypoint: {fileID: 487663419}
+  - _name: AITrafficWaypoint 14
+    _transform: {fileID: 413501855}
+    _waypoint: {fileID: 413501853}
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles:
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  routeInfo: {fileID: 2061360042}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  spawnpoints: []
+--- !u!4 &2061360044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061360041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2031643866}
+  - {fileID: 407571781}
+  - {fileID: 847691306}
+  - {fileID: 377878948}
+  - {fileID: 1622155359}
+  - {fileID: 758180586}
+  - {fileID: 305578551}
+  - {fileID: 1974500992}
+  - {fileID: 572389922}
+  - {fileID: 908145433}
+  - {fileID: 50111423}
+  - {fileID: 375927374}
+  - {fileID: 487663421}
+  - {fileID: 413501855}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061840937
 GameObject:
@@ -95463,6 +99346,98 @@ Transform:
   - {fileID: 993528638}
   m_Father: {fileID: 337613825}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2129010778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129010781}
+  - component: {fileID: 2129010780}
+  - component: {fileID: 2129010779}
+  m_Layer: 0
+  m_Name: AIPeopleWaypointRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2129010779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129010778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &2129010780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129010778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPeopleRoute: 1
+  vehicleTypes: 00000000
+  waypointDataList:
+  - _name: AITrafficWaypoint 1
+    _transform: {fileID: 2038539769}
+    _waypoint: {fileID: 2038539767}
+  - _name: AITrafficWaypoint 2
+    _transform: {fileID: 1671092310}
+    _waypoint: {fileID: 1671092308}
+  - _name: AITrafficWaypoint 3
+    _transform: {fileID: 741464450}
+    _waypoint: {fileID: 741464448}
+  - _name: AITrafficWaypoint 4
+    _transform: {fileID: 1456027685}
+    _waypoint: {fileID: 1456027683}
+  - _name: AITrafficWaypoint 5
+    _transform: {fileID: 1015337145}
+    _waypoint: {fileID: 1015337143}
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles: []
+  routeInfo: {fileID: 2129010779}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  spawnpoints: []
+--- !u!4 &2129010781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129010778}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2038539769}
+  - {fileID: 1671092310}
+  - {fileID: 741464450}
+  - {fileID: 1456027685}
+  - {fileID: 1015337145}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130251280
 GameObject:

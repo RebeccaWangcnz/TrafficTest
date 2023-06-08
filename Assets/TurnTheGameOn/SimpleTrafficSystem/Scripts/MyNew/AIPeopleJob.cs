@@ -9,24 +9,23 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     [BurstCompile]
     public struct AIPeopleJob : IJobParallelForTransform
     {
+        public NativeArray<bool> stopForTrafficLightNA;//是否需要根据信号灯停车
+        public NativeArray<float> routeProgressNA;//道路进程
+        public NativeArray<int> currentRoutePointIndexNA;//当前所在路线点的index
+        public NativeArray<int> waypointDataListCountNA;//当前路线的所有点数
         public NativeArray<bool> isWalkingNA;
-        public NativeArray<float> targetSpeedNA;
-        public NativeArray<float> topSpeedNA;
-        public NativeArray<float> speedNA;//当前速度
-        public NativeArray<float> accelNA;//加速度
-        public NativeArray<float> accelerationInputNA;//加速度输入
-        public NativeArray<float3> routePointPositionNA;
-        public NativeArray<int> currentRoutePointIndexNA;
-        public NativeArray<float3> finalRoutePointPositionNA;
-        public NativeArray<int> waypointDataListCountNA;
 
-        //碰撞
-        public NativeArray<bool> frontHitNA;//是否前方存在碰撞
-        public NativeArray<float> frontSensorLengthNA;
-        public NativeArray<float> frontHitDistanceNA;
 
         public void Execute(int index, TransformAccess driveTargetTransformAccessArray)
         {
+            #region StopThreshold
+            //以下全是停车逻辑
+            if (stopForTrafficLightNA[index] && routeProgressNA[index] > 0 && currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 1)
+            {//如果这条路的交通灯需要停车&&车有行进&&目前所在的路径点>=路线中所有的路线点的数量-1（应该就是到达了路线末端）
+                isWalkingNA[index] = false;
+            }//立刻停下运动
+            #endregion
+
             #region move
             //if (isWalkingNA[index])
             //{
@@ -45,7 +44,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             //}
             //else
             //{
-                
+
             //}
             #endregion
         }

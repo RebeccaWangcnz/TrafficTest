@@ -11,38 +11,33 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     public class AIPeopleController : MonoBehaviour
     {
         public static AIPeopleController Instance;
-        #region params
+        #region Params
         private bool isInitialized;
         public int peopleCount { get; private set; }
         private List<AIPeople> peopleList = new List<AIPeople>();
         private List<AITrafficWaypointRoute> peopleRouteList = new List<AITrafficWaypointRoute>();
         private List<Rigidbody> rigidbodyList = new List<Rigidbody>();
         private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
+        //private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private float deltaTime;
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
+        [Tooltip("Physics layers the detection sensors can detect.")]
+        public LayerMask layerMask;
 
-
+        #region NativeList
         private NativeList<bool> isWalkingNL;
-        //private NativeList<float> targetSpeedNL;
-        //private NativeList<float> topSpeedNL;
-        //public NativeList<float> speedNL;//当前速度
-        //public NativeList<float> accelNL;//加速度
-        //public NativeList<float> accelerationInputNL;//加速度输入
-
-        //碰撞
-        NativeArray<BoxcastCommand> frontBoxcastCommands;
-        //public NativeList<bool> frontHitNL;//是否前方存在碰撞
-        //public NativeList<float> frontSensorLengthNL;
-        //public NativeList<float> frontHitDistanceNL;
 
         private NativeList<int> waypointDataListCountNL;
         private NativeList<float3> routePointPositionNL;
         private NativeList<int> currentRoutePointIndexNL;
         private NativeList<float3> finalRoutePointPositionNL;
 
-        //private TransformAccessArray moveTargetTAA;
-        //private TransformAccessArray peopleTAA;
+        private NativeList<bool> stopForTrafficLightNL;//是否需要根据信号灯停车
+        private NativeList<float> routeProgressNL;//道路进程
+
+        private TransformAccessArray moveTargetTAA;
+        #endregion
         #endregion
 
         #region Main Methods
@@ -52,19 +47,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             {
                 Instance = this;
                 isWalkingNL = new NativeList<bool>(Allocator.Persistent);
-                //targetSpeedNL = new NativeList<float>(Allocator.Persistent);
-                //topSpeedNL = new NativeList<float>(Allocator.Persistent);
-                //speedNL = new NativeList<float>(Allocator.Persistent);
-                //accelNL = new NativeList<float>(Allocator.Persistent);
-                //accelerationInputNL = new NativeList<float>(Allocator.Persistent);
-                //frontHitNL = new NativeList<bool>(Allocator.Persistent);
-                //frontSensorLengthNL = new NativeList<float>(Allocator.Persistent);
-                //frontHitDistanceNL = new NativeList<float>(Allocator.Persistent);
-                frontBoxcastCommands = new NativeArray<BoxcastCommand>(peopleCount, Allocator.Persistent);
                 routePointPositionNL = new NativeList<float3>(Allocator.Persistent);
                 currentRoutePointIndexNL = new NativeList<int>(Allocator.Persistent);
                 finalRoutePointPositionNL = new NativeList<float3>(Allocator.Persistent);
                 waypointDataListCountNL = new NativeList<int>(Allocator.Persistent);
+                routeProgressNL = new NativeList<float>(Allocator.Persistent);
+                stopForTrafficLightNL = new NativeList<bool>(Allocator.Persistent);
             }
             else
             {
@@ -91,35 +79,30 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             if (isInitialized)
             {
+                for(int i=0;i<peopleCount;i++)
+                {
+                    stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
+                }
                 //deltaTime = Time.deltaTime;
-                //peopleAITrafficJob = new AIPeopleJob
-                //{
-                //    //set NA=NL
-                //    isWalkingNA = isWalkingNL,
-                //    targetSpeedNA = targetSpeedNL,
-                //    topSpeedNA = topSpeedNL,
-                //    speedNA = speedNL,
-                //    accelNA = accelNL,
-                //    accelerationInputNA = accelerationInputNL,
-                //    frontHitNA = frontHitNL,
-                //    frontSensorLengthNA = frontSensorLengthNL,
-                //    frontHitDistanceNA = frontHitDistanceNL,
-                //    routePointPositionNA = routePointPositionNL,
-                //    currentRoutePointIndexNA = currentRoutePointIndexNL,
-                //    finalRoutePointPositionNA = finalRoutePointPositionNL,
-                //    waypointDataListCountNA = waypointDataListCountNL
-                //};
-                //jobHandle = peopleAITrafficJob.Schedule(moveTargetTAA);
-                //jobHandle.Complete();
+                peopleAITrafficJob = new AIPeopleJob
+                {
+                    //set NA=NL
+                    isWalkingNA = isWalkingNL,
+                    currentRoutePointIndexNA = currentRoutePointIndexNL,
+                    waypointDataListCountNA = waypointDataListCountNL,
+                    routeProgressNA = routeProgressNL,
+                    stopForTrafficLightNA = stopForTrafficLightNL
+                };
+
+                jobHandle = peopleAITrafficJob.Schedule(moveTargetTAA);
+                jobHandle.Complete();
+
                 for (int i = 0; i < peopleCount; i++) // operate on results
                 {
+                    peopleList[i].FrontSensorDetecting();
                     if (isWalkingNL[i])
                         rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].moveSpeed * Time.timeScale;//让ai前进
-                    frontBoxcastCommands[i] = new BoxcastCommand(frontSensorTransformPositionNL[i], frontSensorSizeNL[i], frontRotationList[i], frontDirectionList[i], frontSensorLengthNL[i], layerMask);
                 }
-                // do sensor jobs
-                var handle = BoxcastCommand.ScheduleBatch(frontBoxcastCommands, frontBoxcastResults, 1, default);
-                handle.Complete();
 
             }
         }
@@ -128,11 +111,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             if (_isQuit)
             {
                 isWalkingNL.Dispose();
-                frontBoxcastCommands.Dispose();
                 routePointPositionNL.Dispose();
                 currentRoutePointIndexNL.Dispose();
                 finalRoutePointPositionNL.Dispose();
                 waypointDataListCountNL.Dispose();
+                moveTargetTAA.Dispose();
+                routeProgressNL.Dispose();
+                stopForTrafficLightNL.Dispose();
             }
         }
         #endregion
@@ -146,40 +131,34 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             rigidbodyList.Add(rigidbody);
 
             Transform moveTarget = new GameObject("MoveTarget").transform;//移动目标
-            //moveTarget.SetParent(peopleAI.transform);
-            //TransformAccessArray temp_moveTargetTAA = new TransformAccessArray(peopleCount);
-            //for (int i = 0; i < peopleCount; i++)
-            //{
-            //    temp_moveTargetTAA.Add(moveTargetTAA[i]);
-            //}
-            //temp_moveTargetTAA.Add(moveTarget);
+            moveTarget.SetParent(peopleAI.transform);
+            TransformAccessArray temp_moveTargetTAA = new TransformAccessArray(peopleCount);
+            for (int i = 0; i < peopleCount; i++)
+            {
+                temp_moveTargetTAA.Add(moveTargetTAA[i]);
+            }
+            temp_moveTargetTAA.Add(moveTarget);
 
             peopleCount = peopleList.Count;
 
             #region allocation
             isWalkingNL.Add(true);
-            //targetSpeedNL.Add(0);
-            //topSpeedNL.Add(0);
-            //speedNL.Add(0);
-            //accelNL.Add(0);
-            //accelerationInputNL.Add(0);
-            //frontHitNL.Add(false);
-            //frontSensorLengthNL.Add(0);
-            //frontHitDistanceNL.Add(0);
             routePointPositionNL.Add(float3.zero);
             currentRoutePointIndexNL.Add(0);
             finalRoutePointPositionNL.Add(float3.zero);
             waypointDataListCountNL.Add(0);
             peopleAIWaypointRouteInfo.Add(null);
-            //moveTargetTAA = new TransformAccessArray(peopleCount);
-            //peopleTAA = new TransformAccessArray(peopleCount);
+            routeProgressNL.Add(0);
+            stopForTrafficLightNL.Add(false);
+            //currentWaypointList.Add(null);
+            moveTargetTAA = new TransformAccessArray(peopleCount);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
             peopleAIWaypointRouteInfo[peopleCount - 1] = peopleRouteList[peopleCount - 1].routeInfo;
             for (int i = 0; i < peopleCount; i++)
             {
-                //moveTargetTAA.Add(temp_moveTargetTAA[i]);
+                moveTargetTAA.Add(temp_moveTargetTAA[i]);
                 //peopleTAA.Add(peopleList[i].transform);
             }
 
@@ -198,11 +177,23 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 }
             }
         }
-        public void Set_CurrentRoutePointIndexArray(int _index, int _value/*, AITrafficWaypoint _nextWaypoint*/)
+        public void Set_CurrentRoutePointIndexArray(int _index, int _value, AITrafficWaypoint _nextWaypoint)
         {
             currentRoutePointIndexNL[_index] = _value;
             //currentWaypointList[_index] = _nextWaypoint;
             //isChangingLanesNL[_index] = false;
+        }
+        public void Set_RouteProgressArray(int _index, float _value)
+        {
+            routeProgressNL[_index] = _value;
+        }
+        public void Set_WaypointRoute(int _index, AITrafficWaypointRoute _route)
+        {
+            peopleRouteList[_index] = _route;
+        }
+        public void Set_RouteInfo(int _index, AITrafficWaypointRouteInfo routeInfo)
+        {
+            peopleAIWaypointRouteInfo[_index] = routeInfo;
         }
         public void Set_RoutePointPositionArray(int _index)
         {

@@ -9,9 +9,17 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public int assignedIndex { get; private set; }
         [Tooltip("person's move speed")]
         public float moveSpeed;
+        [Tooltip("Control point to orient/position the front detection sensor. ")]
+        public Transform frontSensorTransform;
+        [Tooltip("Front Sensor Length")]
+        public float frontSensorLength;
 
         private AITrafficWaypointRoute startRoute;
         private Rigidbody rb;
+        private bool isFrontHit;
+        private bool inFrontHitState;
+        private RaycastHit hitInfo;
+        private int randomIndex;
         public void RegisterPerson(AITrafficWaypointRoute route)
         {
             assignedIndex = AIPeopleController.Instance.RegisterPeopleAI(this, route);
@@ -21,7 +29,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         #region public api method
         public void StartMoving()
         {
-            
+            AIPeopleController.Instance.Set_IsDrivingArray(assignedIndex, true);
         }
         /// <summary>
         /// The AIPeople will stop moving,use the same name as car to easily gotten by AITrafficWaypoint.cs
@@ -31,31 +39,80 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             AIPeopleController.Instance.Set_IsDrivingArray(assignedIndex, false);
         }
+        //检测前面是否有障碍
+        public void FrontSensorDetecting()
+        {
+            if (isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value))
+            {
+                Debug.Log("前面有障碍");
+                inFrontHitState = true;//前方有障碍的情况下
+                StopDriving();
+            }
+            else if (inFrontHitState)
+            {
+                Debug.Log("前面障碍消失");
+                inFrontHitState = false;//将状态改为前方没有障碍
+                StartMoving();
+            }
+
+        }
+        private void OnDrawGizmos()
+        {
+            if (isFrontHit)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(frontSensorTransform.position, hitInfo.point);
+            }
+            else
+            {
+                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
+            }
+        }
         #endregion
+
         #region waypoint trigger method
         public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
         {
             if (onReachWaypointSettings.parentRoute == AIPeopleController.Instance.GetPeopleRoute(assignedIndex))
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
-                if (onReachWaypointSettings.waypointIndexnumber < onReachWaypointSettings.parentRoute.waypointDataList.Count)
+                AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
+                AITrafficWaypoint newpoint= onReachWaypointSettings.waypoint;
+                if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
-                       AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
-                       (
+                    randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length - 1);
+                    newpoint = onReachWaypointSettings.newRoutePoints[randomIndex];
+                    AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, newpoint.onReachWaypointSettings.parentRoute);//更新路线
+                    AIPeopleController.Instance.Set_RouteInfo(assignedIndex, newpoint.onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
+                    AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, newpoint.onReachWaypointSettings.waypointIndexnumber - 1);//更新路线点
+                    AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
+                        (
                             assignedIndex,
-                            onReachWaypointSettings.waypointIndexnumber
-                            //onReachWaypointSettings.waypoint
-                       );
-                    //使行人朝向新的位置
-                    Vector3 targetDirection = onReachWaypointSettings.parentRoute.waypointDataList[onReachWaypointSettings.waypointIndexnumber]._waypoint.transform.position - transform.position;
-                    targetDirection.y = 0;
-                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                    transform.rotation = targetRotation;
-                    //transform.LookAt(onReachWaypointSettings.parentRoute.waypointDataList[onReachWaypointSettings.waypointIndexnumber]._waypoint.transform);
+                            newpoint.onReachWaypointSettings.waypointIndexnumber - 1,
+                            newpoint
+                        );
                 }
-                AITrafficController.Instance.Set_RoutePointPositionArray(assignedIndex);
+                else if (onReachWaypointSettings.waypointIndexnumber < onReachWaypointSettings.parentRoute.waypointDataList.Count)//不更新路线
+                {
+                    AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
+                    (
+                         assignedIndex,
+                         onReachWaypointSettings.waypointIndexnumber,
+                         onReachWaypointSettings.waypoint
+                    );
+                    newpoint = onReachWaypointSettings.nextPointInRoute;
+                }
+                Debug.Log(newpoint);
+                //使行人朝向新的位置
+                Vector3 targetDirection = newpoint.transform.position - transform.position;
+                targetDirection.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                transform.rotation = targetRotation;
+                AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
             }
         }
-            #endregion
-        }
+        #endregion
+    }
 }
