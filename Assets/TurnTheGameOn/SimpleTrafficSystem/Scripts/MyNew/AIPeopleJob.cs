@@ -16,11 +16,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<bool> isWalkingNA;
         public NativeArray<bool> isFrontHitNA;//前方是否有障碍
         public NativeArray<bool> isLastPointNA;//是否走到了尽头
-
+        public NativeArray<bool> isFootHitNA;//脚是否撞到了台阶
+        public NativeArray<Quaternion> targetRotationNA;
+        [ReadOnly]public float deltaTime;
 
 
         public void Execute(int index, TransformAccess driveTargetTransformAccessArray)
         {
+            #region rotation
+            driveTargetTransformAccessArray.rotation= Quaternion.Lerp(driveTargetTransformAccessArray.rotation, targetRotationNA[index], 5f * deltaTime);//5f是转速
+            #endregion
             #region StopThreshold
             //以下全是停车逻辑
             if (stopForTrafficLightNA[index] && routeProgressNA[index] > 0 && currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 1)

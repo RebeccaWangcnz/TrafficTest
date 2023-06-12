@@ -13,9 +13,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public Transform frontSensorTransform;
         [Tooltip("Front Sensor Length")]
         public float frontSensorLength;
+        [Tooltip("Control point to orient/position the foot detection sensor. ")]
+        public Transform footSensorTransform;
+        [Tooltip("Foot Sensor Length")]
+        public float footSensorLength;
 
         private bool isFrontHit;
+        private bool isFootHit;
         private RaycastHit hitInfo;
+        private RaycastHit fHitInfo;
+
         private int randomIndex;
         public void RegisterPerson(AITrafficWaypointRoute route)
         {
@@ -41,6 +48,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value);
             return isFrontHit;
         }
+        public bool FootSensorDetecting()
+        {
+            isFootHit = Physics.Raycast(footSensorTransform.position, transform.forward, out fHitInfo, footSensorLength, AIPeopleController.Instance.footLayerMask.value);
+            return isFootHit;
+        }
         private void OnDrawGizmos()
         {
             if (isFrontHit)
@@ -53,6 +65,17 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
+            }
+            if (isFootHit)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(footSensorTransform.position, fHitInfo.point);
+            }
+            else
+            {
+                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(footSensorTransform.position, footSensorTransform.position + transform.forward * footSensorLength);
             }
         }
         #endregion
@@ -96,7 +119,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     Vector3 targetDirection = newpoint.transform.position - transform.position;
                     targetDirection.y = 0;
                     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                    transform.rotation = targetRotation;
+                    AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
                 }
 
                 AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);

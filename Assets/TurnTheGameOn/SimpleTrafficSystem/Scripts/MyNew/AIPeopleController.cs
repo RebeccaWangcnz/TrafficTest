@@ -19,11 +19,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private List<Rigidbody> rigidbodyList = new List<Rigidbody>();
         private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
         //private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
-        private float deltaTime;
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;
+        [Tooltip("Physics layers the foot detection sensors can detect.")]
+        public LayerMask footLayerMask;
 
         #region NativeList
         private NativeList<bool> isWalkingNL;
@@ -37,8 +38,14 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<float> routeProgressNL;//道路进程
         private NativeList<bool> isFrontHitNL;//前方是否有障碍
         private NativeList<bool> isLastPointNL;
+        private NativeList<bool> isFootHitNL;
+        //转向
+        private NativeList<Quaternion> targetRotationNL;
+
+
 
         private TransformAccessArray moveTargetTAA;
+        private TransformAccessArray peopleTAA;
         #endregion
         #endregion
 
@@ -57,6 +64,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 stopForTrafficLightNL = new NativeList<bool>(Allocator.Persistent);
                 isFrontHitNL = new NativeList<bool>(Allocator.Persistent);
                 isLastPointNL = new NativeList<bool>(Allocator.Persistent);
+                isFootHitNL = new NativeList<bool>(Allocator.Persistent);
+                targetRotationNL = new NativeList<Quaternion>(Allocator.Persistent);
             }
             else
             {
@@ -87,6 +96,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
                     isFrontHitNL[i]= peopleList[i].FrontSensorDetecting();
+                    isFootHitNL[i] = peopleList[i].FootSensorDetecting();
+                    //peopleTAA.Add(peopleList[i].transform);
                 }
                 //deltaTime = Time.deltaTime;
                 peopleAITrafficJob = new AIPeopleJob
@@ -98,10 +109,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     routeProgressNA = routeProgressNL,
                     stopForTrafficLightNA = stopForTrafficLightNL,
                     isFrontHitNA= isFrontHitNL,
-                    isLastPointNA= isLastPointNL
+                    isLastPointNA= isLastPointNL,
+                    isFootHitNA= isFootHitNL,
+                    targetRotationNA= targetRotationNL,
+                    deltaTime=Time.deltaTime
                 };
 
-                jobHandle = peopleAITrafficJob.Schedule(moveTargetTAA);
+                jobHandle = peopleAITrafficJob.Schedule(peopleTAA);
                 jobHandle.Complete();
 
                 for (int i = 0; i < peopleCount; i++) // operate on results
@@ -111,8 +125,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].moveSpeed * Time.timeScale;//让ai前进
                     else
                         rigidbodyList[i].velocity = Vector3.zero;
+                    //如果撞到了台阶
+                    if(isFootHitNL[i])
+                    {
+                        rigidbodyList[i].transform.position += new Vector3(0,0.3f*Time.deltaTime,0);//行人微微上移
+                    }
                 }
-
             }
         }
         void DisposeArrays(bool _isQuit)
@@ -128,8 +146,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 stopForTrafficLightNL.Dispose();
                 isFrontHitNL.Dispose();
                 isLastPointNL.Dispose();
+                isFootHitNL.Dispose();
+                targetRotationNL.Dispose();
             }
             moveTargetTAA.Dispose();
+            peopleTAA.Dispose();
         }
         #endregion
 
@@ -151,6 +172,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             temp_moveTargetTAA.Add(moveTarget);
 
             peopleCount = peopleList.Count;
+            if(peopleCount>=2)
+            {
+                DisposeArrays(false);
+            }
 
             #region allocation
             isWalkingNL.Add(true);
@@ -163,8 +188,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             stopForTrafficLightNL.Add(false);
             isFrontHitNL.Add(false);
             isLastPointNL.Add(false);
+            isFootHitNL.Add(false);
+            targetRotationNL.Add(Quaternion.identity);
             //currentWaypointList.Add(null);
             moveTargetTAA = new TransformAccessArray(peopleCount);
+            peopleTAA = new TransformAccessArray(peopleCount);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -172,12 +200,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             for (int i = 0; i < peopleCount; i++)
             {
                 moveTargetTAA.Add(temp_moveTargetTAA[i]);
-                //peopleTAA.Add(peopleList[i].transform);
+                peopleTAA.Add(peopleList[i].transform);
             }
 
             return peopleCount - 1;
         }
         #endregion
+
         #region set array data
         public void Set_IsWalkingArray(int _index, bool _value)
         {
@@ -199,6 +228,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             currentRoutePointIndexNL[_index] = _value;
             //currentWaypointList[_index] = _nextWaypoint;
             //isChangingLanesNL[_index] = false;
+        }
+        public void Set_TargetRotation(int _index, Quaternion _value)
+        {
+            targetRotationNL[_index] = _value;
         }
         public void Set_RouteProgressArray(int _index, float _value)
         {
