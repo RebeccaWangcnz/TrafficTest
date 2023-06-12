@@ -37280,7 +37280,17 @@ MonoBehaviour:
   useSpawnPoints: 0
   spawnFromAITrafficController: 0
   spawnAmount: 1
-  spawnTrafficVehicles: []
+  spawnTrafficVehicles:
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 1471972326501142, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
   routeInfo: {fileID: 751499783}
   maxDensity: 10
   currentDensity: 0
@@ -89686,7 +89696,7 @@ MonoBehaviour:
   carParent: {fileID: 0}
   showPoolingWarning: 1
   usePooling: 0
-  centerPoint: {fileID: 0}
+  centerPoint: {fileID: 381498596}
   useRouteLimit: 0
   carsInPool: 200
   density: 200
@@ -102779,8 +102789,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130383258927943744}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.87, y: 0.04, z: -6.45}
+  m_LocalRotation: {x: -0, y: 0.58244646, z: -0, w: 0.8128691}
+  m_LocalPosition: {x: 18.69, y: -0.08, z: -5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -102798,7 +102808,7 @@ Transform:
   - {fileID: 110076181615899980}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 71.246, z: 0}
 --- !u!1 &6129488315182274200
 GameObject:
   m_ObjectHideFlags: 0

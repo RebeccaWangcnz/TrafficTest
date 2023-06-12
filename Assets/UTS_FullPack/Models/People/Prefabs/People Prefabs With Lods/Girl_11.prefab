@@ -594,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4890627303080888
 Transform:
   m_ObjectHideFlags: 0
@@ -1373,7 +1373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae5ba8f6d1d06f488a30680720a0080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
   frontSensorTransform: {fileID: 5748303653817071285}
   frontSensorLength: 1
   footSensorTransform: {fileID: 1112442511474588008}

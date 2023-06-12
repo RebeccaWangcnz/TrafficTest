@@ -31,6 +31,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             animator = GetComponent<Animator>();
             assignedIndex = AIPeopleController.Instance.RegisterPeopleAI(this, route);
         }//用于注册行人
+
         #region public api method
         public void StartMoving()
         {
@@ -39,18 +40,31 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         /// <summary>
         /// The AIPeople will stop moving,use the same name as car to easily gotten by AITrafficWaypoint.cs
         /// </summary>
-        [ContextMenu("StopDriving")]
         public void StopDriving()
         {
             AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, false);
             AIPeopleController.Instance.Set_IsLastPoint(assignedIndex, true);
         }//当时达到路线结尾处的点时使用这个方法
-        //检测前面是否有障碍
+        
         public bool FrontSensorDetecting()
         {
             isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value);
-            return isFrontHit;
-        }
+            if (!isFrontHit)
+                return false;           
+            else if (!hitInfo.transform.GetComponent<AITrafficCar>())
+            {
+                return true;
+            }
+            else
+            {
+                if (hitInfo.transform.GetComponent<Rigidbody>().velocity == Vector3.zero)//如果障碍是车子，并且车子停下来让位，则行人可以继续向前
+                {
+                    return false;
+                }
+                else
+                    return true;
+            }
+        }//检测前面是否有障碍
         public bool FootSensorDetecting()
         {
             isFootHit = Physics.Raycast(footSensorTransform.position, transform.forward, out fHitInfo, footSensorLength, AIPeopleController.Instance.footLayerMask.value);
@@ -83,31 +97,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
             AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
         }
-        private void OnDrawGizmos()
-        {
-            if (isFrontHit)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(frontSensorTransform.position, hitInfo.point);
-            }
-            else
-            {
-                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
-            }
-            if (isFootHit)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(footSensorTransform.position, fHitInfo.point);
-            }
-            else
-            {
-                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(footSensorTransform.position, footSensorTransform.position + transform.forward * footSensorLength);
-            }
-        }
+
         #endregion
 
         #region waypoint trigger method
@@ -118,20 +108,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
                 AITrafficWaypoint newpoint = onReachWaypointSettings.waypoint;
-                //if (AIPeopleController.Instance.GetChangeLaneInfo(assignedIndex))//change lane
-                //{
-                //    randomIndex = Random.Range(0, onReachWaypointSettings.laneChangePoints.Count);
-                //    newpoint = onReachWaypointSettings.laneChangePoints[randomIndex];
-                //    AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, newpoint.onReachWaypointSettings.parentRoute);//更新路线
-                //    AIPeopleController.Instance.Set_RouteInfo(assignedIndex, newpoint.onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
-                //    AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, newpoint.onReachWaypointSettings.waypointIndexnumber - 1);//更新路线点
-                //    AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
-                //        (
-                //            assignedIndex,
-                //            newpoint.onReachWaypointSettings.waypointIndexnumber - 1,
-                //            newpoint
-                //        );
-                //}
                 if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
                     randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
@@ -156,7 +132,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     );
                     newpoint = onReachWaypointSettings.nextPointInRoute;
                 }
-                //Debug.Log(newpoint);
                 //使行人朝向新的位置
                 if (newpoint)
                 {
@@ -167,6 +142,33 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 }
 
                 AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
+            }
+        }
+        #endregion
+        #region gizmo
+        private void OnDrawGizmos()
+        {
+            if (isFrontHit)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(frontSensorTransform.position, hitInfo.point);
+            }
+            else
+            {
+                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
+            }
+            if (isFootHit)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(footSensorTransform.position, fHitInfo.point);
+            }
+            else
+            {
+                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(footSensorTransform.position, footSensorTransform.position + transform.forward * footSensorLength);
             }
         }
         #endregion

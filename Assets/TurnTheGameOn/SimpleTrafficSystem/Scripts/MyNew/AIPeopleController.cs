@@ -13,9 +13,20 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public static AIPeopleController Instance;
         #region Params
         private bool isInitialized;
+        [Header("Speed")]
         public float runningSpeed;
         public float walkingSpeed;
         public float accelerateSpeed;
+        [Header("Ray Detect")]
+        [Tooltip("Physics layers the detection sensors can detect.")]
+        public LayerMask layerMask;
+        [Tooltip("Physics layers the foot detection sensors can detect.")]
+        public LayerMask footLayerMask;
+        [Tooltip("Enables the processing of Lane Changing logic.")]
+        public bool useLaneChanging;
+        [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
+        public float changeLaneCooldown = 20f;
+
         public int peopleCount { get; private set; }
         private List<AIPeople> peopleList = new List<AIPeople>();
         private List<AITrafficWaypointRoute> peopleRouteList = new List<AITrafficWaypointRoute>();
@@ -25,14 +36,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
-        [Tooltip("Physics layers the detection sensors can detect.")]
-        public LayerMask layerMask;
-        [Tooltip("Physics layers the foot detection sensors can detect.")]
-        public LayerMask footLayerMask;
-        [Tooltip("Enables the processing of Lane Changing logic.")]
-        public bool useLaneChanging;
-        [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
-        public float changeLaneCooldown = 20f;
 
         #region NativeList
         private NativeList<bool> isWalkingNL;
@@ -53,9 +56,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> canChangeLanesNL;
         private NativeList<bool> isChangingLanesNL;
         private NativeList<bool> needChangeLanesNL;
+        //射线检测
+        NativeArray<BoxcastCommand> frontBoxcastCommands;
+        NativeArray<RaycastHit> frontBoxcastResults;
 
-
-
+        //TAA
         private TransformAccessArray moveTargetTAA;
         private TransformAccessArray peopleTAA;
         #endregion
@@ -106,7 +111,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private void FixedUpdate()
         {
             if (isInitialized)
-            {
+            {                
                 for(int i=0;i<peopleCount;i++)
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
@@ -139,7 +144,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     //变道
                     if (needChangeLanesNL[i])
                     {
-                        if (!canChangeLanesNL[i]&&!isChangingLanesNL[i])
+                        if(currentWaypointList[i].onReachWaypointSettings.laneChangePoints.Count==0)//没有道路可以变
+                        {
+                            isWalkingNL[i] = false;
+                        }
+                        else if (!canChangeLanesNL[i]&&!isChangingLanesNL[i])
                         {
                             changeLaneCooldownTimer[i] += Time.deltaTime;
                             if (changeLaneCooldownTimer[i] > changeLaneCooldown)
@@ -230,7 +239,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             isLastPointNL.Add(false);
             isFootHitNL.Add(false);
             targetRotationNL.Add(Quaternion.identity);
-            //currentWaypointList.Add(null);
             moveTargetTAA = new TransformAccessArray(peopleCount);
             peopleTAA = new TransformAccessArray(peopleCount);
             canChangeLanesNL.Add(true);
