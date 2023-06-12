@@ -13,18 +13,26 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public static AIPeopleController Instance;
         #region Params
         private bool isInitialized;
+        public float runningSpeed;
+        public float walkingSpeed;
+        public float accelerateSpeed;
         public int peopleCount { get; private set; }
         private List<AIPeople> peopleList = new List<AIPeople>();
         private List<AITrafficWaypointRoute> peopleRouteList = new List<AITrafficWaypointRoute>();
         private List<Rigidbody> rigidbodyList = new List<Rigidbody>();
         private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
-        //private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
+        private List<float> changeLaneCooldownTimer = new List<float>();
+        private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;
         [Tooltip("Physics layers the foot detection sensors can detect.")]
         public LayerMask footLayerMask;
+        [Tooltip("Enables the processing of Lane Changing logic.")]
+        public bool useLaneChanging;
+        [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
+        public float changeLaneCooldown = 20f;
 
         #region NativeList
         private NativeList<bool> isWalkingNL;
@@ -41,6 +49,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> isFootHitNL;
         //转向
         private NativeList<Quaternion> targetRotationNL;
+        //变道
+        private NativeList<bool> canChangeLanesNL;
+        private NativeList<bool> isChangingLanesNL;
+        private NativeList<bool> needChangeLanesNL;
 
 
 
@@ -66,6 +78,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 isLastPointNL = new NativeList<bool>(Allocator.Persistent);
                 isFootHitNL = new NativeList<bool>(Allocator.Persistent);
                 targetRotationNL = new NativeList<Quaternion>(Allocator.Persistent);
+                canChangeLanesNL = new NativeList<bool>(Allocator.Persistent);
+                isChangingLanesNL = new NativeList<bool>(Allocator.Persistent);
+                needChangeLanesNL = new NativeList<bool>(Allocator.Persistent);
             }
             else
             {
@@ -97,7 +112,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
                     isFrontHitNL[i]= peopleList[i].FrontSensorDetecting();
                     isFootHitNL[i] = peopleList[i].FootSensorDetecting();
-                    //peopleTAA.Add(peopleList[i].transform);
+                    peopleList[i].animator.SetFloat("Speed",rigidbodyList[i].velocity.magnitude/runningSpeed);
                 }
                 //deltaTime = Time.deltaTime;
                 peopleAITrafficJob = new AIPeopleJob
@@ -112,7 +127,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     isLastPointNA= isLastPointNL,
                     isFootHitNA= isFootHitNL,
                     targetRotationNA= targetRotationNL,
-                    deltaTime=Time.deltaTime
+                    needChangeLanesNA= needChangeLanesNL,
+                    deltaTime =Time.deltaTime
                 };
 
                 jobHandle = peopleAITrafficJob.Schedule(peopleTAA);
@@ -120,9 +136,29 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
                 for (int i = 0; i < peopleCount; i++) // operate on results
                 {
-                    peopleList[i].FrontSensorDetecting();
+                    //变道
+                    if (needChangeLanesNL[i])
+                    {
+                        if (!canChangeLanesNL[i]&&!isChangingLanesNL[i])
+                        {
+                            changeLaneCooldownTimer[i] += Time.deltaTime;
+                            if (changeLaneCooldownTimer[i] > changeLaneCooldown)
+                            {
+                                canChangeLanesNL[i] = true;
+                                changeLaneCooldownTimer[i] = 0f;
+                            }
+                            isWalkingNL[i] = false;//处于变道冷却时间，行人保持不动
+                        }
+                        else if (!isChangingLanesNL[i])//不在变道
+                        {
+                            isChangingLanesNL[i] = true;
+                            canChangeLanesNL[i] = false;
+                            peopleList[i].ChangeToRouteWaypoint(currentWaypointList[i].onReachWaypointSettings.laneChangePoints[0].onReachWaypointSettings);
+                        }
+                    }
+                    //控制行走或暂停
                     if (isWalkingNL[i])
-                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].moveSpeed * Time.timeScale;//让ai前进
+                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * walkingSpeed * Time.timeScale;//让ai前进
                     else
                         rigidbodyList[i].velocity = Vector3.zero;
                     //如果撞到了台阶
@@ -130,6 +166,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     {
                         rigidbodyList[i].transform.position += new Vector3(0,0.3f*Time.deltaTime,0);//行人微微上移
                     }
+                    
                 }
             }
         }
@@ -148,6 +185,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 isLastPointNL.Dispose();
                 isFootHitNL.Dispose();
                 targetRotationNL.Dispose();
+                isChangingLanesNL.Dispose();
+                canChangeLanesNL.Dispose();
+                needChangeLanesNL.Dispose();
             }
             moveTargetTAA.Dispose();
             peopleTAA.Dispose();
@@ -193,6 +233,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             //currentWaypointList.Add(null);
             moveTargetTAA = new TransformAccessArray(peopleCount);
             peopleTAA = new TransformAccessArray(peopleCount);
+            canChangeLanesNL.Add(true);
+            changeLaneCooldownTimer.Add(0);
+            isChangingLanesNL.Add(false);
+            needChangeLanesNL.Add(false);
+            currentWaypointList.Add(null);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -226,8 +271,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public void Set_CurrentRoutePointIndexArray(int _index, int _value, AITrafficWaypoint _nextWaypoint)
         {
             currentRoutePointIndexNL[_index] = _value;
-            //currentWaypointList[_index] = _nextWaypoint;
-            //isChangingLanesNL[_index] = false;
+            currentWaypointList[_index] = _nextWaypoint;
+            isChangingLanesNL[_index] = false;
         }
         public void Set_TargetRotation(int _index, Quaternion _value)
         {
@@ -254,6 +299,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             return peopleRouteList[_index];
         }//获取人所在的路径
+        public bool GetChangeLaneInfo(int _index)
+        {
+            return isChangingLanesNL[_index];
+        }//获取变道信息
         #endregion
 
     }

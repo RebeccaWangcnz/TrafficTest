@@ -7,8 +7,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     public class AIPeople : MonoBehaviour
     {
         public int assignedIndex { get; private set; }
-        [Tooltip("person's move speed")]
-        public float moveSpeed;
+        //[Tooltip("person's move speed")]
+        //public float moveSpeed;
         [Tooltip("Control point to orient/position the front detection sensor. ")]
         public Transform frontSensorTransform;
         [Tooltip("Front Sensor Length")]
@@ -24,8 +24,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private RaycastHit fHitInfo;
 
         private int randomIndex;
+        [HideInInspector]
+        public Animator animator;
         public void RegisterPerson(AITrafficWaypointRoute route)
         {
+            animator = GetComponent<Animator>();
             assignedIndex = AIPeopleController.Instance.RegisterPeopleAI(this, route);
         }//用于注册行人
         #region public api method
@@ -52,6 +55,33 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             isFootHit = Physics.Raycast(footSensorTransform.position, transform.forward, out fHitInfo, footSensorLength, AIPeopleController.Instance.footLayerMask.value);
             return isFootHit;
+        }
+        /// <summary>
+        /// change lane
+        /// </summary>
+        /// <param name="onReachWaypointSettings"></param>
+        public void ChangeToRouteWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
+        {
+            onReachWaypointSettings.OnReachWaypointEvent.Invoke();
+
+            AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.parentRoute);//更新路线
+            AIPeopleController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
+            AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);//更新路线点
+            AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
+                (
+                    assignedIndex,
+                    onReachWaypointSettings.waypointIndexnumber - 1,
+                    onReachWaypointSettings.waypoint
+                );
+            if (onReachWaypointSettings.waypoint)
+            {
+                Vector3 targetDirection = onReachWaypointSettings.waypoint.transform.position - transform.position;
+                targetDirection.y = 0;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
+            }
+
+            AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
         }
         private void OnDrawGizmos()
         {
@@ -87,7 +117,21 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
-                AITrafficWaypoint newpoint= onReachWaypointSettings.waypoint;
+                AITrafficWaypoint newpoint = onReachWaypointSettings.waypoint;
+                //if (AIPeopleController.Instance.GetChangeLaneInfo(assignedIndex))//change lane
+                //{
+                //    randomIndex = Random.Range(0, onReachWaypointSettings.laneChangePoints.Count);
+                //    newpoint = onReachWaypointSettings.laneChangePoints[randomIndex];
+                //    AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, newpoint.onReachWaypointSettings.parentRoute);//更新路线
+                //    AIPeopleController.Instance.Set_RouteInfo(assignedIndex, newpoint.onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
+                //    AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, newpoint.onReachWaypointSettings.waypointIndexnumber - 1);//更新路线点
+                //    AIPeopleController.Instance.Set_CurrentRoutePointIndexArray
+                //        (
+                //            assignedIndex,
+                //            newpoint.onReachWaypointSettings.waypointIndexnumber - 1,
+                //            newpoint
+                //        );
+                //}
                 if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
                     randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
@@ -114,7 +158,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 }
                 //Debug.Log(newpoint);
                 //使行人朝向新的位置
-                if(newpoint)
+                if (newpoint)
                 {
                     Vector3 targetDirection = newpoint.transform.position - transform.position;
                     targetDirection.y = 0;

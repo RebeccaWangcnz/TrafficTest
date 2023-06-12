@@ -1373,11 +1373,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae5ba8f6d1d06f488a30680720a0080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2.5
   frontSensorTransform: {fileID: 5748303653817071285}
   frontSensorLength: 1
   footSensorTransform: {fileID: 1112442511474588008}
   footSensorLength: 0.24
+  animator: {fileID: 0}
 --- !u!1 &1480357041392520
 GameObject:
   m_ObjectHideFlags: 0

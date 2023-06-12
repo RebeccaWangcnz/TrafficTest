@@ -871,8 +871,6 @@
                 for (int i = 0; i < carCount; i++) // operate on results
                 {
                     // front
-                    if(frontBoxcastResults[i].collider)
-                        Debug.Log(frontBoxcastResults[i].collider.name);
                     frontHitNL[i] = frontBoxcastResults[i].collider == null ? false : true;
                     if (frontHitNL[i])
                     {
