@@ -19,6 +19,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<bool> isFootHitNA;//脚是否撞到了台阶
         public NativeArray<Quaternion> targetRotationNA;
         public NativeArray<bool> needChangeLanesNA;
+        public bool useLaneChanging;
         [ReadOnly]public float deltaTime;
 
 
@@ -35,7 +36,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             }//红灯立刻停下运动
             else if(isFrontHitNA[index])
             {
-                if(AIPeopleController.Instance.useLaneChanging==false)
+                if(useLaneChanging)
                 {
                     isWalkingNA[index] = false;
                 }
@@ -50,7 +51,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             //当行人处于停止状态时
             if(!isWalkingNA[index])
             {
-                if(!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index])
+                if (!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index])
                 {
                     isWalkingNA[index] = true;
                     needChangeLanesNA[index] = false;

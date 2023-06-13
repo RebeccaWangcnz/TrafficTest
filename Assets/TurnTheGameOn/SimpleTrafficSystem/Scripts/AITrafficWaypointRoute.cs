@@ -48,7 +48,7 @@
             RegisterRoute();
             if (AITrafficController.Instance.usePooling == false)
             {
-                SpawnTrafficVehicles();
+                SpawnTrafficVehicles();//不适用pooling的时候的生成逻辑
             }
         }
         #region Traffic Control
@@ -85,7 +85,10 @@
                         Vector3 spawnOffset = new Vector3(0, -4, 0);
                         spawnPosition += spawnOffset;
                         GameObject spawnedTrafficVehicle = Instantiate(spawnTrafficVehicles[i], spawnPosition, spawnpoints[randomSpawnPointIndex].transform.rotation);
-                        spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(this);
+                        if (!isPeopleRoute)
+                            spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(this);
+                        else
+                            spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(this);//Rebe:注册行人
                         spawnedTrafficVehicle.transform.LookAt(spawnpoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.waypointDataList[spawnpoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.waypointIndexnumber]._transform);
                         spawnpoints.RemoveAt(randomSpawnPointIndex);
                     }
@@ -98,11 +101,10 @@
                     Vector3 spawnPosition = waypointDataList[j]._transform.position;
                     spawnPosition.y += 1;
                     GameObject spawnedTrafficVehicle = Instantiate(spawnTrafficVehicles[i], spawnPosition, waypointDataList[j]._transform.rotation);
-                    //Rebe:判断是否是行人路线，生成不一样的东西
                     if(!isPeopleRoute)
                         spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(this);
                     else
-                        spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(this);
+                        spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(this);//Rebe:注册行人
                     spawnedTrafficVehicle.transform.LookAt(waypointDataList[j + 1]._transform);
                     j += 1; // increase j again tospawn vehicles with more space between
                 }

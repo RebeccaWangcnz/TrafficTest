@@ -19,9 +19,6 @@
 
         [Tooltip("Array of AITrafficCar prefabs to spawn.")]
         public AITrafficCar[] trafficPrefabs;
-        //Rebe:存储行人的数组
-        [Tooltip("Array of AIPeople prefabs to spawn.")]
-        public AIPeople[] peoplePrefabs;
 
         #region Car Settings
         [Tooltip("Enables the processing of YieldTrigger logic.")]
@@ -1155,7 +1152,7 @@
                             if (isDisabledNL[i] == false)
                             {
                                 carRouteList[i].currentDensity += 1;
-                                if (outOfBoundsNL[i])
+                                if (outOfBoundsNL[i])//在pool边界外
                                 {
                                     MoveCarToPool(carList[i].assignedIndex);
                                 }
@@ -1557,10 +1554,10 @@
             yield return new WaitForEndOfFrame();
             availableSpawnPoints.Clear();
             currentDensity = 0;
-            currentAmountToSpawn = density - currentDensity;
+            currentAmountToSpawn = density - currentDensity;//剩余可以生成的车数量
             for (int i = 0; i < trafficSpawnPoints.Count; i++) // Get Available Spawn Points From All Zones
             {
-                distanceToSpawnPoint = Vector3.Distance(centerPosition, trafficSpawnPoints[i].transformCached.position);
+                distanceToSpawnPoint = Vector3.Distance(centerPosition, trafficSpawnPoints[i].transformCached.position);//车辆生成位置与中心点位置的距离
                 if (trafficSpawnPoints[i].isTrigger == false)
                 {
                     availableSpawnPoints.Add(trafficSpawnPoints[i]);
@@ -1599,7 +1596,7 @@
                     spawnedTrafficVehicle.GetComponent<AITrafficCar>().RegisterCar(carRouteList[0]);
                     MoveCarToPool(spawnedTrafficVehicle.GetComponent<AITrafficCar>().assignedIndex);
                 }
-            }
+            }//为什么要生成两遍
             for (int i = 0; i < carCount; i++)
             {
                 routePointPositionNL[i] = carRouteList[i].waypointDataList[currentRoutePointIndexNL[i]]._transform.position;

@@ -48,22 +48,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         
         public bool FrontSensorDetecting()
         {
-            isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, AIPeopleController.Instance.layerMask.value);
+            isFrontHit = Physics.Raycast(frontSensorTransform.position, transform.forward, out hitInfo, frontSensorLength, ~(1<<1));
             if (!isFrontHit)
                 return false;           
-            else if (!hitInfo.transform.GetComponent<AITrafficCar>())
-            {
-                return true;
-            }
             else
             {
-                if (hitInfo.transform.GetComponent<Rigidbody>().velocity == Vector3.zero)//如果障碍是车子，并且车子停下来让位，则行人可以继续向前
-                {
+                if (hitInfo.transform.GetComponent<AITrafficCar>()&&hitInfo.transform.GetComponent<Rigidbody>().velocity == Vector3.zero)//如果障碍是车子，并且车子停下来让位，则行人可以继续向前
                     return false;
-                }
-                else
-                    return true;
+                return true;
             }
+
         }//检测前面是否有障碍
         public bool FootSensorDetecting()
         {

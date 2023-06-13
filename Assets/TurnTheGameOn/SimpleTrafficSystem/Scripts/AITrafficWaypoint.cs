@@ -13,6 +13,9 @@
         private bool finalWaypoint; // used for gizmos
         private bool missingNewRoutePoint; // used for gizmos
         private bool hasNewRoutePoint; // used for gizmos
+        //Rebe:人行道用来判断是否可见或者是否被触发
+        public bool isTrigger { get; private set; }
+        public bool isVisible { get; private set; }
 
         private void OnEnable()
         {
@@ -25,10 +28,16 @@
             {
                 onReachWaypointSettings.waypoint = this;
             }
+            //Rebe:如果是人行道
+            //if(onReachWaypointSettings.parentRoute.isPeopleRoute)
+            //{
+            //   // AIPeopleController.Instance.Add_PeopleSpawnPoint(this);
+            //}
         }
 
         void OnTriggerEnter(Collider col)
         {
+            isTrigger = true;//Rebe:被触发
             col.transform.SendMessage("OnReachedWaypoint", onReachWaypointSettings, SendMessageOptions.DontRequireReceiver);
             if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)
             {
@@ -37,6 +46,39 @@
                     col.transform.root.SendMessage("StopDriving", SendMessageOptions.DontRequireReceiver);
                 }
             }
+        }
+        //Rebe:被触发
+        private void OnTriggerStay(Collider other)
+        {
+            isTrigger = true;
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            isTrigger = false;
+        }
+        //设置可见性
+        void OnBecameInvisible()
+        {
+#if UNITY_EDITOR
+            if (Camera.current != null)
+            {
+                if (Camera.current.name == "SceneCamera")
+                    return;
+            }
+#endif
+            isVisible = false;
+        }
+
+        void OnBecameVisible()
+        {
+#if UNITY_EDITOR
+            if (Camera.current != null)
+            {
+                if (Camera.current.name == "SceneCamera")
+                    return;
+            }
+#endif
+            isVisible = true;
         }
 
         public void TriggerNextWaypoint(AITrafficCar _AITrafficCar)
