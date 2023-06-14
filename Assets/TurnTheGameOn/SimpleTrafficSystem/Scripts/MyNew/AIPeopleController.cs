@@ -39,6 +39,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public Vector3 disabledPosition = new Vector3(0, -2000, 0);
         [Tooltip("Frequency at which pooling spawn is performed.")]
         public float spawnRate = 2;
+
+        [Header("Emergencies")]
+        [Tooltip("waiting time before walk back when stop for the car horn")]
+        public float waitingTime;
         private float3 centerPosition;
         private float spawnZone;
         private bool usePool;
@@ -55,6 +59,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private List<Rigidbody> rigidbodyList = new List<Rigidbody>();
         private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
         private List<float> changeLaneCooldownTimer = new List<float>();
+        private List<float> stopForHornCooldownTimer = new List<float>();
         private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
@@ -91,6 +96,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private int currentAmountToSpawn;
         private AIPeople spawnpeople;
         private AIPeople loadPeople;
+        //特殊事件
+        private NativeList<bool> stopForHornNL;
+        private NativeList<int> runDirectionNL;
+        private NativeList<bool> crossRoadNL;
 
         //TAA
         private TransformAccessArray moveTargetTAA;
@@ -121,7 +130,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 isDisabledNL = new NativeList<bool>(Allocator.Persistent);
                 isActiveNL = new NativeList<bool>(Allocator.Persistent);
                 outOfBoundsNL = new NativeList<bool>(Allocator.Persistent);
+                stopForHornNL = new NativeList<bool>(Allocator.Persistent);
+                crossRoadNL = new NativeList<bool>(Allocator.Persistent);
                 distanceToPlayerNL = new NativeList<float>(Allocator.Persistent);
+                runDirectionNL = new NativeList<int>(Allocator.Persistent);
                 //pool get value
                 //usePool = AITrafficController.Instance.usePooling;
             }
@@ -230,7 +242,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     isFootHitNA = isFootHitNL,
                     targetRotationNA = targetRotationNL,
                     needChangeLanesNA = needChangeLanesNL,
-                    useLaneChanging=useLaneChanging,
+                    useLaneChanging = useLaneChanging,
+                    stopForHornNA = stopForHornNL,
+                    runDirectionNA = runDirectionNL,
+                    crossRoadNA = crossRoadNL,
                     deltaTime = Time.deltaTime
                 };
 
@@ -242,7 +257,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     //变道
                     if (needChangeLanesNL[i])
                     {
-                        if (!currentWaypointList[i]||currentWaypointList[i].onReachWaypointSettings.laneChangePoints.Count == 0)//没有道路可以变
+                        if (!currentWaypointList[i] || currentWaypointList[i].onReachWaypointSettings.laneChangePoints.Count == 0)//没有道路可以变
                         {
                             isWalkingNL[i] = false;
                         }
@@ -264,14 +279,39 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         }
                     }
                     //控制行走或暂停
-                    if (isWalkingNL[i])
-                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * walkingSpeed * Time.timeScale;//让ai前进
+                    if (crossRoadNL[i])
+                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * runningSpeed * Time.timeScale;
                     else
-                        rigidbodyList[i].velocity = Vector3.zero;
+                    {
+                        if (isWalkingNL[i])
+                            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * walkingSpeed * Time.timeScale;//让ai前进
+                        else
+                        {
+                            rigidbodyList[i].velocity = Vector3.zero;
+                            if (stopForHornNL[i])//如果属于被车笛声干扰
+                            {
+                                //一段时间后后退或前进
+                                if (stopForHornCooldownTimer[i] < waitingTime)
+                                {
+                                    stopForHornCooldownTimer[i] += Time.deltaTime;
+                                }
+                                else
+                                {
+                                    //设置躲避方向
+                                    rigidbodyList[i].velocity = runDirectionNL[i] * rigidbodyList[i].transform.forward * runningSpeed * Time.timeScale;
+                                    peopleList[i].animator.SetInteger("RunDirection", runDirectionNL[i]);
+                                }
+                            }
+                        }
+                    }
+
+
                     //如果撞到了台阶
                     if (isFootHitNL[i])
                     {
                         rigidbodyList[i].transform.position += new Vector3(0, 0.3f * Time.deltaTime, 0);//行人微微上移
+                        if (crossRoadNL[i])
+                            crossRoadNL[i] = false;
                     }
 
                 }
@@ -284,7 +324,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         outOfBoundsNA = outOfBoundsNL,
                         playerPosition = centerPosition,
                         spawnZone = spawnZone,
-                        distanceToPlayerNA= distanceToPlayerNL
+                        distanceToPlayerNA = distanceToPlayerNL
                     };
                     jobHandle = _AIPeopleDistanceJob.Schedule(peopleTAA);
                     jobHandle.Complete();
@@ -297,10 +337,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                             {
                                 MovePeopleToPool(peopleList[i].assignedIndex);
                             }
-                        }
-                        else if (outOfBoundsNL[i] == false)
-                        {
-                            // isEnabledNL[i] = !isEnabledNL[i];
                         }
                     }
                     if (spawnTimer >= spawnRate) SpawnPeople();
@@ -334,6 +370,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 isActiveNL.Dispose();
                 outOfBoundsNL.Dispose();
                 distanceToPlayerNL.Dispose();
+                stopForHornNL.Dispose();
+                runDirectionNL.Dispose();
+                crossRoadNL.Dispose();
             }
             moveTargetTAA.Dispose();
             peopleTAA.Dispose();
@@ -380,6 +419,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             peopleTAA = new TransformAccessArray(peopleCount);
             canChangeLanesNL.Add(true);
             changeLaneCooldownTimer.Add(0);
+            stopForHornCooldownTimer.Add(0);
             isChangingLanesNL.Add(false);
             needChangeLanesNL.Add(false);
             currentWaypointList.Add(null);
@@ -387,6 +427,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             isActiveNL.Add(true);
             outOfBoundsNL.Add(false);
             distanceToPlayerNL.Add(0);
+            stopForHornNL.Add(false);
+            runDirectionNL.Add(1);
+            crossRoadNL.Add(false);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -443,6 +486,26 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             routePointPositionNL[_index] = peopleRouteList[_index].waypointDataList[currentRoutePointIndexNL[_index]]._transform.position;
             finalRoutePointPositionNL[_index] = peopleRouteList[_index].waypointDataList[peopleRouteList[_index].waypointDataList.Count - 1]._transform.position;
+        }
+        public void Set_StopForHorn(int _index, bool _value)
+        {
+            stopForHornNL[_index] = _value;
+        }
+        public void Set_runDirection(int _index, int _value)
+        {
+            runDirectionNL[_index] = _value;
+        }
+        public int Get_runDirection(int _index)
+        {
+            return runDirectionNL[_index];
+        }
+        public void Set_stopForHornCoolDownTimer(int _index, float _value)
+        {
+            stopForHornCooldownTimer[_index] = _value;
+        }
+        public void Set_CrossRoad(int _index, bool _value)
+        {
+            crossRoadNL[_index] = _value;
         }
         public AITrafficWaypointRoute GetPeopleRoute(int _index)
         {

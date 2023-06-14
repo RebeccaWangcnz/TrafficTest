@@ -9,6 +9,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public int assignedIndex { get; private set; }
         //[Tooltip("person's move speed")]
         //public float moveSpeed;
+        [Header("Sensor Detector")]
         [Tooltip("Control point to orient/position the front detection sensor. ")]
         public Transform frontSensorTransform;
         [Tooltip("Front Sensor Length")]
@@ -18,17 +19,26 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         [Tooltip("Foot Sensor Length")]
         public float footSensorLength;
 
+        [Header("Base Info")]
+        [Tooltip("PlayerHead")]
+        public Transform playerHead;
+
+        [Header("use for test")]
+        public Transform car;
+
         private bool isFrontHit;
         private bool isFootHit;
         private RaycastHit hitInfo;
         private RaycastHit fHitInfo;
-
+        [HideInInspector]
+        public Quaternion originHeadRotation;//初始的头部旋转
         private int randomIndex;
         [HideInInspector]
         public Animator animator;
         public void RegisterPerson(AITrafficWaypointRoute route)
         {
             animator = GetComponent<Animator>();
+            originHeadRotation = playerHead.rotation;
             assignedIndex = AIPeopleController.Instance.RegisterPeopleAI(this, route);
         }//用于注册行人
 
@@ -94,7 +104,50 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
         #endregion
 
-        #region waypoint trigger method
+        #region Emergencies
+        /// <summary>
+        /// 车辆鸣笛的时候应该有一个范围检测，检测到的行人调用该方法，并把车的信息传过来
+        /// </summary>
+        [ContextMenu("Car Horn")]
+        public void HeardCarHorn(/*AITrafficCar car*/)
+        {
+            AIPeopleController.Instance.Set_StopForHorn(assignedIndex, true);
+            AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, false);//停止移动
+            //左右张望动画
+            playerHead.LookAt(car);//看向车子
+            animator.SetBool("HeardHorn", true);//播放看向动画
+            //计算方位
+            Vector3 carPos = transform.InverseTransformPoint(car.position);//将车子转化为以行人的坐标系
+            //Debug.Log(carPos.z);
+            if (carPos.z > 0)
+                AIPeopleController.Instance.Set_runDirection(assignedIndex, -1);
+            else
+                AIPeopleController.Instance.Set_runDirection(assignedIndex, 1);
+        }//听到汽车鸣笛时调用该方法
+        /// <summary>
+        /// 脱离汽车检测时调用该方法
+        /// </summary>
+        [ContextMenu("After Car Horn")]
+        public void AfterCarHorn()
+        {
+            AIPeopleController.Instance.Set_StopForHorn(assignedIndex, false);
+            AIPeopleController.Instance.Set_stopForHornCoolDownTimer(assignedIndex, 0);
+            //if (AIPeopleController.Instance.Get_runDirection(assignedIndex)==1)
+            AIPeopleController.Instance.Set_IsWalkingArray(assignedIndex, true);
+            animator.SetBool("HeardHorn", false);
+            animator.SetInteger("RunDirection", 0);
+        }
+        /// <summary>
+        /// 调用该方法行人将无视红绿灯并且跑着穿马路
+        /// </summary>
+        [ContextMenu("Cross the road")]
+        public void CrossRoad()
+        {
+            AIPeopleController.Instance.Set_CrossRoad(assignedIndex, true);
+        }
+        #endregion
+
+        #region Waypoint Trigger Method
         public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
         {
             if (onReachWaypointSettings.parentRoute == AIPeopleController.Instance.GetPeopleRoute(assignedIndex))
@@ -139,7 +192,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             }
         }
         #endregion
-        #region gizmo
+
+        #region Gizmo
         private void OnDrawGizmos()
         {
             if (isFrontHit)

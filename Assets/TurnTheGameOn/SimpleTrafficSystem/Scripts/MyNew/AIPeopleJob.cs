@@ -19,6 +19,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<bool> isFootHitNA;//脚是否撞到了台阶
         public NativeArray<Quaternion> targetRotationNA;
         public NativeArray<bool> needChangeLanesNA;
+        public NativeArray<bool> stopForHornNA;
+        public NativeArray<int> runDirectionNA;
+        public NativeArray<bool> crossRoadNA;
         public bool useLaneChanging;
         [ReadOnly]public float deltaTime;
 
@@ -51,7 +54,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             //当行人处于停止状态时
             if(!isWalkingNA[index])
             {
-                if (!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index])
+                if (!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index]&&!stopForHornNA[index])
                 {
                     isWalkingNA[index] = true;
                     needChangeLanesNA[index] = false;
