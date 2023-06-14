@@ -308,6 +308,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 }
             }
         }
+        private void OnDestroy()
+        {
+            DisposeArrays(true);
+        }
         void DisposeArrays(bool _isQuit)
         {
             if (_isQuit)
@@ -392,7 +396,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 moveTargetTAA.Add(temp_moveTargetTAA[i]);
                 peopleTAA.Add(peopleList[i].transform);
             }
-
+            temp_moveTargetTAA.Dispose();
             return peopleCount - 1;
         }
         #endregion
