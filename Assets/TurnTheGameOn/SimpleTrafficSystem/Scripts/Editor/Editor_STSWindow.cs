@@ -39,6 +39,7 @@
         bool requireRepaint;
         bool showSpawnButtons = true;
         bool showImportButtons = false;
+        bool showMyButtons = true;
         bool showImportDemosButtons = false;
         public AITrafficWaypointRoute[] _routes;
         // Signal Connector
@@ -241,6 +242,21 @@
                     newSelection[0] = _objectToSpawn;
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SplineRouteCreator");
+                }
+            }
+            EditorGUILayout.EndVertical();
+
+            EditorGUILayout.BeginVertical("Box");
+            showMyButtons = EditorGUI.Foldout(EditorGUILayout.GetControlRect(), showMyButtons, "   My", true);
+            if (showMyButtons)
+            {
+                if (GUILayout.Button("HideSpawnPoint"))
+                {
+                    var _spawnPoints = FindObjectsOfType<AITrafficSpawnPoint>();
+                    foreach (var spawnpoint in _spawnPoints)
+                    {
+                        spawnpoint.GetComponent<MeshRenderer>().enabled = !spawnpoint.GetComponent<MeshRenderer>().enabled;
+                    }
                 }
             }
             EditorGUILayout.EndVertical();

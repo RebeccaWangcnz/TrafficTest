@@ -2676,7 +2676,7 @@ GameObject:
   - component: {fileID: 54328257952696370}
   - component: {fileID: 2917300542684798692}
   - component: {fileID: 5762965549124311921}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Bicycle_Man_33
   m_TagString: Bcycle
   m_Icon: {fileID: 0}
