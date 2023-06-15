@@ -6,6 +6,7 @@
     public class AssetReferences : ScriptableObject
     {
         public GameObject _AITrafficController;
+        public GameObject _AIPeopleController;
         public GameObject _AITrafficController_StylizedVehiclesPack;
         public GameObject _AITrafficLightManager;
         public GameObject _AITrafficSpawnPoint;

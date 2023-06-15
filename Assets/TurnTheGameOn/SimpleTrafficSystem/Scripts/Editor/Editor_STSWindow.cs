@@ -174,6 +174,16 @@
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnAITrafficController");
                 }
+                //Rebe：添加行人controller
+                if (GUILayout.Button("AI People Controller"))
+                {
+                    GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AIPeopleController);
+                    _objectToSpawn.name = "AIPeopleController";
+                    GameObject[] newSelection = new GameObject[1];
+                    newSelection[0] = _objectToSpawn;
+                    Selection.objects = newSelection;
+                    Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnAIPeopleController");
+                }
                 if (STSRefs.AssetReferences._AITrafficController_StylizedVehiclesPack != null)
                 {
                     if (GUILayout.Button("AI Traffic Controller - Stylized Vehicles Pack"))
@@ -195,6 +205,7 @@
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnWaypointRoute");
                 }
+                //Rebe:添加了行人的路线
                 if (GUILayout.Button("AI People Waypoint Route"))
                 {
                     GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AIPeopleWaypointRoute);

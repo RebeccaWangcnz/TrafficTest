@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8574799051676880445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8574799051676880447}
+  - component: {fileID: 8574799051676880446}
+  m_Layer: 0
+  m_Name: AIPeopleController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8574799051676880447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574799051676880445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1403623, y: 18.940826, z: -11.593221}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8574799051676880446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574799051676880445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b828c40bfb94e4a9029b57ddb3f88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runningSpeed: 2.5
+  walkingSpeedRange: {x: 1, y: 1.6}
+  accelerateSpeed: 25
+  ridingSpeedRange: {x: 2.2, y: 3}
+  fastestRidingSpeed: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1845
+  footLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  useLaneChanging: 1
+  changeLaneCooldown: 20
+  peoplePrefabs:
+  - {fileID: 2917300542684798692, guid: e3aa1ac4b5f1b044d88d9fbae12ada21, type: 3}
+  density: 200
+  peopleInPool: 200
+  disabledPosition: {x: 0, y: -2000, z: 0}
+  spawnRate: 2
+  waitingTime: 2

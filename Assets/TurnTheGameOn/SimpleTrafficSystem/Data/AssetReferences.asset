@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AITrafficController: {fileID: 6626368814616383543, guid: 3d9b211974fa4c3ab0452351fefdcd3d,
     type: 3}
+  _AIPeopleController: {fileID: 8574799051676880445, guid: 0eb2eb2a10ad5914fa65d3e2b0bc4c2c,
+    type: 3}
   _AITrafficController_StylizedVehiclesPack: {fileID: 6626368814616383543, guid: 52dc72c0dd508d042afed0c62dbd13b1,
     type: 3}
   _AITrafficLightManager: {fileID: 3195485895411473263, guid: e4c6e2eaa93c4bbc943634ddd3294312,
