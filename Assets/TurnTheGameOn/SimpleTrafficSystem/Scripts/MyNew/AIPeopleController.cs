@@ -15,8 +15,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private bool isInitialized;
         [Header("Speed")]
         public float runningSpeed;
-        public float walkingSpeed;
+        public Vector2 walkingSpeedRange;
         public float accelerateSpeed;
+        public Vector2 ridingSpeedRange;
+        public float fastestRidingSpeed;
         [Header("Ray Detect")]
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;
@@ -280,11 +282,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     }
                     //控制行走或暂停
                     if (crossRoadNL[i])
-                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * runningSpeed * Time.timeScale;
+                        rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;
                     else
                     {
                         if (isWalkingNL[i])
-                            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * walkingSpeed * Time.timeScale;//让ai前进
+                            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].speed * Time.timeScale;//让ai前进
                         else
                         {
                             rigidbodyList[i].velocity = Vector3.zero;
@@ -298,7 +300,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                 else
                                 {
                                     //设置躲避方向
-                                    rigidbodyList[i].velocity = runDirectionNL[i] * rigidbodyList[i].transform.forward * runningSpeed * Time.timeScale;
+                                    rigidbodyList[i].velocity = runDirectionNL[i] * rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;
                                     peopleList[i].animator.SetInteger("RunDirection", runDirectionNL[i]);
                                 }
                             }

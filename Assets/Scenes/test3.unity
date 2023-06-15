@@ -9376,8 +9376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runningSpeed: 2.5
-  walkingSpeed: 1.5
+  walkingSpeedRange: {x: 1, y: 1.6}
   accelerateSpeed: 25
+  ridingSpeedRange: {x: 2.2, y: 3}
+  fastestRidingSpeed: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 1845
@@ -9387,7 +9389,6 @@ MonoBehaviour:
   useLaneChanging: 1
   changeLaneCooldown: 20
   peoplePrefabs:
-  - {fileID: 1904870365764307486, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
   - {fileID: 2917300542684798692, guid: e3aa1ac4b5f1b044d88d9fbae12ada21, type: 3}
   density: 200
   peopleInPool: 200
