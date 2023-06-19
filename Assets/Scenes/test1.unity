@@ -5434,6 +5434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &117028974
@@ -17304,6 +17305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &352437371
@@ -19293,6 +19295,7 @@ MonoBehaviour:
   greenMesh: {fileID: 1642499218}
   waypointRoute: {fileID: 1574567853}
   waypointRoutes: []
+  crossWaypointRoute: {fileID: 0}
 --- !u!4 &381022687
 Transform:
   m_ObjectHideFlags: 0
@@ -23483,6 +23486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &466927847
@@ -37835,6 +37839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!1 &752856398
@@ -62007,6 +62012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &1226725173
@@ -68293,6 +68299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &1368420180
@@ -76012,6 +76019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &1517510778
@@ -78596,6 +78604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &1571965343
@@ -78773,6 +78782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &1574567853
@@ -89054,8 +89064,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runningSpeed: 2.5
-  walkingSpeed: 1.5
+  walkingSpeedRange: {x: 1, y: 1.5}
   accelerateSpeed: 25
+  ridingSpeedRange: {x: 0, y: 0}
+  fastestRidingSpeed: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 1845
@@ -89070,6 +89082,7 @@ MonoBehaviour:
   peopleInPool: 200
   disabledPosition: {x: 0, y: -2000, z: 0}
   spawnRate: 2
+  waitingTime: 0
 --- !u!4 &1818936640
 Transform:
   m_ObjectHideFlags: 0
@@ -99540,6 +99553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &2061360043
@@ -102446,6 +102460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
+  runForTrafficLight: 0
   yieldForTrafficLight: 0
   yieldTrigger: {fileID: 0}
 --- !u!114 &2129010780

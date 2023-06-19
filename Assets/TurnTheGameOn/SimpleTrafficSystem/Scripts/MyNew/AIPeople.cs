@@ -6,6 +6,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     //Rebe：该类主要用于控制行人的行为逻辑
     public class AIPeople : MonoBehaviour
     {
+        public AITrafficWaypoint nextPoint;
         public int assignedIndex { get; private set; }
         //[Tooltip("person's move speed")]
         //public float moveSpeed;
@@ -99,6 +100,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             onReachWaypointSettings.OnReachWaypointEvent.Invoke();
 
+            AIPeopleController.Instance.Set_WaypointDataListCountArray(assignedIndex);
             AIPeopleController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.parentRoute);//更新路线
             AIPeopleController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.parentRoute.routeInfo);//更新路线信息
             AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);//更新路线点
@@ -182,7 +184,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AIPeopleController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
+                AIPeopleController.Instance.Set_WaypointDataListCountArray(assignedIndex);
                 AITrafficWaypoint newpoint = onReachWaypointSettings.waypoint;
+                nextPoint = newpoint;
                 if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
                 {
                     randomIndex = Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);

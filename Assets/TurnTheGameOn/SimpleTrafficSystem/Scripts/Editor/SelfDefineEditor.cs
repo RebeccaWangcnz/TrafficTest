@@ -16,10 +16,14 @@ public class SelfDefineEditor:Editor
 
      void OnSceneGUI()//只有当物体选中的时候每帧会调用
     {
-        foreach (var nextPoint in nextPoints)
+        if(nextPoints.Length!=0)
         {
-            Handles.color = Color.blue;
-            Handles.DrawLine(point.transform.position,nextPoint.transform.position,3f);
+            foreach (var nextPoint in nextPoints)
+            {
+                Handles.color = Color.blue;
+                Handles.DrawLine(point.transform.position, nextPoint.transform.position, 3f);
+            }
         }
+
     }
 }

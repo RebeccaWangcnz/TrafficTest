@@ -2675,7 +2675,7 @@ GameObject:
   - component: {fileID: 205573092748200364}
   - component: {fileID: 54328257952696370}
   - component: {fileID: 2917300542684798692}
-  - component: {fileID: 5762965549124311921}
+  - component: {fileID: 5475886679840439832}
   m_Layer: 30
   m_Name: Bicycle_Man_33
   m_TagString: Bcycle
@@ -2834,20 +2834,19 @@ MonoBehaviour:
   animator: {fileID: 0}
   speed: 0
   maxSpeed: 0
---- !u!136 &5762965549124311921
-CapsuleCollider:
+--- !u!65 &5475886679840439832
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592071569772600}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e3c741941bde244aab59ef1721d1213, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.9266453
-  m_Height: 1.9555202
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.004755, z: 0.027624607}
+  serializedVersion: 2
+  m_Size: {x: 0.63008296, y: 1.5646102, z: 1.8112211}
+  m_Center: {x: -0.016224444, y: 1.0351187, z: 0.00973475}
 --- !u!1 &1595227672373168
 GameObject:
   m_ObjectHideFlags: 0

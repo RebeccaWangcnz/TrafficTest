@@ -58,6 +58,10 @@
             stopForTrafficLight = routeInfo.stopForTrafficLight = _stop;
             routeInfo.enabled = _stop ? false : true;
         }
+        public void RunForTrafficlight(bool _run)
+        {
+            stopForTrafficLight = routeInfo.runForTrafficLight = _run;
+        }//Rebe:需要跑起来
 
 
         public List<AITrafficSpawnPoint> spawnpoints = new List<AITrafficSpawnPoint>();

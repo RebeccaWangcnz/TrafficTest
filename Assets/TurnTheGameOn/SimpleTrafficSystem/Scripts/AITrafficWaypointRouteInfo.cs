@@ -7,6 +7,8 @@
     {
         [Tooltip("Controls if cars can exit route, set by traffic lights.")]
         public bool stopForTrafficLight;
+        [Tooltip("Controls if people should run when the traffic turn red, set by traffic lights.")]
+        public bool runForTrafficLight;//Rebe:行人需要跑起来
         [Tooltip("Controls if this route requires cross traffic to yield, set by AITrafficController.")]
         public bool yieldForTrafficLight;
         [Tooltip("Box Collider used to set bounds for yield area.")]

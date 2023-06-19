@@ -75,6 +75,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<float3> finalRoutePointPositionNL;
 
         private NativeList<bool> stopForTrafficLightNL;//是否需要根据信号灯停车
+        private List<bool> runForTrafficLightNL=new List<bool>();//是否需要根据信号灯停车
         private NativeList<float> routeProgressNL;//道路进程
         private NativeList<bool> isFrontHitNL;//前方是否有障碍
         private NativeList<bool> isLastPointNL;
@@ -225,6 +226,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 for (int i = 0; i < peopleCount; i++)
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
+                    runForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].runForTrafficLight;
                     isFrontHitNL[i] = peopleList[i].FrontSensorDetecting();
                     isFootHitNL[i] = peopleList[i].FootSensorDetecting();
                     peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
@@ -286,7 +288,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     else
                     {
                         if (isWalkingNL[i])
-                            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].speed * Time.timeScale;//让ai前进
+                        {
+                            if(!runForTrafficLightNL[i])//没有走到路中间变红灯
+                                rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].speed * Time.timeScale;//让ai前进
+                            else
+                                rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;//让ai前进
+                        }
+                            
                         else
                         {
                             rigidbodyList[i].velocity = Vector3.zero;
@@ -432,6 +440,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             stopForHornNL.Add(false);
             runDirectionNL.Add(1);
             crossRoadNL.Add(false);
+            runForTrafficLightNL.Add(false);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -476,6 +485,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             routeProgressNL[_index] = _value;
         }
+        public void Set_WaypointDataListCountArray(int _index)
+        {
+            waypointDataListCountNL[_index] = peopleRouteList[_index].waypointDataList.Count;
+        }
+
         public void Set_WaypointRoute(int _index, AITrafficWaypointRoute _route)
         {
             peopleRouteList[_index] = _route;

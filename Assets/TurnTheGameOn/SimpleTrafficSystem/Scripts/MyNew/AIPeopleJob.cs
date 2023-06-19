@@ -33,13 +33,15 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             #endregion
             #region StopThreshold
             //以下全是停车逻辑
+            //Debug.Log(routeProgressNA[index] > 0);
+           // Debug.Log(currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 1);
             if (stopForTrafficLightNA[index] && routeProgressNA[index] > 0 && currentRoutePointIndexNA[index] >= waypointDataListCountNA[index] - 1)
             {//如果这条路的交通灯需要停车&&车有行进&&目前所在的路径点>=路线中所有的路线点的数量-1（应该就是到达了路线末端）
                 isWalkingNA[index] = false;
             }//红灯立刻停下运动
             else if(isFrontHitNA[index])
             {
-                if(useLaneChanging)
+                if(!useLaneChanging)
                 {
                     isWalkingNA[index] = false;
                 }
@@ -48,6 +50,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     needChangeLanesNA[index] = true;
                 }
             }//前方有障碍停止运动,或者需要变道
+            else if (!isLastPointNA[index] && !stopForHornNA[index])
+            {
+                isWalkingNA[index] = true;
+                needChangeLanesNA[index] = false;
+            }//既不是最后一个点也没有听到汽车鸣笛就继续行走
             #endregion
 
             #region move
