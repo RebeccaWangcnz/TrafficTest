@@ -225,32 +225,32 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         }
         #endregion
 
-        #region Gizmo
-        private void OnDrawGizmos()
-        {
-            if (isFrontHit)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(frontSensorTransform.position, hitInfo.point);
-            }
-            else
-            {
-                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
-            }
-            if (isFootHit)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(footSensorTransform.position, fHitInfo.point);
-            }
-            else
-            {
-                // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(footSensorTransform.position, footSensorTransform.position + transform.forward * footSensorLength);
-            }
-        }
-        #endregion
+        //#region Gizmo
+        //private void OnDrawGizmos()
+        //{
+        //    if (isFrontHit)
+        //    {
+        //        Gizmos.color = Color.red;
+        //        Gizmos.DrawLine(frontSensorTransform.position, hitInfo.point);
+        //    }
+        //    else
+        //    {
+        //        // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+        //        Gizmos.color = Color.green;
+        //        Gizmos.DrawLine(frontSensorTransform.position, frontSensorTransform.position + transform.forward * frontSensorLength);
+        //    }
+        //    if (isFootHit)
+        //    {
+        //        Gizmos.color = Color.red;
+        //        Gizmos.DrawLine(footSensorTransform.position, fHitInfo.point);
+        //    }
+        //    else
+        //    {
+        //        // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+        //        Gizmos.color = Color.green;
+        //        Gizmos.DrawLine(footSensorTransform.position, footSensorTransform.position + transform.forward * footSensorLength);
+        //    }
+        //}
+        //#endregion
     }
 }

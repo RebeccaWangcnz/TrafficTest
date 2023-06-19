@@ -103,6 +103,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> stopForHornNL;
         private NativeList<int> runDirectionNL;
         private NativeList<bool> crossRoadNL;
+        //ray cast
+        private NativeArray<RaycastCommand> frontRaycastCommands;
+        private NativeArray<RaycastHit> frontRaycastResults;
+        private NativeArray<RaycastCommand> footRaycastCommands;
+        private NativeArray<RaycastHit> footRaycastResults;
 
         //TAA
         private TransformAccessArray moveTargetTAA;
@@ -227,11 +232,22 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
                     runForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].runForTrafficLight;
-                    isFrontHitNL[i] = peopleList[i].FrontSensorDetecting();
-                    isFootHitNL[i] = peopleList[i].FootSensorDetecting();
-                    peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
+                    //射线检测尝试
+                    frontRaycastCommands[i] = new RaycastCommand(peopleList[i].frontSensorTransform.position, peopleList[i].transform.forward, peopleList[i].frontSensorLength, ~(1 << 1));
+                    footRaycastCommands[i] = new RaycastCommand(peopleList[i].footSensorTransform.position, peopleList[i].transform.forward, peopleList[i].footSensorLength, footLayerMask);
+                    //peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
                     peopleList[i].animator.SetFloat("speedWithoutBT", rigidbodyList[i].velocity.magnitude);
                 }
+                var handle = RaycastCommand.ScheduleBatch(frontRaycastCommands, frontRaycastResults, 1, default);
+                handle.Complete();
+                handle = RaycastCommand.ScheduleBatch(footRaycastCommands, footRaycastResults, 1, default);
+                handle.Complete();
+                for (int i = 0; i < peopleCount; i++)
+                {
+                    isFrontHitNL[i] = frontRaycastResults[i].collider == null ? false : true;
+                    isFootHitNL[i] = footRaycastResults[i].collider == null ? false : true;
+                }
+
                 //deltaTime = Time.deltaTime;
                 peopleAITrafficJob = new AIPeopleJob
                 {
@@ -316,13 +332,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     }
 
 
-                    //如果撞到了台阶
-                    if (isFootHitNL[i])
-                    {
-                        rigidbodyList[i].transform.position += new Vector3(0, 0.3f * Time.deltaTime, 0);//行人微微上移
-                        if (crossRoadNL[i])
-                            crossRoadNL[i] = false;
-                    }
+                    ////如果撞到了台阶
+                    //if (isFootHitNL[i])
+                    //{
+                    //    rigidbodyList[i].transform.position += new Vector3(0, 0.3f * Time.deltaTime, 0);//行人微微上移
+                    //    if (crossRoadNL[i])
+                    //        crossRoadNL[i] = false;
+                    //}
 
                 }
                 if (usePool)
@@ -342,7 +358,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     {
                         if (isDisabledNL[i] == false)
                         {
-                            peopleRouteList[i].currentDensity += 1;//这个还不懂
+                            peopleRouteList[i].currentDensity += 1;
                             if (outOfBoundsNL[i])//在pool边界外
                             {
                                 MovePeopleToPool(peopleList[i].assignedIndex);
@@ -382,10 +398,14 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 distanceToPlayerNL.Dispose();
                 stopForHornNL.Dispose();
                 runDirectionNL.Dispose();
-                crossRoadNL.Dispose();
+                crossRoadNL.Dispose();              
             }
             moveTargetTAA.Dispose();
             peopleTAA.Dispose();
+            frontRaycastResults.Dispose();
+            frontRaycastCommands.Dispose();
+            footRaycastResults.Dispose();
+            footRaycastCommands.Dispose();
         }
         #endregion
 
@@ -441,6 +461,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             runDirectionNL.Add(1);
             crossRoadNL.Add(false);
             runForTrafficLightNL.Add(false);
+            frontRaycastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
+            frontRaycastCommands = new NativeArray<RaycastCommand>(peopleCount, Allocator.Persistent);
+            footRaycastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
+            footRaycastCommands = new NativeArray<RaycastCommand>(peopleCount, Allocator.Persistent);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -629,6 +653,31 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             peopleAIWaypointRouteInfo[_index] = parentRoute.routeInfo;
             peopleList[_index].StartMoving();
             needChangeLanesNL[_index] = false;
+        }
+        #endregion
+        #region Gizmo
+        private void OnDrawGizmos()
+        {
+            for(int i=0;i<peopleCount;i++)
+            {
+                if(isFrontHitNL[i])
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(peopleList[i].frontSensorTransform.position, frontRaycastResults[i].collider.transform.position);
+                }
+                else
+                {
+                    // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine(peopleList[i].frontSensorTransform.position, peopleList[i].frontSensorTransform.position + peopleList[i]. transform.forward * peopleList[i].frontSensorLength);
+                }
+                if (!isFootHitNL[i])
+                {
+                    // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine(peopleList[i].footSensorTransform.position, peopleList[i].footSensorTransform.position + peopleList[i].transform.forward * peopleList[i].footSensorLength);
+                }
+            }
         }
         #endregion
 
