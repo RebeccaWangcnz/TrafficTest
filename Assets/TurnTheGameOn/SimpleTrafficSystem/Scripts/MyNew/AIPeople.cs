@@ -112,10 +112,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 );
             if (onReachWaypointSettings.waypoint)
             {
-                Vector3 targetDirection = onReachWaypointSettings.waypoint.transform.position - transform.position;
-                targetDirection.y = 0;
-                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
+                //Vector3 targetDirection = onReachWaypointSettings.waypoint.transform.position - transform.position;
+                //targetDirection.y = 0;
+                //Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                //AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
+                AIPeopleController.Instance.Set_AIDestination(assignedIndex, onReachWaypointSettings.waypoint.transform.position);
+
             }
 
             AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);
@@ -214,10 +216,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 //使行人朝向新的位置
                 if (newpoint)
                 {
-                    Vector3 targetDirection = newpoint.transform.position - transform.position;
-                    targetDirection.y = 0;
-                    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                    AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
+                    //Vector3 targetDirection = newpoint.transform.position - transform.position;
+                    //targetDirection.y = 0;
+                    //Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                    //AIPeopleController.Instance.Set_TargetRotation(assignedIndex, targetRotation);
+                    AIPeopleController.Instance.Set_AIDestination(assignedIndex, newpoint.transform.position);
                 }
 
                 AIPeopleController.Instance.Set_RoutePointPositionArray(assignedIndex);

@@ -29,7 +29,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public void Execute(int index, TransformAccess driveTargetTransformAccessArray)
         {
             #region rotation
-            driveTargetTransformAccessArray.rotation= Quaternion.Lerp(driveTargetTransformAccessArray.rotation, targetRotationNA[index], 5f * deltaTime);//5f是转速
+            //driveTargetTransformAccessArray.rotation= Quaternion.Lerp(driveTargetTransformAccessArray.rotation, targetRotationNA[index], 5f * deltaTime);//5f是转速
             #endregion
             #region StopThreshold
             //以下全是停车逻辑

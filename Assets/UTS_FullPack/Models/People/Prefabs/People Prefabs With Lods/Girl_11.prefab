@@ -1244,6 +1244,7 @@ GameObject:
   - component: {fileID: 54816193787471140}
   - component: {fileID: 136675547186090574}
   - component: {fileID: 1904870365764307486}
+  - component: {fileID: 9115517720806998194}
   m_Layer: 30
   m_Name: Girl_11
   m_TagString: People
@@ -1373,13 +1374,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae5ba8f6d1d06f488a30680720a0080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextPoint: {fileID: 0}
   frontSensorTransform: {fileID: 5748303653817071285}
   frontSensorLength: 1
   footSensorTransform: {fileID: 1112442511474588008}
   footSensorLength: 0.24
   playerHead: {fileID: 2848730483947046435}
+  isRiding: 0
   car: {fileID: 0}
+  originHeadRotation: {x: 0, y: 0, z: 0, w: 0}
   animator: {fileID: 0}
+  speed: 0
+  maxSpeed: 0
+--- !u!195 &9115517720806998194
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471972326501142}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1480357041392520
 GameObject:
   m_ObjectHideFlags: 0
