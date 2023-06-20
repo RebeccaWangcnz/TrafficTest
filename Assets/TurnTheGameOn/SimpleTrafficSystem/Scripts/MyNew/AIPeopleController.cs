@@ -610,6 +610,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             //peopleList[_index].StopDriving();
             isWalkingNL[_index] = false;
             peopleList[_index].transform.position = disabledPosition;
+            agents[_index].enabled = false;
             StartCoroutine(MovePeopleToPoolCoroutine(_index));
         }
         IEnumerator MovePeopleToPoolCoroutine(int _index)
@@ -656,6 +657,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                 );
                             spawnpeople.transform.LookAt(availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.waypointDataList[availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.waypointIndexnumber]._transform);
                             availableSpawnPoints.RemoveAt(randomSpawnPointIndex);
+                            spawnpeople.GetComponent<NavMeshAgent>().enabled = true;
                         }
                     }
                 }
