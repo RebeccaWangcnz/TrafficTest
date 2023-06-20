@@ -1376,6 +1376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextPoint: {fileID: 0}
   frontSensorTransform: {fileID: 5748303653817071285}
+  frontSensorSize: {x: 0.4, y: 1, z: 0.001}
   frontSensorLength: 1
   footSensorTransform: {fileID: 1112442511474588008}
   footSensorLength: 0.24

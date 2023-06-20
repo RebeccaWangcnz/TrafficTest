@@ -13,6 +13,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         [Header("Sensor Detector")]
         [Tooltip("Control point to orient/position the front detection sensor. ")]
         public Transform frontSensorTransform;
+        [Tooltip("Control point to orient/position the front detection sensor. ")]
+        public Vector3 frontSensorSize = new Vector3(15f, 1f, 0.001f);
         [Tooltip("Front Sensor Length")]
         public float frontSensorLength;
         [Tooltip("Control point to orient/position the foot detection sensor. ")]
