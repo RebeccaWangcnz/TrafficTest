@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: -2313220714686359855}
   - component: {fileID: 5651814809728269196}
   - component: {fileID: 4031427175654879933}
-  m_Layer: 30
+  m_Layer: 3
   m_Name: AITrafficCar__Random
   m_TagString: AITrafficCar
   m_Icon: {fileID: 0}

@@ -235,10 +235,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
                     runForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].runForTrafficLight;
                     //射线检测尝试
-                    frontRaycastCommands[i] = new RaycastCommand(peopleList[i].frontSensorTransform.position, peopleList[i].transform.forward, peopleList[i].frontSensorLength, ~(1 << 1));
+                    frontRaycastCommands[i] = new RaycastCommand(peopleList[i].frontSensorTransform.position, peopleList[i].transform.forward, peopleList[i].frontSensorLength,layerMask);
                     footRaycastCommands[i] = new RaycastCommand(peopleList[i].footSensorTransform.position, peopleList[i].transform.forward, peopleList[i].footSensorLength, footLayerMask);
                     //peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
-                    peopleList[i].animator.SetFloat("speedWithoutBT",agents[i].speed);
+                    peopleList[i].animator.SetFloat("speedWithoutBT",agents[i].velocity.magnitude);
                 }
                 var handle = RaycastCommand.ScheduleBatch(frontRaycastCommands, frontRaycastResults, 1, default);
                 handle.Complete();
@@ -331,47 +331,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                             }
                         }
                     }
-
-                    //if (crossRoadNL[i])
-                    //    rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;
-                    //else
-                    //{
-                    //    if (isWalkingNL[i])
-                    //    {
-                    //        if(!runForTrafficLightNL[i])//没有走到路中间变红灯
-                    //            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].speed * Time.timeScale;//让ai前进
-                    //        else
-                    //            rigidbodyList[i].velocity = rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;//让ai前进
-                    //    }
-
-                        //    else
-                        //    {
-                        //        rigidbodyList[i].velocity = Vector3.zero;
-                        //        if (stopForHornNL[i])//如果属于被车笛声干扰
-                        //        {
-                        //            //一段时间后后退或前进
-                        //            if (stopForHornCooldownTimer[i] < waitingTime)
-                        //            {
-                        //                stopForHornCooldownTimer[i] += Time.deltaTime;
-                        //            }
-                        //            else
-                        //            {
-                        //                //设置躲避方向
-                        //                rigidbodyList[i].velocity = runDirectionNL[i] * rigidbodyList[i].transform.forward * peopleList[i].maxSpeed * Time.timeScale;
-                        //                peopleList[i].animator.SetInteger("RunDirection", runDirectionNL[i]);
-                        //            }
-                        //        }
-                        //    }
-                        //}
-
-
-                        ////如果撞到了台阶
-                        //if (isFootHitNL[i])
-                        //{
-                        //    rigidbodyList[i].transform.position += new Vector3(0, 0.3f * Time.deltaTime, 0);//行人微微上移
-                        //    if (crossRoadNL[i])
-                        //        crossRoadNL[i] = false;
-                        //}
 
                 }
                 if (usePool)
