@@ -15,6 +15,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<int> waypointDataListCountNA;//当前路线的所有点数
         public NativeArray<bool> isWalkingNA;
         public NativeArray<bool> isFrontHitNA;//前方是否有障碍
+        public NativeArray<bool> isLefttHitNA;//前方是否有障碍
+        public NativeArray<bool> isRightHitNA;//前方是否有障碍
         public NativeArray<bool> isLastPointNA;//是否走到了尽头
         public NativeArray<bool> isFootHitNA;//脚是否撞到了台阶
         public NativeArray<Quaternion> targetRotationNA;

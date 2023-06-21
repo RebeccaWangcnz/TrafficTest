@@ -67,6 +67,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private List<float> changeLaneCooldownTimer = new List<float>();
         private List<float> stopForHornCooldownTimer = new List<float>();
         private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
+        private List<Vector3> targetsList = new List<Vector3>();
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
 
@@ -82,6 +83,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private List<bool> runForTrafficLightNL=new List<bool>();//是否需要根据信号灯停车
         private NativeList<float> routeProgressNL;//道路进程
         private NativeList<bool> isFrontHitNL;//前方是否有障碍
+        private NativeList<bool> isLeftHitNL;//前方是否有障碍
+        private NativeList<bool> isRighttHitNL;//前方是否有障碍
         private NativeList<bool> isLastPointNL;
         private NativeList<bool> isFootHitNL;
         //转向
@@ -107,9 +110,14 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> stopForHornNL;
         private NativeList<int> runDirectionNL;
         private NativeList<bool> crossRoadNL;
+        private Vector3 direction;
         //ray cast
         private NativeArray<RaycastCommand> frontRaycastCommands;
         private NativeArray<RaycastHit> frontRaycastResults;
+        private NativeArray<BoxcastCommand> leftBoxcastCommands;
+        private NativeArray<RaycastHit> leftBoxcastResults;
+        private NativeArray<BoxcastCommand> rightBoxcastCommands;
+        private NativeArray<RaycastHit> rightBoxcastResults;
         private NativeArray<RaycastCommand> footRaycastCommands;
         private NativeArray<RaycastHit> footRaycastResults;
         //Gizmos
@@ -137,6 +145,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 routeProgressNL = new NativeList<float>(Allocator.Persistent);
                 stopForTrafficLightNL = new NativeList<bool>(Allocator.Persistent);
                 isFrontHitNL = new NativeList<bool>(Allocator.Persistent);
+                isLeftHitNL = new NativeList<bool>(Allocator.Persistent);
+                isRighttHitNL = new NativeList<bool>(Allocator.Persistent);
                 isLastPointNL = new NativeList<bool>(Allocator.Persistent);
                 isFootHitNL = new NativeList<bool>(Allocator.Persistent);
                 targetRotationNL = new NativeList<Quaternion>(Allocator.Persistent);
@@ -242,17 +252,28 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     runForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].runForTrafficLight;
                     //射线检测尝试
                     frontRaycastCommands[i] = new RaycastCommand(peopleList[i].frontSensorTransform.position,peopleList[i].transform.forward, peopleList[i].frontSensorLength,layerMask);
+                    leftBoxcastCommands[i] = new BoxcastCommand(peopleList[i].leftSensorTransform.position,peopleList[i].sideSensorSize, peopleList[i].transform.rotation,peopleList[i].transform.forward, peopleList[i].sideSensorLength, layerMask);
+                    rightBoxcastCommands[i] = new BoxcastCommand(peopleList[i].rightSensorTransform.position,peopleList[i].sideSensorSize, peopleList[i].transform.rotation,peopleList[i].transform.forward, peopleList[i].sideSensorLength, layerMask);
                     footRaycastCommands[i] = new RaycastCommand(peopleList[i].footSensorTransform.position, peopleList[i].transform.forward, peopleList[i].footSensorLength, footLayerMask);
                     //peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
                     peopleList[i].animator.SetFloat("speedWithoutBT",agents[i].velocity.magnitude);
+                    if(!peopleList[i].isRiding)
+                        agents[i].avoidancePriority = (int)(100*agents[i].speed/runningSpeed);//设置避让等级
+                    else
+                        agents[i].avoidancePriority = (int)(100 * agents[i].speed / fastestRidingSpeed);//设置避让等级
                 }
                 var handle = RaycastCommand.ScheduleBatch(frontRaycastCommands, frontRaycastResults, 1, default);
+                handle.Complete();
+                handle = BoxcastCommand.ScheduleBatch(leftBoxcastCommands, leftBoxcastResults, 1, default);
+                handle.Complete();
+                handle = BoxcastCommand.ScheduleBatch(rightBoxcastCommands, rightBoxcastResults, 1, default);
                 handle.Complete();
                 handle = RaycastCommand.ScheduleBatch(footRaycastCommands, footRaycastResults, 1, default);
                 handle.Complete();
                 for (int i = 0; i < peopleCount; i++)
                 {
-                    //isFrontHitNL[i] = frontRaycastResults[i].collider == null ? false : true;
+                    isRighttHitNL[i] = rightBoxcastResults[i].collider == null ? false : true;
+                    isLeftHitNL[i] = leftBoxcastResults[i].collider == null ? false : true;
                     if (!frontRaycastResults[i].collider)
                     {
                         isFrontHitNL[i] = false;
@@ -269,10 +290,17 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                             if (Mathf.Abs( carPos.x) > carWidth)
                                 isFrontHitNL[i] = false;
                         }
+                        else if(!isLeftHitNL[i]||!isRighttHitNL[i])
+                        {//如果两侧没有撞到东西
+                            Vector3 pointPos = peopleList[i].transform.InverseTransformPoint(targetsList[i]);
+                            if((pointPos.x>=0&&!isRighttHitNL[i])|| (pointPos.x<= 0 && !isLeftHitNL[i]))
+                                isFrontHitNL[i] = false;
+                        }
                         else
                             isFrontHitNL[i] = true;
                     }
                     isFootHitNL[i] = footRaycastResults[i].collider == null ? false : true;
+                    //Debug.Log(isFootHitNL[i]);
                 }
 
                 //deltaTime = Time.deltaTime;
@@ -285,6 +313,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     routeProgressNA = routeProgressNL,
                     stopForTrafficLightNA = stopForTrafficLightNL,
                     isFrontHitNA = isFrontHitNL,
+                    isLefttHitNA = isLeftHitNL,
+                    isRightHitNA = isRighttHitNL,
                     isLastPointNA = isLastPointNL,
                     isFootHitNA = isFootHitNL,
                     targetRotationNA = targetRotationNL,
@@ -341,17 +371,30 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         {
                             agents[i].speed = 0;
                             if (stopForHornNL[i])//如果属于被车笛声干扰
-                            {
+                            {                                
                                 //一段时间后后退或前进
                                 if (stopForHornCooldownTimer[i] < waitingTime)
                                 {
                                     stopForHornCooldownTimer[i] += Time.deltaTime;
+                                    direction = agents[i].transform.forward;
                                 }
                                 else
                                 {
                                     //设置躲避方向
-                                    agents[i].speed = peopleList[i].maxSpeed;
-                                    peopleList[i].animator.SetInteger("RunDirection", runDirectionNL[i]);
+                                   if(runDirectionNL[i]==1)
+                                   {
+                                        agents[i].speed = peopleList[i].maxSpeed;
+                                    }
+                                    else
+                                    {
+                                        agents[i].velocity = -direction * peopleList[i].maxSpeed;                                        
+                                    }
+                                    peopleList[i].animator.SetInteger("RunDirection", 1);
+                                    if (isFootHitNL[i])
+                                    {
+                                        stopForHornNL[i] = false;
+                                        peopleList[i].animator.SetInteger("RunDirection", 0);
+                                    }
                                 }
                             }
                         }
@@ -404,6 +447,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 routeProgressNL.Dispose();
                 stopForTrafficLightNL.Dispose();
                 isFrontHitNL.Dispose();
+                isLeftHitNL.Dispose();
+                isRighttHitNL.Dispose();
                 isLastPointNL.Dispose();
                 isFootHitNL.Dispose();
                 targetRotationNL.Dispose();
@@ -422,6 +467,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             peopleTAA.Dispose();
             frontRaycastResults.Dispose();
             frontRaycastCommands.Dispose();
+            leftBoxcastCommands.Dispose();
+            leftBoxcastResults.Dispose();
+            rightBoxcastCommands.Dispose();
+            rightBoxcastResults.Dispose();
             footRaycastResults.Dispose();
             footRaycastCommands.Dispose();
         }
@@ -461,6 +510,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             routeProgressNL.Add(0);
             stopForTrafficLightNL.Add(false);
             isFrontHitNL.Add(false);
+            isRighttHitNL.Add(false);
+            isLeftHitNL.Add(false);
             isLastPointNL.Add(false);
             isFootHitNL.Add(false);
             targetRotationNL.Add(Quaternion.identity);
@@ -482,8 +533,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             runForTrafficLightNL.Add(false);
             frontRaycastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
             frontRaycastCommands = new NativeArray<RaycastCommand>(peopleCount, Allocator.Persistent);
+            leftBoxcastCommands = new NativeArray<BoxcastCommand>(peopleCount, Allocator.Persistent);
+            leftBoxcastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
+            rightBoxcastCommands = new NativeArray<BoxcastCommand>(peopleCount, Allocator.Persistent);
+            rightBoxcastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
             footRaycastResults = new NativeArray<RaycastHit>(peopleCount, Allocator.Persistent);
             footRaycastCommands = new NativeArray<RaycastCommand>(peopleCount, Allocator.Persistent);
+            targetsList.Add(Vector3.zero);
             #endregion
 
             waypointDataListCountNL[peopleCount - 1] = peopleRouteList[peopleCount - 1].waypointDataList.Count;//第i个人所在route一共有几个点
@@ -578,6 +634,15 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public void Set_AIDestination(int _index,Vector3 _destination)
         {
             agents[_index].SetDestination(_destination);
+            targetsList[_index] = _destination;
+        }
+        public Vector3 Get_AIDestination(int _index)
+        {
+            return targetsList[_index];
+        }
+        public Vector3 Get_trueDestination(int _index)
+        {
+            return agents[_index].destination;
         }
         //public void Add_PeopleSpawnPoint(AITrafficWaypoint _point)
         //{
@@ -688,7 +753,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             for(int i=0;i<peopleCount;i++)
             {
-                if (isFrontHitNL[i])
+                if (frontRaycastResults[i].collider)
                 {
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(peopleList[i].frontSensorTransform.position, frontRaycastResults[i].collider.transform.position);
@@ -699,9 +764,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(peopleList[i].frontSensorTransform.position, peopleList[i].frontSensorTransform.position + peopleList[i].transform.forward * peopleList[i].frontSensorLength);
                 }
-                //Gizmos.color = !isFrontHitNL[i]  ? STSPrefs.normalColor : STSPrefs.detectColor;
-                //gizmoOffset = new Vector3(peopleList[i].frontSensorSize.x * 2.0f, peopleList[i].frontSensorSize.y * 2.0f, peopleList[i].frontSensorLength);
-                //DrawCube(peopleList[i].frontSensorTransform.position + peopleList[i].transform.forward * (peopleList[i].frontSensorLength / 2), peopleList[i].transform.rotation, gizmoOffset);
+                Gizmos.color = !isRighttHitNL[i] ? STSPrefs.normalColor : STSPrefs.detectColor;
+                gizmoOffset = new Vector3(peopleList[i].sideSensorSize.x * 2.0f, peopleList[i].sideSensorSize.y * 2.0f, peopleList[i].sideSensorLength);
+                DrawCube(peopleList[i].leftSensorTransform.position + peopleList[i].transform.forward * (peopleList[i].sideSensorLength / 2), peopleList[i].transform.rotation, gizmoOffset);
+                DrawCube(peopleList[i].rightSensorTransform.position + peopleList[i].transform.forward * (peopleList[i].sideSensorLength / 2), peopleList[i].transform.rotation, gizmoOffset);
 
                 if (!isFootHitNL[i])
                 {

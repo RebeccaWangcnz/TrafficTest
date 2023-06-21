@@ -17,6 +17,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public Vector3 frontSensorSize = new Vector3(15f, 1f, 0.001f);
         [Tooltip("Front Sensor Length")]
         public float frontSensorLength;
+        public Transform leftSensorTransform;
+        public Transform rightSensorTransform;
+        public Vector3 sideSensorSize = new Vector3(15f, 1f, 0.001f);
+        public float sideSensorLength;
         [Tooltip("Control point to orient/position the foot detection sensor. ")]
         public Transform footSensorTransform;
         [Tooltip("Foot Sensor Length")]
@@ -142,8 +146,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 playerHead.LookAt(car);//看向车子
                 animator.SetBool("HeardHorn", true);//播放看向动画
                                                     //计算方位
-                Vector3 carPos = transform.InverseTransformPoint(car.position);//将车子转化为以行人的坐标系
-                                                                               //Debug.Log(carPos.z);
+                Vector3 carPos = transform.InverseTransformPoint(car.position);//将车子转化为以行人的坐标系                                                              //Debug.Log(carPos.z);
                 if (carPos.z > 0)
                     AIPeopleController.Instance.Set_runDirection(assignedIndex, -1);
                 else

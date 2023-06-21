@@ -1273,6 +1273,8 @@ Transform:
   - {fileID: 4724578919264288}
   - {fileID: 5748303653817071285}
   - {fileID: 1112442511474588008}
+  - {fileID: 4643169480990126161}
+  - {fileID: 6071747193144030321}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1364,6 +1366,10 @@ MonoBehaviour:
   frontSensorTransform: {fileID: 5748303653817071285}
   frontSensorSize: {x: 0.5, y: 1, z: 0.001}
   frontSensorLength: 1
+  leftSensorTransform: {fileID: 4643169480990126161}
+  rightSensorTransform: {fileID: 6071747193144030321}
+  sideSensorSize: {x: 0.3, y: 1, z: 0.001}
+  sideSensorLength: 3
   footSensorTransform: {fileID: 1112442511474588008}
   footSensorLength: 0.24
   playerHead: {fileID: 2848730483947046435}
@@ -2695,6 +2701,37 @@ Transform:
   m_Father: {fileID: 4686067547922548}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3695897754848175660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6071747193144030321}
+  m_Layer: 9
+  m_Name: LeftSensorDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6071747193144030321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695897754848175660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0.674, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4686067547922548}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4066406874667357653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,3 +2795,34 @@ Transform:
   m_Father: {fileID: 4956941758327744}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+--- !u!1 &4714263835255077747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4643169480990126161}
+  m_Layer: 9
+  m_Name: RightSensorDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4643169480990126161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4714263835255077747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.77, y: 0.674, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4686067547922548}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
