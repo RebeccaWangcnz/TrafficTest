@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4024749035786044}
   - component: {fileID: 146137605904690482}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Wheel_front_collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4370426743981144}
   - component: {fileID: 146067443806235606}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Wheel_back_collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

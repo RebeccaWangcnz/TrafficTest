@@ -29,6 +29,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public bool useLaneChanging;
         [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
         public float changeLaneCooldown = 20f;
+        [Tooltip("car width")]
+        public float carWidth = 1.5f;
 
         //pool :this params is related to AITrafficController
         [Header("Pool")]
@@ -256,12 +258,18 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         isFrontHitNL[i] = false;
                     }
                     else
-                    {
-                        //if(frontRaycastResults[i].collider.GetComponent<AIPeople>()&&Vector3.Dot( frontRaycastResults[i].collider.transform.forward, peopleList[i].transform.forward)<0)
-                        //{//如果两个人或车迎面相撞 要绕道
-                        //    isFrontHitNL[i] = false;
-                        //}
-                        //else
+                    {                                               
+                        if (frontRaycastResults[i].collider.GetComponent<AIPeople>() && Vector3.Dot(frontRaycastResults[i].collider.transform.forward, peopleList[i].transform.forward) < 0)
+                        {//如果两个人或车迎面相撞 要绕道
+                            isFrontHitNL[i] = false;
+                        }
+                        else if (frontRaycastResults[i].collider.GetComponent<AITrafficCar>())
+                        {//如果撞到车 但是位置比较偏
+                            Vector3 carPos = peopleList[i].transform.InverseTransformPoint(frontRaycastResults[i].collider.transform.position);
+                            if (Mathf.Abs( carPos.x) > carWidth)
+                                isFrontHitNL[i] = false;
+                        }
+                        else
                             isFrontHitNL[i] = true;
                     }
                     isFootHitNL[i] = footRaycastResults[i].collider == null ? false : true;
@@ -657,7 +665,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 {
                     loadPeople = peoplePool[i].peoplePrefab;
                     isDisabledNL[peoplePool[i].assignedIndex] = false;
-                    rigidbodyList[peoplePool[i].assignedIndex].isKinematic = false;
+                   // rigidbodyList[peoplePool[i].assignedIndex].isKinematic = false;
                     EnablePeople(peopleList[peoplePool[i].assignedIndex].assignedIndex, parentRoute);
                     peoplePool.RemoveAt(i);
                     return loadPeople;
