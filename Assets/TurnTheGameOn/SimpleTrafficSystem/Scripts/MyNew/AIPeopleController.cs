@@ -264,7 +264,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         //else
                             isFrontHitNL[i] = true;
                     }
-                    Debug.Log(isFrontHitNL[i]);  
                     isFootHitNL[i] = footRaycastResults[i].collider == null ? false : true;
                 }
 
