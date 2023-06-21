@@ -4,6 +4,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     using Unity.Collections;
     using Unity.Burst;
     using UnityEngine.Jobs;
+    using UnityEngine;
+
     [BurstCompile]
     public struct AIPeopleDistanceJob : IJobParallelForTransform
     {
@@ -16,7 +18,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         {
             if (isDisabledNA[index] == false)
             {
-                distanceToPlayerNA[index] = math.distance(carTransformAccessArray.position, playerPosition);
+                distanceToPlayerNA[index] = Vector2.Distance(new Vector2(carTransformAccessArray.position.x, carTransformAccessArray.position.z), new Vector2(playerPosition.x,playerPosition.z));
                 outOfBoundsNA[index] = distanceToPlayerNA[index] > spawnZone;//是否在生成范围外
             }
         }

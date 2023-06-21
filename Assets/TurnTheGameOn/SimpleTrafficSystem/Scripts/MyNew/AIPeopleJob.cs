@@ -69,7 +69,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             }
             if(isFootHitNA[index])
             {
-                driveTargetTransformAccessArray.position+= new Vector3(0, 0.3f *deltaTime, 0);//––»ÀŒ¢Œ¢…œ“∆
                 if (crossRoadNA[index])
                     crossRoadNA[index] = false;
             }
