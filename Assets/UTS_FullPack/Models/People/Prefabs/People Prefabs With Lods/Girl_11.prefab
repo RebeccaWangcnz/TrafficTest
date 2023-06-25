@@ -1371,7 +1371,7 @@ MonoBehaviour:
   sideSensorSize: {x: 0.3, y: 1, z: 0.001}
   sideSensorLength: 3
   footSensorTransform: {fileID: 1112442511474588008}
-  footSensorLength: 0.24
+  footSensorLength: 1
   playerHead: {fileID: 2848730483947046435}
   isRiding: 0
   car: {fileID: 0}

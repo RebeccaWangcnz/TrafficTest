@@ -392,8 +392,10 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                     peopleList[i].animator.SetInteger("RunDirection", 1);
                                     if (isFootHitNL[i])
                                     {
-                                        stopForHornNL[i] = false;
-                                        peopleList[i].animator.SetInteger("RunDirection", 0);
+                                        Debug.Log("hello");
+                                       // stopForHornNL[i] = false;
+                                        //peopleList[i].animator.SetInteger("RunDirection", 0);
+                                        peopleList[i].AfterCarHorn();
                                     }
                                 }
                             }
