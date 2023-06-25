@@ -254,7 +254,7 @@ WheelCollider:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteValue: 1
     m_Stiffness: 3
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -316,7 +316,7 @@ WheelCollider:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteValue: 1
     m_Stiffness: 3
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -378,7 +378,7 @@ WheelCollider:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteValue: 1
     m_Stiffness: 3
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
@@ -405,10 +405,9 @@ GameObject:
   - component: {fileID: -2313220714686359855}
   - component: {fileID: 5651814809728269196}
   - component: {fileID: 4031427175654879933}
-  - component: {fileID: 8307269375004120691}
-  m_Layer: 3
+  m_Layer: 30
   m_Name: AITrafficCar__Random
-  m_TagString: AITrafficCar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,6 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicleType: 0
   accelerationPower: 1500
+  brakePower: 3000
   goToStartOnStop: 0
   topSpeed: 25
   minDrag: 0.3
@@ -614,8 +614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fc9471740175b4ba847fef68c4043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 15
-  maxSpeed: 35
+  average: 80
+  sigma: 5
 --- !u!114 &4031427175654879933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,22 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {x: 0, y: 0, z: 0}
---- !u!208 &8307269375004120691
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3569640239038258424}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.014, y: 0.80600005, z: 2.295}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.95400006, z: 0.009000001}
-  m_TimeToStationary: 0.5
 --- !u!1 &3569884319011756576
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +682,7 @@ WheelCollider:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
+    m_AsymptoteValue: 1
     m_Stiffness: 3
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2

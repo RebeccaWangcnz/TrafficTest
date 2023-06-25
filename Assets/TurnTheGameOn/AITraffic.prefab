@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &687292631440600510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8752952289730506336}
+  m_Layer: 0
+  m_Name: AITraffic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8752952289730506336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687292631440600510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4592570959445794061}
+  - {fileID: 5517025050932062610}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5670728218710322843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5517025050932062610}
+  - component: {fileID: 4056252640621800194}
+  - component: {fileID: 4391939430517347832}
+  m_Layer: 0
+  m_Name: Route1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5517025050932062610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670728218710322843}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8752952289730506336}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4056252640621800194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670728218710322843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopForTrafficLight: 0
+  yieldForTrafficLight: 0
+  yieldTrigger: {fileID: 0}
+--- !u!114 &4391939430517347832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670728218710322843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleTypes: 00000000
+  waypointDataList: []
+  useSpawnPoints: 0
+  spawnFromAITrafficController: 0
+  spawnAmount: 1
+  spawnTrafficVehicles: []
+  routeInfo: {fileID: 0}
+  maxDensity: 10
+  currentDensity: 0
+  previousDensity: 0
+  PointArray: []
+  Positionbias: {x: 0, y: 0, z: 0}
+  pointdata: {fileID: 0}
+  ReadFirstLine: 0
+  _positions: []
+  Avespeed: 80
+  spacing: 50
+  count: 5
+  ControlPoint1: {x: 0, y: 0, z: 0}
+  ControlPoint2: {x: 0, y: 0, z: 0}
+  spawnpoints: []
+--- !u!1 &7342310767116396214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4592570959445794061}
+  - component: {fileID: 2429731614760333642}
+  m_Layer: 0
+  m_Name: AITrafficController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4592570959445794061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342310767116396214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8752952289730506336}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2429731614760333642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342310767116396214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c342c37dd3443c68a815fa69ec4a043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trafficPrefabs: []
+  useYieldTriggers: 0
+  speedMultiplier: 2.2369363
+  steerSensitivity: 0.02
+  maxSteerAngle: 37
+  stopThreshold: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  frontSensorFacesTarget: 0
+  useLaneChanging: 0
+  changeLaneTrigger: 3
+  minSpeedToChangeLanes: 5
+  changeLaneCooldown: 20
+  unassignedBrakeMaterial: {fileID: 0}
+  brakeOnIntensityURP: 1
+  brakeOnIntensityHDRP: 10
+  brakeOnIntensityDP: 10
+  brakeOffIntensityURP: -3
+  brakeOffIntensityHDRP: 0
+  brakeOffIntensityDP: -3
+  setCarParent: 0
+  carParent: {fileID: 0}
+  showPoolingWarning: 1
+  usePooling: 0
+  centerPoint: {fileID: 0}
+  useRouteLimit: 0
+  carsInPool: 200
+  density: 200
+  spawnRate: 2
+  disabledPosition: {x: 0, y: -2000, z: 0}
+  minSpawnZone: 50
+  cullHeadLight: 100
+  actizeZone: 225
+  spawnZone: 350
