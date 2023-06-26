@@ -34,6 +34,8 @@
         public float maxSteerAngle = 37f;//最大前轮舵角
         [Tooltip("Front detection sensor distance at which a car will start braking.")]
         public float stopThreshold = 5f;//前方障碍物识别减速区域
+        [Tooltip("急刹车时给rigid施加的drag力")]
+        public float hardBrakePower;
 
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;//在监视器里有图层的多选选单
@@ -433,6 +435,7 @@
             outOfBoundsNL.Add(false);
             lightIsActiveNL.Add(false);
             canProcessNL.Add(true);
+            needHardBrakeNL.Add(false);
             driveTargetTAA = new TransformAccessArray(carCount);
             carTAA = new TransformAccessArray(carCount);
             frontRightWheelTAA = new TransformAccessArray(carCount);
@@ -445,6 +448,7 @@
             frontBoxcastResults = new NativeArray<RaycastHit>(carCount, Allocator.Persistent);
             leftBoxcastResults = new NativeArray<RaycastHit>(carCount, Allocator.Persistent);
             rightBoxcastResults = new NativeArray<RaycastHit>(carCount, Allocator.Persistent);
+           
             #endregion
             waypointDataListCountNL[carCount - 1] = carRouteList[carCount - 1].waypointDataList.Count;
             carAIWaypointRouteInfo[carCount - 1] = carRouteList[carCount - 1].routeInfo;
@@ -529,6 +533,7 @@
         private NativeList<bool> frontHitNL;
         private NativeList<bool> leftHitNL;
         private NativeList<bool> rightHitNL;
+        private NativeList<bool> needHardBrakeNL;
         private NativeList<bool> yieldForCrossTrafficNL;
         private NativeList<bool> stopForTrafficLightNL;
         private NativeList<bool> routeIsActiveNL;
@@ -735,6 +740,7 @@
                 outOfBoundsNL = new NativeList<bool>(Allocator.Persistent);
                 lightIsActiveNL = new NativeList<bool>(Allocator.Persistent);
                 frontspeedNL = new NativeList<float>(Allocator.Persistent);
+                needHardBrakeNL = new NativeList<bool>(Allocator.Persistent);
             }
             else
             {
@@ -877,11 +883,15 @@
                     stopThreshold = stopThreshold,
                     frontHitDistanceNA = frontHitDistanceNL,
                     frontHitNA = frontHitNL,
+                    leftHitNA = leftHitNL,
+                    rightHitNA = rightHitNL,
                     stopForTrafficLightNA = stopForTrafficLightNL,
                     yieldForCrossTrafficNA = yieldForCrossTrafficNL,
                     accelerationPowerNA = accelerationPowerNL,
                     brakePowerNA = brakePowerNL,
                     frontSensorTransformPositionNA = frontSensorTransformPositionNL,
+                    needHardBrakeNA = needHardBrakeNL,
+                    frontspeedNA = frontspeedNL,
                 };
                 jobHandle = carAITrafficJob.Schedule(driveTargetTAA);
                 jobHandle.Complete();
@@ -975,6 +985,7 @@
                             leftPreviousHitTransform[i] = leftHitTransform[i];
                         }
                         leftHitDistanceNL[i] = boxHit.distance;
+                        
                     }
                     else //ResetHitBox
                     {
@@ -1104,7 +1115,18 @@
                             {
                                 motorTorqueNL[i] = 250f;
                             }
-                            if (!frontHitNL[i] & speedNL[i] > targetSpeedNL[i])//超速
+                            if (needHardBrakeNL[i])
+                            {
+                                rigidbodyList[i].drag = speedNL[i]*hardBrakePower;//急刹车
+                               // hardBrakeTimerNL[i] += Time.deltaTime;
+                                //if (hardBrakeTimerNL[i] > 1.0f)
+                                //{
+                                //    needHardBrakeNL[i] = false;
+                                //    hardBrakeTimerNL[i] = 0f;
+                                //}
+                                    
+                            }
+                            else if (!frontHitNL[i] & speedNL[i] > targetSpeedNL[i])//超速
                             {
                                 rigidbodyList[i].drag = minDragNL[i];//加阻力减速
                             }
@@ -1116,6 +1138,7 @@
                                 rigidbodyList[i].angularDrag = dragToAdd;
                             }
                             changeLaneTriggerTimer[i] = 0;
+                            
                         }
 
                         for (int j = 0; j < 4; j++) //调整车轮碰撞器输出（动力来源）
@@ -1376,6 +1399,7 @@
                 lightIsActiveNL.Dispose();
                 canProcessNL.Dispose();
                 frontspeedNL.Dispose();
+                needHardBrakeNL.Dispose();
             }
             driveTargetTAA.Dispose();
             carTAA.Dispose();

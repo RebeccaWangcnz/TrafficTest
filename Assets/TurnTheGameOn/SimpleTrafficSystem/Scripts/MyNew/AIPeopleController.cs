@@ -281,16 +281,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     else
                     {                                               
                         if (frontRaycastResults[i].collider.GetComponent<AIPeople>() && Vector3.Dot(frontRaycastResults[i].collider.transform.forward, peopleList[i].transform.forward) < 0)
-                        {//如果两个人或车迎面相撞 要绕道
+                        {//如果两个人迎面相撞 要绕道
                             isFrontHitNL[i] = false;
                         }
-                        else if (frontRaycastResults[i].collider.GetComponent<AITrafficCar>())
-                        {//如果撞到车 但是位置比较偏
-                            Vector3 carPos = peopleList[i].transform.InverseTransformPoint(frontRaycastResults[i].collider.transform.position);
-                            if (Mathf.Abs( carPos.x) > carWidth)
-                                isFrontHitNL[i] = false;
-                        }
-                        else if(!isLeftHitNL[i]||!isRighttHitNL[i])
+                        //else if (frontRaycastResults[i].collider.GetComponent<AITrafficCar>())
+                        //{//如果撞到车 但是位置比较偏
+                        //    Vector3 carPos = peopleList[i].transform.InverseTransformPoint(frontRaycastResults[i].collider.transform.position);
+                        //    if (Mathf.Abs( carPos.x) > carWidth)
+                        //        isFrontHitNL[i] = false;
+                        //}
+                        else if(!frontRaycastResults[i].collider.GetComponent<AITrafficCar>()&&!isLeftHitNL[i]||!isRighttHitNL[i])
                         {//如果两侧没有撞到东西
                             Vector3 pointPos = peopleList[i].transform.InverseTransformPoint(targetsList[i]);
                             if((pointPos.x>=0&&!isRighttHitNL[i])|| (pointPos.x<= 0 && !isLeftHitNL[i]))

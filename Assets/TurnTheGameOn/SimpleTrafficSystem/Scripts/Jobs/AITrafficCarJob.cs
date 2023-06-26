@@ -23,6 +23,8 @@
         public NativeArray<bool> overrideInputNA;
         public NativeArray<bool> isBrakingNA;
         public NativeArray<bool> frontHitNA;
+        public NativeArray<bool> leftHitNA;
+        public NativeArray<bool> rightHitNA;
         public NativeArray<bool> stopForTrafficLightNA;
         public NativeArray<bool> yieldForCrossTrafficNA;
         public NativeArray<float> accelerationPowerNA;
@@ -50,6 +52,8 @@
         public NativeArray<Vector3> carTransformPreviousPositionNA;
         public NativeArray<Vector3> carTransformPositionNA;
         public NativeArray<Vector3> localTargetNA;
+        public NativeArray<bool> needHardBrakeNA;
+        public NativeArray<float> frontspeedNA;
 
         public NativeArray<Vector3> frontSensorTransformPositionNA;
 
@@ -82,8 +86,10 @@
                     overrideAccelerationPowerNA[index] = distanceToEndPointNA[index] < 3 || speedNA[index] > 10 ? 0f : 0.3f;
                     //}
                 }//快到终点了减速
-                else if (frontHitNA[index])
+                else if (frontHitNA[index] && frontHitDistanceNA[index] < stopThreshold)
                 {
+                    if (frontHitDistanceNA[index] < 0.5f)//如果距离过近，急刹车
+                        needHardBrakeNA[index] = true;
                     overrideInputNA[index] = true;
                     overrideBrakePowerNA[index] = 0f;
                     overrideAccelerationPowerNA[index] = 0f;
@@ -99,6 +105,7 @@
                 }
                 else if(overrideInputNA[index])//盒体投射检测有问题，所以老是会跳到这一步，导致刹车部分失效（有问题是因为盒体碰撞器投射距离改成与速度相关的变量导致，原因未知），改回常数就没事
                 {
+                    needHardBrakeNA[index] = false;
                     overrideBrakePowerNA[index] = 0f;
                     overrideAccelerationPowerNA[index] = 0f;
                     overrideInputNA[index] = false;
@@ -170,5 +177,6 @@
                 #endregion
             }
         }
+
     }
 }

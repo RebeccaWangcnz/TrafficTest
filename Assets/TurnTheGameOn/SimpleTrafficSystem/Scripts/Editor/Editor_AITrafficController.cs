@@ -145,6 +145,12 @@
                     if (EditorGUI.EndChangeCheck())
                         serializedObject.ApplyModifiedProperties();
 
+                    SerializedProperty hardBrakePower = serializedObject.FindProperty("hardBrakePower");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(hardBrakePower, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
                     EditorGUILayout.EndVertical();
                     #endregion Car Settings
 
