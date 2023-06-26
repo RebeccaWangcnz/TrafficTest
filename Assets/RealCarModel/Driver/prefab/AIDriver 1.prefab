@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4779137325685718}
-  - component: {fileID: 65051476098218668}
+  - component: {fileID: 2570857143382763513}
   m_Layer: 0
   m_Name: Checking Box
   m_TagString: People
@@ -96,7 +96,7 @@ Transform:
   m_Father: {fileID: 4485001406255652}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65051476098218668
+--- !u!65 &2570857143382763513
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.02, y: 1.67, z: 0.42}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.518039, z: 0.43873352}
+  m_Center: {x: -1.52327e-11, y: -0.25901908, z: 0.058630228}
 --- !u!1 &1022345367215316
 GameObject:
   m_ObjectHideFlags: 0

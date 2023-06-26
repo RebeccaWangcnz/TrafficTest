@@ -7,17 +7,19 @@
     [HelpURL("https://simpletrafficsystem.turnthegameon.com/documentation/api/aitrafficcar")]
     public class AITrafficCar : MonoBehaviour
     {
-        public int assignedIndex { get; private set; }
+        public int assignedIndex { get; private set; }//分配索引，把车分配到路径上
         [Tooltip("Vehicles will only spawn, and merge onto routes with matching vehicle types.")]
         public AITrafficVehicleType vehicleType = AITrafficVehicleType.Default;
         [Tooltip("Amount of torque that is passed to car Wheel Colliders when not braking.")]
         public float accelerationPower = 1500;
+        [Tooltip("Amount of torque that is passed to car Wheel Colliders when  braking.")]
+        public float brakePower = 3000;//刹车扭矩定义了变量但不出现在检查器上？（解决：需要在编辑器脚本上加才会出现在检查器上）
         [Tooltip("Respawn the car to the first route point on it's spawn route when the car comes to a stop.")]
         public bool goToStartOnStop;
         [Tooltip("Car max speed, assigned to AITrafficController when car is registered.")]
         public float topSpeed = 25f;
         [Tooltip("Minimum amount of drag applied to car Rigidbody when not braking.")]
-        public float minDrag = 0.3f;
+        public float minDrag = 0.2f;
         [Tooltip("Minimum amount of angular drag applied to car Rigidbody when not braking.")]
         public float minAngularDrag = 0.3f;
 
@@ -46,19 +48,28 @@
         public Light headLight;
         [Tooltip("References to car wheel mesh object, transform, and collider.")]
         public AITrafficCarWheels[] _wheels;
+        public TurnLight turnlight;
+        public MeshRenderer leftturnlight;
+        public MeshRenderer rightturnlight;
+        public Material lightmaterial;
+        [HideInInspector] public Material leftmaterial;
+        [HideInInspector] public Material rightmaterial;
         private AITrafficWaypointRoute startRoute;
         private Vector3 goToPointWhenStoppedVector3;
         private Rigidbody rb;
         private List<int> newRoutePointsMatchingType = new List<int>();
         private int randomIndex;
+        private AITrafficWaypointSettings CacheSetting;
 
         public void RegisterCar(AITrafficWaypointRoute route)
         {
+            leftturnlight.materials[0].EnableKeyword("_EMISSIVE");
+            rightturnlight.materials[0].EnableKeyword("_EMISSIVE");
             if (brakeMaterial == null && brakeMaterialMesh != null)
             {
                 brakeMaterial = brakeMaterialMesh.materials[brakeMaterialIndex];
             }
-            assignedIndex = AITrafficController.Instance.RegisterCarAI(this, route);//把车登记在对应的路径上
+            assignedIndex = AITrafficController.Instance.RegisterCarAI(this, route);
             startRoute = route;
             rb = GetComponent<Rigidbody>();
         }
@@ -202,40 +213,47 @@
         public void SetForceLaneChange(bool _value)
         {
             AITrafficController.Instance.SetForceLaneChange(assignedIndex, _value);
-        }
+        }//强制换道
         #endregion
-
+        
         #region Waypoint Trigger Methods
         /// <summary>
         /// Callback triggered when the AITrafficCar reaches a waypoint.
         /// </summary>
         /// <param name="onReachWaypointSettings"></param>
-        public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)
+        public void OnReachedWaypoint(AITrafficWaypointSettings onReachWaypointSettings)//把点的信息发送给车
         {
-            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))//路径点所属的路径是车所对应的路径
+            //if (AITrafficController.Instance.GetNextWaypoint(assignedIndex)!= null && onReachWaypointSettings.waypoint != AITrafficController.Instance.GetNextWaypoint(assignedIndex))
+            //    return;
+            CacheSetting = onReachWaypointSettings;
+            if (onReachWaypointSettings.parentRoute == AITrafficController.Instance.GetCarRoute(assignedIndex))
             {
                 onReachWaypointSettings.OnReachWaypointEvent.Invoke();
                 AITrafficController.Instance.Set_SpeedLimitArray(assignedIndex, onReachWaypointSettings.speedLimit);
-                //这里表示当到达这个路径点，assignedIndex的车在assignedIndex这一条路的点行进到第waypointIndexnumber - 1个点上
-                AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);//onReachWaypointSettings.waypointIndexnumber - 1是路线点数组中的index
+                AITrafficController.Instance.Set_AverageSpeed(assignedIndex, onReachWaypointSettings.averagespeed);
+                AITrafficController.Instance.Set_Sigma(assignedIndex, onReachWaypointSettings.sigma);
+                AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.waypointIndexnumber - 1);
                 AITrafficController.Instance.Set_WaypointDataListCountArray(assignedIndex);
-                if (onReachWaypointSettings.newRoutePoints.Length > 0)//更换新路线
+                if (onReachWaypointSettings.newRoutePoints.Length > 0)//如果有newroutepoint
                 {
-                    newRoutePointsMatchingType.Clear();
+                    newRoutePointsMatchingType.Clear();//清理掉所有匹配newroutepoint
                     for (int i = 0; i < onReachWaypointSettings.newRoutePoints.Length; i++)
                     {
-                        for (int j = 0; j < onReachWaypointSettings.newRoutePoints[i].onReachWaypointSettings.parentRoute.vehicleTypes.Length; j++)
+                        if(AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[i].transform))//插入逻辑：如果newPoint满足侧向检验，换道
                         {
-                            if (onReachWaypointSettings.newRoutePoints[i].onReachWaypointSettings.parentRoute.vehicleTypes[j] == vehicleType)
+                            for (int j = 0; j < onReachWaypointSettings.newRoutePoints[i].onReachWaypointSettings.parentRoute.vehicleTypes.Length; j++)
                             {
-                                newRoutePointsMatchingType.Add(i);
-                                break;
-                            }
+                                if (onReachWaypointSettings.newRoutePoints[i].onReachWaypointSettings.parentRoute.vehicleTypes[j] == vehicleType)
+                                {
+                                    newRoutePointsMatchingType.Add(i);
+                                    break;
+                                }
+                            }//对所有newroutepoint和车的类型重新匹配
                         }
                     }
-                    if (newRoutePointsMatchingType.Count > 0 && onReachWaypointSettings.waypointIndexnumber != onReachWaypointSettings.parentRoute.waypointDataList.Count)
+                    if (newRoutePointsMatchingType.Count > 0 && onReachWaypointSettings.waypointIndexnumber != onReachWaypointSettings.parentRoute.waypointDataList.Count)//如果匹配到了newroutepoint且现在的点不是最后一个点路径点
                     {
-                        randomIndex = UnityEngine.Random.Range(0, newRoutePointsMatchingType.Count);
+                        randomIndex = UnityEngine.Random.Range(0, newRoutePointsMatchingType.Count);//随机分配点
                         if (randomIndex == newRoutePointsMatchingType.Count) randomIndex -= 1;
                         randomIndex = newRoutePointsMatchingType[randomIndex];
                         AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
@@ -247,8 +265,12 @@
                             onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
                             onReachWaypointSettings.newRoutePoints[randomIndex]
                             );
+                        if (onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute != onReachWaypointSettings.parentRoute)
+                        {
+                            turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.newRoutePoints[randomIndex].transform);
+                        }
                     }
-                    else if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)
+                    else if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)//如果现在的点是最后一个点，有newpoint直接分配newpoint
                     {
                         randomIndex = UnityEngine.Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
                         if (randomIndex == onReachWaypointSettings.newRoutePoints.Length) randomIndex -= 1;
@@ -261,6 +283,27 @@
                             onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
                             onReachWaypointSettings.newRoutePoints[randomIndex]
                             );
+                        //if (AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[randomIndex].transform))//插入逻辑：如果newPoint满足侧向检验，换道
+                        //{
+                        //    AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
+                        //    AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
+                        //    AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);
+                        //    AITrafficController.Instance.Set_CurrentRoutePointIndexArray
+                        //        (
+                        //        assignedIndex,
+                        //        onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
+                        //        onReachWaypointSettings.newRoutePoints[randomIndex]
+                        //        );
+                        //    if (onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute != onReachWaypointSettings.parentRoute)
+                        //    {
+                        //        turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.newRoutePoints[randomIndex].transform);
+                        //    }//外加的转向灯控制逻辑：如果newpoint不在本来的路线上（即要变道/并线了），获取下个点方向，打开该侧转向灯
+                        //}
+                        //else
+                        //{
+                        //    StopDriving();
+                        //    StartCoroutine(ResumeDrivingTimer(2f));
+                        //}
                     }
                     else
                     {
@@ -271,7 +314,7 @@
                         onReachWaypointSettings.waypoint
                         );
                     }
-                }
+                }//newroutepoint的逻辑
                 else if (onReachWaypointSettings.waypointIndexnumber < onReachWaypointSettings.parentRoute.waypointDataList.Count)
                 {
                     AITrafficController.Instance.Set_CurrentRoutePointIndexArray
@@ -311,11 +354,10 @@
                 onReachWaypointSettings.waypointIndexnumber,
                 onReachWaypointSettings.waypoint
                 );
-
             AITrafficController.Instance.Set_RoutePointPositionArray(assignedIndex);
-        }
+            turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.waypoint.transform);
+        }//换道的执行代码；换道过程就是把车分配到由onReachWaypointSettings控制的新路径点上，onReachWaypointSettings就是被分配WayPoint的AITrafficWaypointSettings
         #endregion
-
         #region Callbacks
         void OnBecameInvisible()
         {
@@ -346,6 +388,7 @@
         {
             yield return new WaitForSeconds(_stopTime);
             StartDriving();
+            OnReachedWaypoint(CacheSetting);
         }
     }
 }

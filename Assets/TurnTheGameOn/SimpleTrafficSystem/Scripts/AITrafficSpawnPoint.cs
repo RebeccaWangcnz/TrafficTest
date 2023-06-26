@@ -39,7 +39,7 @@
                     }
 
                     AITrafficController.Instance.RegisterSpawnPoint(this);
-                }                   
+                }
                 else
                 {
                     while (AIPeopleController.Instance == null)
@@ -47,7 +47,7 @@
                         yield return new WaitForEndOfFrame();
                     }
                     AIPeopleController.Instance.RegisterSpawnPoint(this);
-                }                  
+                }
                 isRegistered = true;
             }
         }

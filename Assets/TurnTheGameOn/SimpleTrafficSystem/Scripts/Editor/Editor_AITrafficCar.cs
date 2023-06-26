@@ -17,7 +17,7 @@
             EditorGUIUtility.wideMode = true;
 
             EditorGUILayout.BeginVertical("Box");
-            tab = GUILayout.Toolbar(tab, new string[] { "Settings", "References" });
+            tab = GUILayout.Toolbar(tab, new string[] { "Settings", "References", "TurnLight" });
             EditorGUILayout.EndVertical();
 
             //EditorGUILayout.Space();
@@ -41,6 +41,12 @@
                     SerializedProperty accelerationPower = serializedObject.FindProperty("accelerationPower");
                     EditorGUI.BeginChangeCheck();
                     EditorGUILayout.PropertyField(accelerationPower, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
+                    SerializedProperty brakePower = serializedObject.FindProperty("brakePower");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(brakePower, true);
                     if (EditorGUI.EndChangeCheck())
                         serializedObject.ApplyModifiedProperties();
 
@@ -157,6 +163,39 @@
                     {
                         AlignWheelColliders();
                     }
+                    EditorGUILayout.EndVertical();
+                    break;
+                case 2:
+                    EditorGUILayout.BeginVertical("Box");
+                    SerializedProperty turnlight = serializedObject.FindProperty("turnlight");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(turnlight, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.BeginVertical("Box");
+                    SerializedProperty leftturnlight = serializedObject.FindProperty("leftturnlight");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(leftturnlight, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.BeginVertical("Box");
+                    SerializedProperty rightturnlight = serializedObject.FindProperty("rightturnlight");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(rightturnlight, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.BeginVertical("Box");
+                    SerializedProperty lightmaterial = serializedObject.FindProperty("lightmaterial");
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(lightmaterial, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
                     EditorGUILayout.EndVertical();
                     break;
             }

@@ -13,7 +13,7 @@
         private bool finalWaypoint; // used for gizmos
         private bool missingNewRoutePoint; // used for gizmos
         private bool hasNewRoutePoint; // used for gizmos
-        //Rebe:人行道用来判断是否可见或者是否被触发
+         //Rebe:人行道用来判断是否可见或者是否被触发
         public bool isTrigger { get; private set; }
         public bool isVisible { get; private set; }
 
@@ -28,26 +28,28 @@
             {
                 onReachWaypointSettings.waypoint = this;
             }
-            //Rebe:如果是人行道
-            //if(onReachWaypointSettings.parentRoute.isPeopleRoute)
-            //{
-            //   // AIPeopleController.Instance.Add_PeopleSpawnPoint(this);
-            //}
         }
 
         void OnTriggerEnter(Collider col)
         {
+            //Debug.Log(col.transform.InverseTransformPoint(transform.position).z,col.gameObject);
+            if (col.transform.InverseTransformPoint(transform.position).z < -0.5f)
+                return;
+            //if (col.GetComponent<AITrafficCar>())
+            //{
+            //    Debug.Log(col.GetComponent<AITrafficCar>().assignedIndex, gameObject);
+            //}
             isTrigger = true;//Rebe:被触发
             col.transform.SendMessage("OnReachedWaypoint", onReachWaypointSettings, SendMessageOptions.DontRequireReceiver);
             if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)
             {
                 if (onReachWaypointSettings.newRoutePoints.Length == 0)
                 {
-                    col.transform.root.SendMessage("StopDriving", SendMessageOptions.DontRequireReceiver);
+                    col.transform.root.SendMessage("StopDriving", SendMessageOptions.DontRequireReceiver);//transform.root：返回最顶层父物体的transform
                 }
             }
-        }
-        //Rebe:被触发
+        }//碰到路径点之后发送监听信号（调用非返回的函数）
+         //Rebe:被触发
         private void OnTriggerStay(Collider other)
         {
             isTrigger = true;
@@ -80,7 +82,6 @@
 #endif
             isVisible = true;
         }
-
         public void TriggerNextWaypoint(AITrafficCar _AITrafficCar)
         {
             _AITrafficCar.OnReachedWaypoint(onReachWaypointSettings);
@@ -91,9 +92,9 @@
                     _AITrafficCar.StopDriving();
                 }
             }
-        }
+        }//触发这一个waypoint内命令（OnReachWaypoint），如果最后一个，停
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmos()//Gizmos是场景里画标识
         {
             if (STSPrefs.waypointGizmos)
             {

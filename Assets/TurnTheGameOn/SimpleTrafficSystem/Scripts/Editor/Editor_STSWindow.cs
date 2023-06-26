@@ -39,7 +39,8 @@
         bool requireRepaint;
         bool showSpawnButtons = true;
         bool showImportButtons = false;
-        bool showMyButtons = true;
+        bool showMyButtons = true;//Rebe
+        bool ishidden=false;//Rebe
         bool showImportDemosButtons = false;
         public AITrafficWaypointRoute[] _routes;
         // Signal Connector
@@ -175,7 +176,6 @@
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnAITrafficController");
                 }
-                //Rebe：添加行人controller
                 if (GUILayout.Button("AI People Controller"))
                 {
                     GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AIPeopleController);
@@ -247,7 +247,7 @@
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.BeginVertical("Box");
-            showMyButtons = EditorGUI.Foldout(EditorGUILayout.GetControlRect(), showMyButtons, "   My", true);
+            showMyButtons = EditorGUI.Foldout(EditorGUILayout.GetControlRect(), showMyButtons, "   Some Useful Tools", true);
             if (showMyButtons)
             {
                 if (GUILayout.Button("HideSpawnPoint"))
@@ -255,8 +255,9 @@
                     var _spawnPoints = FindObjectsOfType<AITrafficSpawnPoint>();
                     foreach (var spawnpoint in _spawnPoints)
                     {
-                        spawnpoint.GetComponent<MeshRenderer>().enabled = !spawnpoint.GetComponent<MeshRenderer>().enabled;
+                        spawnpoint.GetComponent<MeshRenderer>().enabled = ishidden;                        
                     }
+                    ishidden = !ishidden;
                 }
             }
             EditorGUILayout.EndVertical();

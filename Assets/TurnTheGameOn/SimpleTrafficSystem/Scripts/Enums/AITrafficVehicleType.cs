@@ -2,6 +2,7 @@
 {
     public enum AITrafficVehicleType
     {
-        Default
+        Default,
+        BigVehicle
     }
 }

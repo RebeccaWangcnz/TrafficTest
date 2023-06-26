@@ -11,7 +11,7 @@
         public float cullDistance;
         public float actizeZone;
         public float spawnZone;
-        public float3 playerPosition;//centerposition
+        public float3 playerPosition;
         public NativeArray<bool> canProcessNA;
         public NativeArray<bool> withinLimitNA;
         public NativeArray<bool> isVisibleNA;
@@ -27,8 +27,8 @@
                 if (isDisabledNA[index] == false)
                 {
                     distanceToPlayerNA[index] = math.distance(carTransformAccessArray.position, playerPosition);
-                    withinLimitNA[index] = distanceToPlayerNA[index] < cullDistance;//是否在开灯范围内
-                    outOfBoundsNA[index] = distanceToPlayerNA[index] > spawnZone;//是否在生成范围外
+                    withinLimitNA[index] = distanceToPlayerNA[index] < cullDistance;
+                    outOfBoundsNA[index] = distanceToPlayerNA[index] > spawnZone;
 
                     if (isVisibleNA[index] || withinLimitNA[index])
                     {
@@ -42,4 +42,4 @@
             }
         }
     }
-}
+}//使用pool情况下检测车在pool中的哪个区域并执行动作

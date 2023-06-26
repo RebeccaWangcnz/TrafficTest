@@ -21,12 +21,8 @@
 
         public void EnableRedLight()
         {
-            if (waypointRoute)
-            {
-                waypointRoute.StopForTrafficlight(true);//控制车的停止和移动
-               
-            }
-            if(crossWaypointRoute) crossWaypointRoute.RunForTrafficlight(true);//Rebe：设置需要跑起来
+            if (waypointRoute) waypointRoute.StopForTrafficlight(true);
+            if (crossWaypointRoute) crossWaypointRoute.RunForTrafficlight(true);//Rebe：设置需要跑起来
             for (int i = 0; i < waypointRoutes.Count; i++)
             {
                 waypointRoutes[i].StopForTrafficlight(true);
@@ -38,10 +34,7 @@
 
         public void EnableYellowLight()
         {
-            if (waypointRoute)
-            {
-                waypointRoute.StopForTrafficlight(true);
-            }
+            if (waypointRoute) waypointRoute.StopForTrafficlight(true);
             if (crossWaypointRoute) crossWaypointRoute.RunForTrafficlight(true);//Rebe：设置需要跑起来
             for (int i = 0; i < waypointRoutes.Count; i++)
             {
@@ -54,10 +47,7 @@
 
         public void EnableGreenLight()
         {
-            if (waypointRoute)
-            {
-                waypointRoute.StopForTrafficlight(false);
-            }
+            if (waypointRoute) waypointRoute.StopForTrafficlight(false);
             if (crossWaypointRoute) crossWaypointRoute.RunForTrafficlight(false);//Rebe：设置需要跑起来
             for (int i = 0; i < waypointRoutes.Count; i++)
             {
