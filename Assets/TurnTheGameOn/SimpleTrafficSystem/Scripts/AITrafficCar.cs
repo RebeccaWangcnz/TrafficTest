@@ -272,38 +272,38 @@
                     }
                     else if (onReachWaypointSettings.waypointIndexnumber == onReachWaypointSettings.parentRoute.waypointDataList.Count)//如果现在的点是最后一个点，有newpoint直接分配newpoint
                     {
-                        randomIndex = UnityEngine.Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
-                        if (randomIndex == onReachWaypointSettings.newRoutePoints.Length) randomIndex -= 1;
-                        AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
-                        AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
-                        AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);
-                        AITrafficController.Instance.Set_CurrentRoutePointIndexArray
-                            (
-                            assignedIndex,
-                            onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
-                            onReachWaypointSettings.newRoutePoints[randomIndex]
-                            );
-                        //if (AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[randomIndex].transform))//插入逻辑：如果newPoint满足侧向检验，换道
-                        //{
-                        //    AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
-                        //    AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
-                        //    AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);
-                        //    AITrafficController.Instance.Set_CurrentRoutePointIndexArray
-                        //        (
-                        //        assignedIndex,
-                        //        onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
-                        //        onReachWaypointSettings.newRoutePoints[randomIndex]
-                        //        );
-                        //    if (onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute != onReachWaypointSettings.parentRoute)
-                        //    {
-                        //        turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.newRoutePoints[randomIndex].transform);
-                        //    }//外加的转向灯控制逻辑：如果newpoint不在本来的路线上（即要变道/并线了），获取下个点方向，打开该侧转向灯
-                        //}
-                        //else
-                        //{
-                        //    StopDriving();
-                        //    StartCoroutine(ResumeDrivingTimer(2f));
-                        //}
+                        //randomIndex = UnityEngine.Random.Range(0, onReachWaypointSettings.newRoutePoints.Length);
+                        //if (randomIndex == onReachWaypointSettings.newRoutePoints.Length) randomIndex -= 1;
+                        //AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
+                        //AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
+                        //AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);
+                        //AITrafficController.Instance.Set_CurrentRoutePointIndexArray
+                        //    (
+                        //    assignedIndex,
+                        //    onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
+                        //    onReachWaypointSettings.newRoutePoints[randomIndex]
+                        //    );
+                        if (AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[randomIndex].transform))//插入逻辑：如果newPoint满足侧向检验，换道
+                        {
+                            AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
+                            AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
+                            AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);
+                            AITrafficController.Instance.Set_CurrentRoutePointIndexArray
+                                (
+                                assignedIndex,
+                                onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
+                                onReachWaypointSettings.newRoutePoints[randomIndex]
+                                );
+                            if (onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute != onReachWaypointSettings.parentRoute)
+                            {
+                                turnlight.isturning = AITrafficController.Instance.GetPossibleDirection(this.frontSensorTransform, onReachWaypointSettings.newRoutePoints[randomIndex].transform);
+                            }//外加的转向灯控制逻辑：如果newpoint不在本来的路线上（即要变道/并线了），获取下个点方向，打开该侧转向灯
+                        }
+                        else
+                        {
+                            StopDriving();
+                            StartCoroutine(ResumeDrivingTimer(2f));
+                        }
                     }
                     else
                     {

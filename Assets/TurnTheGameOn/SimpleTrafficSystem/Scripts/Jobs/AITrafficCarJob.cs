@@ -68,8 +68,7 @@
                 {
                     //distanceToEndPointNA[index] = Vector3.Distance(frontSensorTransformPositionNA[index], routePointPositionNA[index]);
                     distanceToEndPointNA[index] = Vector3.Distance(frontSensorTransformPositionNA[index], finalRoutePointPositionNA[index]);
-                    //if (overrideInputNA[index])
-                    //{
+
                     overrideInputNA[index] = true;
                     overrideBrakePowerNA[index] = 1f;
                     overrideAccelerationPowerNA[index] = 0f;

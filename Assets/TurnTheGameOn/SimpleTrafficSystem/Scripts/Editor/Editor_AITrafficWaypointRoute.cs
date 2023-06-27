@@ -183,9 +183,9 @@
                     if (GUILayout.Button(new GUIContent("AddWaypointDataList", "把层级面板中Waypoint物体导入脚本中")))
                     {
                         circuit.AddWaypointDataList();
-                        EditorUtility.SetDirty(this);
-                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-                        EditorUtility.ClearProgressBar();
+                        EditorUtility.SetDirty(this);//将指定的对象标记为已修改，确保场景保存时，对该对象所做的更改被保存
+                        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());//将当前活动场景标记为已修改，确保场景保存时，对场景的更改被保存。
+                        EditorUtility.ClearProgressBar();//清除进度条
                     }
                     EditorGUILayout.EndVertical();
                     break;

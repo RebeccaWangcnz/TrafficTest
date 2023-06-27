@@ -13,6 +13,7 @@
         private bool finalWaypoint; // used for gizmos
         private bool missingNewRoutePoint; // used for gizmos
         private bool hasNewRoutePoint; // used for gizmos
+
          //Rebe:人行道用来判断是否可见或者是否被触发
         public bool isTrigger { get; private set; }
         public bool isVisible { get; private set; }

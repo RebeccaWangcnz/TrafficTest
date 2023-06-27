@@ -1117,14 +1117,7 @@
                             }
                             if (needHardBrakeNL[i])
                             {
-                                rigidbodyList[i].drag = speedNL[i]*hardBrakePower;//急刹车
-                               // hardBrakeTimerNL[i] += Time.deltaTime;
-                                //if (hardBrakeTimerNL[i] > 1.0f)
-                                //{
-                                //    needHardBrakeNL[i] = false;
-                                //    hardBrakeTimerNL[i] = 0f;
-                                //}
-                                    
+                                rigidbodyList[i].drag = speedNL[i]*hardBrakePower;//Rebe0627:急刹车                                    
                             }
                             else if (!frontHitNL[i] & speedNL[i] > targetSpeedNL[i])//超速
                             {
@@ -1133,7 +1126,7 @@
                             else
                             {
                                 motorTorqueNL[i] = 0;
-                                dragToAdd = Mathf.InverseLerp(5, 0, distanceToEndPointNL[i]);
+                                dragToAdd = Mathf.InverseLerp(5, 0, distanceToEndPointNL[i]/frontSensorLengthNL[i]);//Rebe0627:保证Lerp的Value在0-1之间
                                 rigidbodyList[i].drag = 0.04f + dragToAdd;
                                 rigidbodyList[i].angularDrag = dragToAdd;
                             }

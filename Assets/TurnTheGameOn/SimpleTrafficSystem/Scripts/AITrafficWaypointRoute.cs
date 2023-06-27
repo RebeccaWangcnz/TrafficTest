@@ -59,6 +59,7 @@
         public Vector3 ControlPoint1;
         [Tooltip("圆曲线控制点2")]
         public Vector3 ControlPoint2;
+
         [ContextMenu("SetMaxToChildSpawnPointCount")]
         public void SetMaxToChildSpawnPointCount()
         {
