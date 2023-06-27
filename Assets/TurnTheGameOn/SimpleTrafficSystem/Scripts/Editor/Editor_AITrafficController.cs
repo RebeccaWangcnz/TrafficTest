@@ -145,7 +145,7 @@
                     if (EditorGUI.EndChangeCheck())
                         serializedObject.ApplyModifiedProperties();
 
-                    SerializedProperty hardBrakePower = serializedObject.FindProperty("hardBrakePower");
+                    SerializedProperty hardBrakePower = serializedObject.FindProperty("hardBrakePower");//Rebe0627：显示在面板上
                     EditorGUI.BeginChangeCheck();
                     EditorGUILayout.PropertyField(hardBrakePower, true);
                     if (EditorGUI.EndChangeCheck())

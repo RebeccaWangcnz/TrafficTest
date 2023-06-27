@@ -283,8 +283,8 @@
                         //    onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1,
                         //    onReachWaypointSettings.newRoutePoints[randomIndex]
                         //    );
-                        if (AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[randomIndex].transform))//插入逻辑：如果newPoint满足侧向检验，换道
-                        {
+                        if (onReachWaypointSettings.parentRoute.isCrossRoad|| AITrafficController.Instance.EnabledNewPoint(this.gameObject, onReachWaypointSettings.newRoutePoints[randomIndex].transform))//插入逻辑：如果newPoint满足侧向检验，换道
+                        {//Rebe0627:添加了一个判断条件，区别路口和并道
                             AITrafficController.Instance.Set_WaypointRoute(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute);
                             AITrafficController.Instance.Set_RouteInfo(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.parentRoute.routeInfo);
                             AITrafficController.Instance.Set_RouteProgressArray(assignedIndex, onReachWaypointSettings.newRoutePoints[randomIndex].onReachWaypointSettings.waypointIndexnumber - 1);

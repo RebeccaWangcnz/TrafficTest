@@ -35,7 +35,7 @@
         [Tooltip("Front detection sensor distance at which a car will start braking.")]
         public float stopThreshold = 5f;//前方障碍物识别减速区域
         [Tooltip("急刹车时给rigid施加的drag力")]
-        public float hardBrakePower;
+        public float hardBrakePower;//Rebe0627：急刹车力
 
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;//在监视器里有图层的多选选单
@@ -435,7 +435,7 @@
             outOfBoundsNL.Add(false);
             lightIsActiveNL.Add(false);
             canProcessNL.Add(true);
-            needHardBrakeNL.Add(false);
+            needHardBrakeNL.Add(false);//Rebe0627
             driveTargetTAA = new TransformAccessArray(carCount);
             carTAA = new TransformAccessArray(carCount);
             frontRightWheelTAA = new TransformAccessArray(carCount);
@@ -533,7 +533,7 @@
         private NativeList<bool> frontHitNL;
         private NativeList<bool> leftHitNL;
         private NativeList<bool> rightHitNL;
-        private NativeList<bool> needHardBrakeNL;
+        private NativeList<bool> needHardBrakeNL;//Rebe0627
         private NativeList<bool> yieldForCrossTrafficNL;
         private NativeList<bool> stopForTrafficLightNL;
         private NativeList<bool> routeIsActiveNL;
@@ -740,7 +740,7 @@
                 outOfBoundsNL = new NativeList<bool>(Allocator.Persistent);
                 lightIsActiveNL = new NativeList<bool>(Allocator.Persistent);
                 frontspeedNL = new NativeList<float>(Allocator.Persistent);
-                needHardBrakeNL = new NativeList<bool>(Allocator.Persistent);
+                needHardBrakeNL = new NativeList<bool>(Allocator.Persistent);//Rebe0627
             }
             else
             {
@@ -890,8 +890,7 @@
                     accelerationPowerNA = accelerationPowerNL,
                     brakePowerNA = brakePowerNL,
                     frontSensorTransformPositionNA = frontSensorTransformPositionNL,
-                    needHardBrakeNA = needHardBrakeNL,
-                    frontspeedNA = frontspeedNL,
+                    needHardBrakeNA = needHardBrakeNL,//Rebe0627
                 };
                 jobHandle = carAITrafficJob.Schedule(driveTargetTAA);
                 jobHandle.Complete();
@@ -1392,7 +1391,7 @@
                 lightIsActiveNL.Dispose();
                 canProcessNL.Dispose();
                 frontspeedNL.Dispose();
-                needHardBrakeNL.Dispose();
+                needHardBrakeNL.Dispose();//Rebe0627
             }
             driveTargetTAA.Dispose();
             carTAA.Dispose();

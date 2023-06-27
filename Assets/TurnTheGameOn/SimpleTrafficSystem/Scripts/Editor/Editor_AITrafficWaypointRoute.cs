@@ -50,6 +50,12 @@
                     if (EditorGUI.EndChangeCheck())//完成值变化
                         serializedObject.ApplyModifiedProperties();//保存
 
+                    SerializedProperty isCrossRoad = serializedObject.FindProperty("isCrossRoad");//Rebe0627
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(isCrossRoad, true);
+                    if (EditorGUI.EndChangeCheck())
+                        serializedObject.ApplyModifiedProperties();
+
                     SerializedProperty useSpawnPoints = serializedObject.FindProperty("useSpawnPoints");//序列化变量，以读写数值据
                     EditorGUI.BeginChangeCheck();//值变化
                     EditorGUILayout.PropertyField(useSpawnPoints, true);//序列化变量“声明”

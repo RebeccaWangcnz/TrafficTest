@@ -34,7 +34,7 @@
         void OnTriggerEnter(Collider col)
         {
             //Debug.Log(col.transform.InverseTransformPoint(transform.position).z,col.gameObject);
-            if (col.transform.InverseTransformPoint(transform.position).z < -0.5f)
+            if (col.transform.InverseTransformPoint(transform.position).z < -0.5f)//Rebe0627：点在车后方不碰撞
                 return;
             //if (col.GetComponent<AITrafficCar>())
             //{

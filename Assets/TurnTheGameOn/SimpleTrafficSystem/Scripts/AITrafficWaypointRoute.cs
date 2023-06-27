@@ -13,7 +13,10 @@
     [HelpURL("https://simpletrafficsystem.turnthegameon.com/documentation/api/aitrafficwaypointroute")]
     public class AITrafficWaypointRoute : MonoBehaviour
     {
+        [Tooltip("是否是人行路")]
         public bool isPeopleRoute;//Rebe:标识一下是否是人行路
+        [Tooltip("为了区别并道和路口的换路逻辑，如果该处于路口位置需要勾选")]
+        public bool isCrossRoad = true;//Rebe0627:为了区别并道和路口的换路逻辑，如果该处于路口位置需要勾选
         public bool isRegistered { get; private set; }
         [Tooltip("Array of vehicles types that are allowed to spawn and merge onto this route.")]
         public AITrafficVehicleType[] vehicleTypes = new AITrafficVehicleType[1];
