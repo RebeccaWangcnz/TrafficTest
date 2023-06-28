@@ -3,10 +3,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.AI;
     //Rebe：该类主要用于控制行人的行为逻辑
+    [RequireComponent(typeof(NavMeshAgent))]
     public class AIPeople : MonoBehaviour
     {
-        public AITrafficWaypoint nextPoint;
         public int assignedIndex { get; private set; }
         //[Tooltip("person's move speed")]
         //public float moveSpeed;
@@ -27,13 +28,14 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public float footSensorLength;
 
         [Header("Base Info")]
-        [Tooltip("PlayerHead")]
+        [Tooltip("PlayerHead,需要给模型的脖子关节加一个空的父节点")]
         public Transform playerHead;
         [Tooltip("tick when this is a riding model")]
         public bool isRiding;
 
         [Header("use for test")]
         public Transform car;
+        public AITrafficWaypoint nextPoint;
 
         private bool isFrontHit;
         private bool isFootHit;

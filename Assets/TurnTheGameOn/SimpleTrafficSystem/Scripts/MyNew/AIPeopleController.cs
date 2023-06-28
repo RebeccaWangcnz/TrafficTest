@@ -14,13 +14,15 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public static AIPeopleController Instance;
         #region Params
         private bool isInitialized;
-        [Header("Speed")]
+        [Tooltip("the speed for people running")]
         public float runningSpeed;
+        [Tooltip("the walking speed range for people")]
         public Vector2 walkingSpeedRange;
-        public float accelerateSpeed;
+        [Tooltip("the riding speed range for bycicle")]
         public Vector2 ridingSpeedRange;
+        [Tooltip("the fastest riding speed range for bycicle")]
         public float fastestRidingSpeed;
-        [Header("Ray Detect")]
+
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;
         [Tooltip("Physics layers the foot detection sensors can detect.")]
@@ -29,11 +31,8 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public bool useLaneChanging;
         [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
         public float changeLaneCooldown = 20f;
-        [Tooltip("car width")]
-        public float carWidth = 1.5f;
 
         //pool :this params is related to AITrafficController
-        [Header("Pool")]
         [Tooltip("Array of AITrafficCar prefabs to spawn.")]
         public AIPeople[] peoplePrefabs;
         [Tooltip("Max amount of people the pooling system is allowed to spawn, must be equal or lower than people in pool.")]
@@ -45,9 +44,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         [Tooltip("Frequency at which pooling spawn is performed.")]
         public float spawnRate = 2;
 
-        [Header("Emergencies")]
         [Tooltip("waiting time before walk back when stop for the car horn")]
         public float waitingTime;
+
         private float3 centerPosition;
         private float spawnZone;
         private bool usePool;

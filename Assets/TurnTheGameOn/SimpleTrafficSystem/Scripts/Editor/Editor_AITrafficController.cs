@@ -35,11 +35,11 @@
         private static Vector3 carPosition;
         private static Vector3 carTargetPosition;
 
-        static void CustomOnSceneGUI(SceneView sceneview)
+        static void CustomOnSceneGUI(SceneView sceneview)//当场景视图发生改变，该方法会被调用
         {
-            if (Application.isPlaying)
+            if (Application.isPlaying)//检查是否在游戏运行状态
             {
-                if (STSPrefs.sensorGizmos)
+                if (STSPrefs.sensorGizmos)//检查sensorGizmo是否为true
                 {
                     for (int i = 0; i < AITrafficController.Instance.carCount; i++)
                     {
