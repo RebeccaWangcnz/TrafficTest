@@ -107,7 +107,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     if (EditorGUI.EndChangeCheck())
                         serializedObject.ApplyModifiedProperties();
 
-                    SerializedProperty waitingTime = serializedObject.FindProperty("ridingSpeedRange");
+                    SerializedProperty waitingTime = serializedObject.FindProperty("waitingTime");
                     EditorGUI.BeginChangeCheck();
                     EditorGUILayout.PropertyField(waitingTime, true);
                     if (EditorGUI.EndChangeCheck())

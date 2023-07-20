@@ -20,6 +20,7 @@
             if (yieldTrigger != null)
             {
                 hitColliders = Physics.OverlapBox(yieldTrigger.transform.position, yieldTrigger.size / 2, Quaternion.identity, AITrafficController.Instance.layerMask);
+                //Debug.Log(hitColliders.Length);
                 yieldForTrafficLight = hitColliders.Length > 0 ? true : false;
             }
         }

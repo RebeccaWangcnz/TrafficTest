@@ -7,7 +7,7 @@
         public int assignedIndex;
         public AITrafficCar trafficPrefab;
     }
-    [System.Serializable]
+    [System.Serializable]//Rebe
     public struct AIPeoplePoolEntry
     {
         public string name;

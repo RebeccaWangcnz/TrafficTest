@@ -379,8 +379,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                 }
                                 else
                                 {
+                                    peopleList[i].playerHead.LookAt(new Vector3( peopleList[i].frontSensorTransform.position.x, peopleList[i].playerHead.position.y, peopleList[i].frontSensorTransform.position.z));
                                     //…Ë÷√∂„±‹∑ΩœÚ
-                                   if(runDirectionNL[i]==1)
+                                   if (runDirectionNL[i]==1)
                                    {
                                         agents[i].speed = peopleList[i].maxSpeed;
                                     }

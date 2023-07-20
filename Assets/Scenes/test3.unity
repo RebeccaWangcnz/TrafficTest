@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 0
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -1603,6 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 1
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -2047,6 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 0
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -2121,7 +2124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &356291630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2151,6 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 1
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -2586,6 +2590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 0
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -6675,6 +6680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 1
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -6958,6 +6964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 1
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -7286,6 +7293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPeopleRoute: 1
+  isCrossRoad: 1
   vehicleTypes: 00000000
   waypointDataList:
   - _name: AITrafficWaypoint 1
@@ -11072,7 +11080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1808358731
 Transform:
   m_ObjectHideFlags: 0
@@ -11451,7 +11459,7 @@ MonoBehaviour:
   setCarParent: 1
   carParent: {fileID: 1864469886}
   showPoolingWarning: 1
-  usePooling: 0
+  usePooling: 1
   centerPoint: {fileID: 381498596}
   useRouteLimit: 0
   carsInPool: 1
@@ -11734,7 +11742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runningSpeed: 2.5
   walkingSpeedRange: {x: 1, y: 1.6}
-  accelerateSpeed: 25
   ridingSpeedRange: {x: 2.2, y: 3}
   fastestRidingSpeed: 5
   layerMask:
@@ -11745,9 +11752,8 @@ MonoBehaviour:
     m_Bits: 1024
   useLaneChanging: 1
   changeLaneCooldown: 20
-  carWidth: 2
   peoplePrefabs:
-  - {fileID: 1904870365764307486, guid: fa90b10d7c8dd6c40894d9130b1951d3, type: 3}
+  - {fileID: 2917300542684798692, guid: e3aa1ac4b5f1b044d88d9fbae12ada21, type: 3}
   density: 1
   peopleInPool: 1
   disabledPosition: {x: 0, y: -2000, z: 0}
