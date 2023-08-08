@@ -5,7 +5,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     using Unity.Burst;
     using UnityEngine.Jobs;
     using UnityEngine;
-
+    /// <summary>
+    /// ”√”⁄poolµƒæ‡¿Î≈–∂œ
+    /// </summary>
     [BurstCompile]
     public struct AIPeopleDistanceJob : IJobParallelForTransform
     {

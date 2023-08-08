@@ -19,7 +19,6 @@
         public GameObject _TrafficLight_1;
         public GameObject _TrafficLight_2;
         public GameObject _TrafficLight_3;
-        //Rebe:给行人添加一个路线工具
-        public GameObject _AIPeopleWaypointRoute;
+        public GameObject _AIPeopleWaypointRoute; //Rebe:给行人添加一个路线工具预制体
     }
 }

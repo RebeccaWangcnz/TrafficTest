@@ -533,7 +533,7 @@
         private NativeList<bool> frontHitNL;
         private NativeList<bool> leftHitNL;
         private NativeList<bool> rightHitNL;
-        private NativeList<bool> needHardBrakeNL;//Rebe0627
+        private NativeList<bool> needHardBrakeNL;//Rebe0627：是否需要急刹车判断
         private NativeList<bool> yieldForCrossTrafficNL;
         private NativeList<bool> stopForTrafficLightNL;
         private NativeList<bool> routeIsActiveNL;

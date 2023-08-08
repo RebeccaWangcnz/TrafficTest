@@ -40,7 +40,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
                     #region Detection Sensors
                     EditorGUILayout.BeginVertical("Box");
-                    EditorGUILayout.LabelField("Detection Sensors", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("Detection Sensors", EditorStyles.boldLabel);
 
                     SerializedProperty layerMask = serializedObject.FindProperty("layerMask");
                     EditorGUI.BeginChangeCheck();
@@ -60,7 +60,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
                     #region Lane Change
                     EditorGUILayout.BeginVertical("Box");
-                    EditorGUILayout.LabelField("Lane Change", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("Lane Change", EditorStyles.boldLabel);
 
                     SerializedProperty useLaneChanging = serializedObject.FindProperty("useLaneChanging");
                     EditorGUI.BeginChangeCheck();
@@ -81,7 +81,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
 
                     #region People Settings
                     EditorGUILayout.BeginVertical("Box");
-                    EditorGUILayout.LabelField("Lane Change", EditorStyles.miniLabel);
+                    EditorGUILayout.LabelField("People Settings", EditorStyles.boldLabel);
 
                     SerializedProperty runningSpeed = serializedObject.FindProperty("runningSpeed");
                     EditorGUI.BeginChangeCheck();

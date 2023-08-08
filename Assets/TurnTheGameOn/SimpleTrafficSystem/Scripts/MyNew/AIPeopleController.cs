@@ -11,9 +11,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     //与AITrafficController类似用于控制行人
     public class AIPeopleController : MonoBehaviour
     {
-        public static AIPeopleController Instance;
+        public static AIPeopleController Instance;//实例化，方便获取
         #region Params
-        private bool isInitialized;
+        private bool isInitialized;//是否被初始化
+
+        #region 速度设置
         [Tooltip("the speed for people running")]
         public float runningSpeed;
         [Tooltip("the walking speed range for people")]
@@ -22,11 +24,16 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public Vector2 ridingSpeedRange;
         [Tooltip("the fastest riding speed range for bycicle")]
         public float fastestRidingSpeed;
+        #endregion
 
+        #region 射线检测层级
         [Tooltip("Physics layers the detection sensors can detect.")]
         public LayerMask layerMask;
         [Tooltip("Physics layers the foot detection sensors can detect.")]
         public LayerMask footLayerMask;
+        #endregion
+
+        #region 行人路线设置
         [Tooltip("Enables the processing of Lane Changing logic.")]
         public bool useLaneChanging;
         [Tooltip("Minimum time required after changing lanes before allowed to change lanes again.")]
@@ -43,49 +50,64 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public Vector3 disabledPosition = new Vector3(0, -2000, 0);
         [Tooltip("Frequency at which pooling spawn is performed.")]
         public float spawnRate = 2;
-
         [Tooltip("waiting time before walk back when stop for the car horn")]
-        public float waitingTime;
+        public float waitingTime;//用于汽车鸣笛特殊事件
 
-        private float3 centerPosition;
-        private float spawnZone;
-        private bool usePool;
-        private AIPeopleDistanceJob _AIPeopleDistanceJob;
-        private float spawnTimer;
-        private int randomSpawnPointIndex;
-        private Vector3 spawnPosition;
-        private Vector3 spawnOffset = new Vector3(0, -4, 0);
+        public int peopleCount { get; private set; }//行人数量
+        public int currentDensity { get; private set; }//当前密度
+        #endregion
 
-        public int peopleCount { get; private set; }
-        public int currentDensity { get; private set; }
-        private List<AIPeople> peopleList = new List<AIPeople>();
-        private List<AITrafficWaypointRoute> peopleRouteList = new List<AITrafficWaypointRoute>();
-        private List<Rigidbody> rigidbodyList = new List<Rigidbody>();
-        private List<NavMeshAgent> agents = new List<NavMeshAgent>();
-        private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();
-        private List<float> changeLaneCooldownTimer = new List<float>();
-        private List<float> stopForHornCooldownTimer = new List<float>();
-        private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();
-        private List<Vector3> targetsList = new List<Vector3>();
+        #region 私有变量
+        //job
+        private AIPeopleDistanceJob _AIPeopleDistanceJob;//Job
         private AIPeopleJob peopleAITrafficJob;
         private JobHandle jobHandle;
+        private AIPeoplePoolEntry newPeoplePoolEntry = new AIPeoplePoolEntry();
+        //spawn
+        private float3 centerPosition;//交通流中心点，与AITrafficController一致
+        private float spawnZone;//生成区域
+        private bool usePool;//是否使用pool，与AITraffciController一致
+        private float spawnTimer;//生成倒计时
+        private int randomSpawnPointIndex;//随机生成点Index
+        private Vector3 spawnPosition;//生成位置
+        private Vector3 spawnOffset = new Vector3(0, -4, 0);//生成偏移，一般就是半个人高
+        private float distanceToSpawnPoint;
+        private int currentAmountToSpawn;//待生成数量
+        private AIPeople spawnpeople;//生成人
+        private AIPeople loadPeople;
+        //List
+        private List<AIPeople> peopleList = new List<AIPeople>();//行人AIPeople列表
+        private List<AITrafficWaypointRoute> peopleRouteList = new List<AITrafficWaypointRoute>();//行人路线列表
+        private List<Rigidbody> rigidbodyList = new List<Rigidbody>();//刚体列表
+        private List<NavMeshAgent> agents = new List<NavMeshAgent>();//AI agent列表
+        private List<AITrafficWaypointRouteInfo> peopleAIWaypointRouteInfo = new List<AITrafficWaypointRouteInfo>();//路线info列表
+        private List<float> changeLaneCooldownTimer = new List<float>();//换道冷却倒计时
+        private List<float> stopForHornCooldownTimer = new List<float>();//鸣笛停止倒计时
+        private List<AITrafficWaypoint> currentWaypointList = new List<AITrafficWaypoint>();//当前路线点列表
+        private List<Vector3> targetsList = new List<Vector3>();//目标点列表
+        private List<bool> runForTrafficLightNL = new List<bool>();//是否需要根据信号灯跑步，这个变量主要是用来控制行人在路中央信号灯变红或者变黄加速通过
+        private List<AITrafficSpawnPoint> peopleSpawnPoint = new List<AITrafficSpawnPoint>();
+        private List<AITrafficSpawnPoint> availableSpawnPoints = new List<AITrafficSpawnPoint>();
+        private List<AIPeoplePoolEntry> peoplePool = new List<AIPeoplePoolEntry>();
+
+        #endregion
 
         #region NativeList
-        private NativeList<bool> isWalkingNL;
+        //以下list均是保存对应index的行人的路线信息
+        private NativeList<bool> isWalkingNL;//是否行走
 
-        private NativeList<int> waypointDataListCountNL;
-        private NativeList<float3> routePointPositionNL;
-        private NativeList<int> currentRoutePointIndexNL;
-        private NativeList<float3> finalRoutePointPositionNL;
-
+        private NativeList<int> waypointDataListCountNL;//路径上的路径点数量
+        private NativeList<float3> routePointPositionNL;//路径点位置
+        private NativeList<int> currentRoutePointIndexNL;//当前路径点索引
+        private NativeList<float3> finalRoutePointPositionNL;//路径最后一个路径点位置
         private NativeList<bool> stopForTrafficLightNL;//是否需要根据信号灯停车
-        private List<bool> runForTrafficLightNL=new List<bool>();//是否需要根据信号灯停车
+
         private NativeList<float> routeProgressNL;//道路进程
         private NativeList<bool> isFrontHitNL;//前方是否有障碍
         private NativeList<bool> isLeftHitNL;//前方是否有障碍
         private NativeList<bool> isRighttHitNL;//前方是否有障碍
-        private NativeList<bool> isLastPointNL;
-        private NativeList<bool> isFootHitNL;
+        private NativeList<bool> isLastPointNL;//是否是最后一个点
+        private NativeList<bool> isFootHitNL;//脚部是否检测到台阶
         //转向
         private NativeList<Quaternion> targetRotationNL;
         //变道
@@ -93,23 +115,15 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private NativeList<bool> isChangingLanesNL;
         private NativeList<bool> needChangeLanesNL;
         //pool
-        private NativeList<bool> isDisabledNL;
+        private NativeList<bool> isDisabledNL;//是否是未激活状态
         private NativeList<bool> isActiveNL;
-        private NativeList<bool> outOfBoundsNL;
-        private AIPeoplePoolEntry newPeoplePoolEntry = new AIPeoplePoolEntry();
-        private NativeList<float> distanceToPlayerNL;
-        private List<AIPeoplePoolEntry> peoplePool = new List<AIPeoplePoolEntry>();
-        private List<AITrafficSpawnPoint> peopleSpawnPoint = new List<AITrafficSpawnPoint>();
-        private List<AITrafficSpawnPoint> availableSpawnPoints = new List<AITrafficSpawnPoint>();
-        private float distanceToSpawnPoint;
-        private int currentAmountToSpawn;
-        private AIPeople spawnpeople;
-        private AIPeople loadPeople;
+        private NativeList<bool> outOfBoundsNL;//是否在边界外       
+        private NativeList<float> distanceToPlayerNL;//与player距离
         //特殊事件
-        private NativeList<bool> stopForHornNL;
-        private NativeList<int> runDirectionNL;
-        private NativeList<bool> crossRoadNL;
-        private Vector3 direction;
+        private NativeList<bool> stopForHornNL;//停止鸣笛
+        private NativeList<int> runDirectionNL;//避开方向
+        private NativeList<bool> crossRoadNL;//是否要强硬过马路
+        private Vector3 direction;//避开方向
         //ray cast
         private NativeArray<RaycastCommand> frontRaycastCommands;
         private NativeArray<RaycastHit> frontRaycastResults;
@@ -123,7 +137,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         private Vector3 gizmoOffset;
         private Matrix4x4 cubeTransform;
         private Matrix4x4 oldGizmosMatrix;
-
         //TAA
         private TransformAccessArray moveTargetTAA;
         private TransformAccessArray peopleTAA;
@@ -133,6 +146,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         #region Main Methods
         private void OnEnable()
         {
+            //初始化 分配空间
             if (Instance == null)
             {
                 Instance = this;
@@ -159,8 +173,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 crossRoadNL = new NativeList<bool>(Allocator.Persistent);
                 distanceToPlayerNL = new NativeList<float>(Allocator.Persistent);
                 runDirectionNL = new NativeList<int>(Allocator.Persistent);
-                //pool get value
-                //usePool = AITrafficController.Instance.usePooling;
             }
             else
             {
@@ -170,6 +182,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         }
         private void Start()
         {
+            //获取AITrafficController中pooling信息
             spawnZone = AITrafficController.Instance.spawnZone;
             usePool = AITrafficController.Instance.usePooling;
             if (usePool)
@@ -179,6 +192,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             else
                 StartCoroutine(Initialize());
         }
+        //不适用pooling时的初始化
         IEnumerator Initialize()
         {
             yield return new WaitForSeconds(1f);
@@ -190,27 +204,37 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             }
             isInitialized = true;
         }
+        //使用pooling时的初始化
         IEnumerator SpawnStartupTrafficCoroutine()
         {
             yield return new WaitForEndOfFrame();
             availableSpawnPoints.Clear();
             currentDensity = 0;
             currentAmountToSpawn = density - currentDensity;
-            for (int i = 0; i < peopleSpawnPoint.Count; i++) //获取所有的生成点
+
+            //获取所有的生成点
+            for (int i = 0; i < peopleSpawnPoint.Count; i++) 
             {
                 distanceToSpawnPoint = Vector3.Distance(centerPosition, peopleSpawnPoint[i].transformCached.position);//车辆生成位置与中心点位置的距离
-                if (peopleSpawnPoint[i].isTrigger == false)
+                if (peopleSpawnPoint[i].isTrigger == false)//当前点没有被占据
                 {
-                    availableSpawnPoints.Add(peopleSpawnPoint[i]);
+                    availableSpawnPoints.Add(peopleSpawnPoint[i]);//添加到可以生成的路径点列表中
                 }
             }
-            for (int i = 0; i < density; i++) // 生成行人
+
+            //生成行人
+            for (int i = 0; i < density; i++)
             {
                 for (int j = 0; j < peoplePrefabs.Length; j++)
                 {
-                    if (availableSpawnPoints.Count == 0 || currentAmountToSpawn == 0) break;
+                    if (availableSpawnPoints.Count == 0 || currentAmountToSpawn == 0) break;//不需要生成则结束循环
+
+                    //获取随机生成点index
                     randomSpawnPointIndex = UnityEngine.Random.Range(0, availableSpawnPoints.Count);
+                    //生成位置
                     spawnPosition = availableSpawnPoints[randomSpawnPointIndex].transformCached.position + spawnOffset;
+                    
+                    //生成
                     GameObject spawnedTrafficVehicle = Instantiate(peoplePrefabs[j].gameObject, spawnPosition, availableSpawnPoints[randomSpawnPointIndex].transformCached.rotation);
                     spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute);
                     spawnedTrafficVehicle.transform.LookAt(availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.waypointDataList[availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.waypointIndexnumber]._transform);
@@ -218,25 +242,30 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     currentAmountToSpawn -= 1;
                 }
             }
+
+            //生成pool里的行人
             for (int i = 0; i < peopleInPool; i++)
             {
+                //需求人数超过pool人数，不需要在pool中生成行人
                 if (peopleCount >= peopleInPool) break;
                 for (int j = 0; j < peoplePrefabs.Length; j++)
                 {
                     if (peopleCount >= peopleInPool) break;
                     GameObject spawnedTrafficVehicle = Instantiate(peoplePrefabs[j].gameObject, Vector3.zero, Quaternion.identity);
                     spawnedTrafficVehicle.GetComponent<AIPeople>().RegisterPerson(peopleRouteList[0]);
+                    //将生成的 行人移到pool中
                     MovePeopleToPool(spawnedTrafficVehicle.GetComponent<AIPeople>().assignedIndex);
                 }
             }
             for (int i = 0; i < peopleCount; i++)
             {
+                //设置当前位置和终点位置
                 routePointPositionNL[i] = peopleRouteList[i].waypointDataList[currentRoutePointIndexNL[i]]._transform.position;
                 finalRoutePointPositionNL[i] = peopleRouteList[i].waypointDataList[peopleRouteList[i].waypointDataList.Count - 1]._transform.position;
-                //peopleList[i].StartMoving();
             }
             for (int i = 0; i < peopleCount; i++)
             {
+                //设置父物体
                 peopleList[i].transform.SetParent(transform);
             }
             isInitialized = true;
@@ -249,18 +278,18 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 {
                     stopForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].stopForTrafficLight;
                     runForTrafficLightNL[i] = peopleAIWaypointRouteInfo[i].runForTrafficLight;
-                    //射线检测尝试
+                    //射线检测
                     frontRaycastCommands[i] = new RaycastCommand(peopleList[i].frontSensorTransform.position,peopleList[i].transform.forward, peopleList[i].frontSensorLength,layerMask);
                     leftBoxcastCommands[i] = new BoxcastCommand(peopleList[i].leftSensorTransform.position,peopleList[i].sideSensorSize, peopleList[i].transform.rotation,peopleList[i].transform.forward, peopleList[i].sideSensorLength, layerMask);
                     rightBoxcastCommands[i] = new BoxcastCommand(peopleList[i].rightSensorTransform.position,peopleList[i].sideSensorSize, peopleList[i].transform.rotation,peopleList[i].transform.forward, peopleList[i].sideSensorLength, layerMask);
                     footRaycastCommands[i] = new RaycastCommand(peopleList[i].footSensorTransform.position, peopleList[i].transform.forward, peopleList[i].footSensorLength, footLayerMask);
-                    //peopleList[i].animator.SetFloat("Speed", rigidbodyList[i].velocity.magnitude / runningSpeed);
+
+                    //设置速度和动画对应
                     peopleList[i].animator.SetFloat("speedWithoutBT",agents[i].velocity.magnitude);
-                    if(!peopleList[i].isRiding)
-                        agents[i].avoidancePriority = (int)(100*agents[i].speed/runningSpeed);//设置避让等级
-                    else
-                        agents[i].avoidancePriority = (int)(100 * agents[i].speed / fastestRidingSpeed);//设置避让等级
+                    //根据速度设置避让等级 0808改了一下优先级计算方法，行人和非机动车除数应该一样的
+                    agents[i].avoidancePriority = (int)(100*agents[i].speed/ fastestRidingSpeed);
                 }
+                //进行射线检测批处理
                 var handle = RaycastCommand.ScheduleBatch(frontRaycastCommands, frontRaycastResults, 1, default);
                 handle.Complete();
                 handle = BoxcastCommand.ScheduleBatch(leftBoxcastCommands, leftBoxcastResults, 1, default);
@@ -269,6 +298,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 handle.Complete();
                 handle = RaycastCommand.ScheduleBatch(footRaycastCommands, footRaycastResults, 1, default);
                 handle.Complete();
+                //根据碰撞结果设置布尔值
                 for (int i = 0; i < peopleCount; i++)
                 {
                     isRighttHitNL[i] = rightBoxcastResults[i].collider == null ? false : true;
@@ -278,31 +308,34 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         isFrontHitNL[i] = false;
                     }
                     else
-                    {                                               
-                        if (frontRaycastResults[i].collider.GetComponent<AIPeople>() && Vector3.Dot(frontRaycastResults[i].collider.transform.forward, peopleList[i].transform.forward) < 0)
+                    {
+                        AIPeople hitPeople = frontRaycastResults[i].collider.GetComponent<AIPeople>();
+                        AITrafficCar hitCar = frontRaycastResults[i].collider.GetComponent<AITrafficCar>();
+                        if (hitPeople && Vector3.Dot(hitPeople.transform.forward, peopleList[i].transform.forward) < 0.5f)
                         {//如果两个人迎面相撞 要绕道
                             isFrontHitNL[i] = false;
                         }
-                        //else if (frontRaycastResults[i].collider.GetComponent<AITrafficCar>())
-                        //{//如果撞到车 但是位置比较偏
-                        //    Vector3 carPos = peopleList[i].transform.InverseTransformPoint(frontRaycastResults[i].collider.transform.position);
-                        //    if (Mathf.Abs( carPos.x) > carWidth)
+                        else if(hitPeople && agents[i].avoidancePriority> agents[hitPeople.assignedIndex].avoidancePriority && agents[hitPeople.assignedIndex].avoidancePriority!=0)
+                        {
+                            isFrontHitNL[i] = false;
+                        }
+                        //else if(!frontRaycastResults[i].collider.GetComponent<AITrafficCar>()&&(!isLeftHitNL[i]||!isRighttHitNL[i]))
+                        //{//如果两侧没有撞到东西
+                        //    Vector3 pointPos = peopleList[i].transform.InverseTransformPoint(targetsList[i]);
+                        //    if((pointPos.x>=0&&!isRighttHitNL[i])|| (pointPos.x<= 0 && !isLeftHitNL[i]))
                         //        isFrontHitNL[i] = false;
                         //}
-                        else if(!frontRaycastResults[i].collider.GetComponent<AITrafficCar>()&&!isLeftHitNL[i]||!isRighttHitNL[i])
-                        {//如果两侧没有撞到东西
-                            Vector3 pointPos = peopleList[i].transform.InverseTransformPoint(targetsList[i]);
-                            if((pointPos.x>=0&&!isRighttHitNL[i])|| (pointPos.x<= 0 && !isLeftHitNL[i]))
-                                isFrontHitNL[i] = false;
+                        else if(hitCar && hitCar.IsBraking())
+                        {//前面碰到的是车，且车是停止的，则行人绕行
+                            isFrontHitNL[i] = false;
                         }
                         else
                             isFrontHitNL[i] = true;
                     }
                     isFootHitNL[i] = footRaycastResults[i].collider == null ? false : true;
-                    //Debug.Log(isFootHitNL[i]);
                 }
 
-                //deltaTime = Time.deltaTime;
+                //AIPeopleJob
                 peopleAITrafficJob = new AIPeopleJob
                 {
                     //set NA=NL
@@ -324,11 +357,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     crossRoadNA = crossRoadNL,
                     deltaTime = Time.deltaTime
                 };
-
+                //开始job
                 jobHandle = peopleAITrafficJob.Schedule(peopleTAA);
                 jobHandle.Complete();
 
-                for (int i = 0; i < peopleCount; i++) // operate on results
+                // operate on results
+                for (int i = 0; i < peopleCount; i++) 
                 {
                     //变道
                     if (needChangeLanesNL[i])
@@ -337,7 +371,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                         {
                             isWalkingNL[i] = false;
                         }
-                        else if (!canChangeLanesNL[i] && !isChangingLanesNL[i])
+                        else if (!canChangeLanesNL[i] && !isChangingLanesNL[i])//处于变道冷却时间，行人保持不动
                         {
                             changeLaneCooldownTimer[i] += Time.deltaTime;
                             if (changeLaneCooldownTimer[i] > changeLaneCooldown)
@@ -345,28 +379,30 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                 canChangeLanesNL[i] = true;
                                 changeLaneCooldownTimer[i] = 0f;
                             }
-                            isWalkingNL[i] = false;//处于变道冷却时间，行人保持不动
+                            isWalkingNL[i] = false;
                         }
-                        else if (!isChangingLanesNL[i])//不在变道
+                        else if (!isChangingLanesNL[i])//不在变道，此时可以变道
                         {
                             isChangingLanesNL[i] = true;
                             canChangeLanesNL[i] = false;
                             peopleList[i].ChangeToRouteWaypoint(currentWaypointList[i].onReachWaypointSettings.laneChangePoints[0].onReachWaypointSettings);
                         }
                     }
-                    //控制行走或暂停
+
+                    //强制过马路的特殊事件
                     if (crossRoadNL[i])
                         agents[i].speed = peopleList[i].maxSpeed;
+                    //正常情况
                     else
                     {
-                        if(isWalkingNL[i])
+                        if(isWalkingNL[i])//行走状态
                         {
                             if (!runForTrafficLightNL[i])//没有走到路中间变红灯
                                 agents[i].speed = peopleList[i].speed;
-                            else
+                            else//走到路中央变红，则改为最大速度行走
                                 agents[i].speed = peopleList[i].maxSpeed;
                         }
-                        else
+                        else//停止状态
                         {
                             agents[i].speed = 0;
                             if (stopForHornNL[i])//如果属于被车笛声干扰
@@ -379,6 +415,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                 }
                                 else
                                 {
+                                    //头部旋转
                                     peopleList[i].playerHead.LookAt(new Vector3( peopleList[i].frontSensorTransform.position.x, peopleList[i].playerHead.position.y, peopleList[i].frontSensorTransform.position.z));
                                     //设置躲避方向
                                    if (runDirectionNL[i]==1)
@@ -390,10 +427,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                                         agents[i].velocity = -direction * peopleList[i].maxSpeed;                                        
                                     }
                                     peopleList[i].animator.SetInteger("RunDirection", 1);
+                                    //到达台阶上
                                     if (isFootHitNL[i])
                                     {
-                                       // stopForHornNL[i] = false;
-                                        //peopleList[i].animator.SetInteger("RunDirection", 0);
                                         peopleList[i].AfterCarHorn();
                                     }
                                 }
@@ -402,9 +438,11 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     }
 
                 }
+
                 if (usePool)
                 {
                     centerPosition = AITrafficController.Instance.centerPoint.position;
+                    //AIPeopleDistanceJob
                     _AIPeopleDistanceJob = new AIPeopleDistanceJob
                     {
                         isDisabledNA = isDisabledNL,
@@ -415,6 +453,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     };
                     jobHandle = _AIPeopleDistanceJob.Schedule(peopleTAA);
                     jobHandle.Complete();
+                    //根据结果刷新密度
                     for (int i = 0; i < peopleCount; i++)
                     {
                         if (isDisabledNL[i] == false)
@@ -422,7 +461,6 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                             peopleRouteList[i].currentDensity += 1;
                             if (outOfBoundsNL[i])//在pool边界外
                             {
-                                //Debug.Log(peopleList[i].assignedIndex);
                                 MovePeopleToPool(peopleList[i].assignedIndex);
                             }
                         }
@@ -652,6 +690,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         #endregion
 
         #region pool
+        //将人移动至pool
         public void MovePeopleToPool(int _index)
         {
             canChangeLanesNL[_index] = false;
@@ -672,34 +711,36 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             newPeoplePoolEntry = new AIPeoplePoolEntry();
             newPeoplePoolEntry.assignedIndex = _index;
             newPeoplePoolEntry.peoplePrefab = peopleList[_index];
-            peoplePool.Add(newPeoplePoolEntry);
+            peoplePool.Add(newPeoplePoolEntry);//添加到pool列表中
         }
-        void SpawnPeople()
+        void SpawnPeople()//生成人物
         {
             spawnTimer = 0f;
             availableSpawnPoints.Clear();
-            for (int i = 0; i < peopleSpawnPoint.Count; i++) // Get Available Spawn Points From All Zones
+            //获取可能的生成位置
+            for (int i = 0; i < peopleSpawnPoint.Count; i++) 
             {
                 distanceToSpawnPoint = Vector3.Distance(centerPosition, peopleSpawnPoint[i].transformCached.position);
                 if ((distanceToSpawnPoint > AITrafficController.Instance.actizeZone || (distanceToSpawnPoint > AITrafficController.Instance.minSpawnZone && peopleSpawnPoint[i].isVisible == false))
-                    && distanceToSpawnPoint < spawnZone && peopleSpawnPoint[i].isTrigger == false)
+                    && distanceToSpawnPoint < spawnZone && peopleSpawnPoint[i].isTrigger == false)//在生成zone范围内且不可见且不能是被占据的状态
                 {
                     availableSpawnPoints.Add(peopleSpawnPoint[i]);
                 }
             }
             
-            currentDensity = peopleList.Count - peoplePool.Count;
+            currentDensity = peopleList.Count - peoplePool.Count;//获取密度
             if (currentDensity < density) //Spawn Traffic
             {
+                //得到需要生成的数量
                 currentAmountToSpawn = density - currentDensity;
+                
                 for (int i = 0; i < currentAmountToSpawn; i++)
                 {
                     if (availableSpawnPoints.Count == 0 || peoplePool.Count == 0) break;
                     randomSpawnPointIndex = UnityEngine.Random.Range(0, availableSpawnPoints.Count);
                     if (availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.currentDensity < availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.maxDensity)
                     {
-                        //Debug.Log("spawn");
-                        spawnpeople = GetPeopleFromPool(availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute);
+                        spawnpeople = GetPeopleFromPool(availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute);//从pool中获取人物进行生成
                         if (spawnpeople != null)
                         {
                             availableSpawnPoints[randomSpawnPointIndex].waypoint.onReachWaypointSettings.parentRoute.currentDensity += 1;
@@ -731,7 +772,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                 {
                     loadPeople = peoplePool[i].peoplePrefab;
                     isDisabledNL[peoplePool[i].assignedIndex] = false;
-                   // rigidbodyList[peoplePool[i].assignedIndex].isKinematic = false;
+                   // 激活pool中的行人
                     EnablePeople(peopleList[peoplePool[i].assignedIndex].assignedIndex, parentRoute);
                     peoplePool.RemoveAt(i);
                     return loadPeople;
@@ -739,6 +780,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             }
             return loadPeople;
         }
+        //行人从pool中激活
         public void EnablePeople(int _index, AITrafficWaypointRoute parentRoute)
         {
             isActiveNL[_index] = true;
@@ -749,11 +791,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             needChangeLanesNL[_index] = false;
         }
         #endregion
+
         #region Gizmo
         private void OnDrawGizmos()
         {
             for(int i=0;i<peopleCount;i++)
             {
+                //前向射线检测显示
                 if (frontRaycastResults[i].collider)
                 {
                     Gizmos.color = Color.red;
@@ -765,11 +809,14 @@ namespace TurnTheGameOn.SimpleTrafficSystem
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(peopleList[i].frontSensorTransform.position, peopleList[i].frontSensorTransform.position + peopleList[i].transform.forward * peopleList[i].frontSensorLength);
                 }
+
+                //侧向射线检测显示
                 Gizmos.color = !isRighttHitNL[i] ? STSPrefs.normalColor : STSPrefs.detectColor;
                 gizmoOffset = new Vector3(peopleList[i].sideSensorSize.x * 2.0f, peopleList[i].sideSensorSize.y * 2.0f, peopleList[i].sideSensorLength);
                 DrawCube(peopleList[i].leftSensorTransform.position + peopleList[i].transform.forward * (peopleList[i].sideSensorLength / 2), peopleList[i].transform.rotation, gizmoOffset);
                 DrawCube(peopleList[i].rightSensorTransform.position + peopleList[i].transform.forward * (peopleList[i].sideSensorLength / 2), peopleList[i].transform.rotation, gizmoOffset);
 
+                //脚部射线检测显示
                 if (!isFootHitNL[i])
                 {
                     // 如果射线没有击中物体，将射线的末端位置绘制为绿色的 Gizmos 线条

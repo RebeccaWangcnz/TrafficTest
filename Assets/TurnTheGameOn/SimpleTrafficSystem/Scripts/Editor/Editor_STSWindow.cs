@@ -206,7 +206,7 @@
                     Selection.objects = newSelection;
                     Undo.RegisterCreatedObjectUndo(_objectToSpawn, "SpawnWaypointRoute");
                 }
-                //Rebe:添加了行人的路线
+                //Rebe:添加了行人的路线编辑按钮
                 if (GUILayout.Button("AI People Waypoint Route"))
                 {
                     GameObject _objectToSpawn = Instantiate(STSRefs.AssetReferences._AIPeopleWaypointRoute);

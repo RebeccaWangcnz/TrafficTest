@@ -5,7 +5,9 @@ namespace TurnTheGameOn.SimpleTrafficSystem
     using Unity.Collections;
     using Unity.Burst;
     using UnityEngine.Jobs;
-
+    /// <summary>
+    /// 一些运行时车辆行为判断
+    /// </summary>
     [BurstCompile]
     public struct AIPeopleJob : IJobParallelForTransform
     {
@@ -25,7 +27,7 @@ namespace TurnTheGameOn.SimpleTrafficSystem
         public NativeArray<int> runDirectionNA;
         public NativeArray<bool> crossRoadNA;
         public bool useLaneChanging;
-        [ReadOnly]public float deltaTime;
+        [ReadOnly]public float deltaTime;//获取到的Time.deltaTime
 
 
         public void Execute(int index, TransformAccess driveTargetTransformAccessArray)
@@ -41,13 +43,13 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             {//如果这条路的交通灯需要停车&&车有行进&&目前所在的路径点>=路线中所有的路线点的数量-1（应该就是到达了路线末端）
                 isWalkingNA[index] = false;
             }//红灯立刻停下运动
-            else if(isFrontHitNA[index])
+            else if(isFrontHitNA[index])//前方碰到障碍
             {
-                if(!useLaneChanging)
+                if(!useLaneChanging)//非换道停车
                 {
                     isWalkingNA[index] = false;
                 }
-                else
+                else//可以换道则换道
                 {
                     needChangeLanesNA[index] = true;
                 }
@@ -64,12 +66,12 @@ namespace TurnTheGameOn.SimpleTrafficSystem
             if(!isWalkingNA[index])
             {
                 if (!isFrontHitNA[index]&& !stopForTrafficLightNA[index]&& !isLastPointNA[index]&&!stopForHornNA[index])
-                {
-                    isWalkingNA[index] = true;
+                {//前面没有障碍&&不是红灯&&不是最后一个点&&没有受到鸣笛
+                    isWalkingNA[index] = true;//继续前进
                     needChangeLanesNA[index] = false;
                 }
             }
-            if(isFootHitNA[index])
+            if(isFootHitNA[index])//在强制过马路的情况下碰到台阶（即完成过马路操作），则关闭强制过马路
             {
                 if (crossRoadNA[index])
                     crossRoadNA[index] = false;
